@@ -2,7 +2,7 @@ import { Space, Typography } from 'antd';
 import { useState } from 'react';
 
 import { ModeAView } from './modeA/ModeAView.tsx';
-import { ModeBPlaceholder } from './modeB/ModeBPlaceholder.tsx';
+import { ModeBView } from './modeB/ModeBView.tsx';
 import { ModeSwitcher, type ViewMode } from './ModeSwitcher.tsx';
 
 import { formatAnchorDate } from '../../lib/date/anchorDate.ts';
@@ -47,7 +47,7 @@ export function WeatherViewPage() {
         {viewMode === 'A' ? (
           <ModeAView anchorDate={anchorDate} location={location} />
         ) : (
-          <ModeBPlaceholder />
+          <ModeBView anchorDate={anchorDate} location={location} />
         )}
       </div>
     </Space>

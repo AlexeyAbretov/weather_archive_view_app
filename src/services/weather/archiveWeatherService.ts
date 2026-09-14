@@ -142,7 +142,7 @@ async function fetchModeADay(
   }
 }
 
-async function fetchModeBWindow(
+export async function fetchModeBYear(
   params: ArchiveWeatherParams,
   year: number,
 ): Promise<YearWeatherWindow> {
@@ -227,7 +227,7 @@ export async function fetchModeB(
 ): Promise<YearWeatherWindow[]> {
   const years = buildYearRange(params.anchorDate);
 
-  const tasks = years.map((year) => () => fetchModeBWindow(params, year));
+  const tasks = years.map((year) => () => fetchModeBYear(params, year));
 
   return runWithConcurrencyLimit(tasks);
 }
