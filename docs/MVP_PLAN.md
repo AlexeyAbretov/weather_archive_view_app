@@ -24,6 +24,8 @@
 
 - `fetchModeA` / `fetchModeB` возвращают нормализованные записи по `(lat, lon, anchorDate)`.
 - Диапазон `anchorYear ± 10`; будущие даты и ERA5-lag (~5 дней) — `hasData: false`, без Forecast API.
-- 29.02 в невисокосные годы — `noDataReason: 'feb29'`, без HTTP-запроса.
+- 29.02 в невисокосные годы — режим A: одна запись `feb29`, без HTTP;
+  режим B: `feb29` только на отсутствующую календарную дату в окне,
+  остальные дни — нормализация из Archive API.
 - In-memory cache и параллелизм 3–5 запросов для режима B.
 - `npm run lint` и `npm run build` проходят.

@@ -33,7 +33,9 @@
 - [ ] `fetchModeB` возвращает до 21 окна по 15 дней (−7…+7 от якорной даты).
 - [ ] Daily-поля: t° min/max, precipitation/rain/snowfall, wind; hourly `weather_code` и `cloud_cover`.
 - [ ] Диапазон `anchorYear ± 10`; годы до 1940 и будущие даты — `hasData: false`, без прогноза.
-- [ ] 29.02 в невисокосные годы — `noDataReason: 'feb29'`.
+- [ ] 29.02 в невисокосные годы — режим A: одна запись `feb29`, без HTTP;
+  режим B: `feb29` только на отсутствующую календарную дату в окне,
+  остальные дни — нормализация из Archive API.
 - [ ] ERA5 lag (~5 дней) — `noDataReason: 'archive_lag'`.
 - [ ] In-memory cache: повторный вызов не обращается к API.
 - [ ] Параллелизм 3–5 одновременных запросов (режим B).
