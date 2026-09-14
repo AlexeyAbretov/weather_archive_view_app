@@ -34,6 +34,15 @@ npm run preview
 
 Production-сборка в `dist/` (включая PWA manifest и service worker).
 
+## Проверка PWA
+
+```bash
+npm run build
+npm run preview
+```
+
+Откройте http://localhost:4173 в Chrome → DevTools → Lighthouse → категория **PWA** → проверка **Installable**.
+
 ## Документация
 
 - [docs/CONSTITUTION.md](./docs/CONSTITUTION.md) — принципы каталога

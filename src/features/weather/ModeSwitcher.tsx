@@ -8,18 +8,21 @@ type ModeSwitcherProps = {
 };
 
 const MODE_OPTIONS = [
-  { label: 'Режим A — по годам', value: 'A' as const },
-  { label: 'Режим B — неделя', value: 'B' as const },
+  { label: 'По годам (A)', value: 'A' as const },
+  { label: 'По неделям (B)', value: 'B' as const },
 ];
 
 export function ModeSwitcher({ value, onChange }: ModeSwitcherProps) {
   return (
-    <Segmented
-      options={MODE_OPTIONS}
-      value={value}
-      onChange={(nextValue) => {
-        onChange(nextValue as ViewMode);
-      }}
-    />
+    <div className="mode-switcher">
+      <Segmented
+        block
+        options={MODE_OPTIONS}
+        value={value}
+        onChange={(nextValue) => {
+          onChange(nextValue as ViewMode);
+        }}
+      />
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 .tableWrapper {
-  overflow-x: auto;
+  border: none;
 }
 
 .table :global(.ant-table-thead > tr > th) {

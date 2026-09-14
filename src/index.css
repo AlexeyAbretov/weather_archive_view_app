@@ -1,3 +1,122 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --app-header-padding-block: 0 0;
+  --app-content-padding: 24px 48px;
+  --app-secondary-font-size: 12px;
+  --app-border-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --app-content-padding: 20px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --app-content-padding: 16px;
+  }
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding-inline: max(16px, env(safe-area-inset-left))
+    max(16px, env(safe-area-inset-right));
+  padding-block: max(0px, env(safe-area-inset-top));
+}
+
+.app-header-title {
+  color: #fff;
+  margin: 0 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-content {
+  padding: var(--app-content-padding);
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+
+.app-footer {
+  text-align: center;
+  font-size: var(--app-secondary-font-size);
+  padding-inline: max(16px, env(safe-area-inset-left))
+    max(16px, env(safe-area-inset-right));
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+.filter-bar {
+  width: 100%;
+}
+
+.filter-section {
+  width: 100%;
+}
+
+.filter-controls {
+  width: 100%;
+}
+
+.city-selector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.city-selector-input {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
+.city-selector-button {
+  flex: 0 0 auto;
+}
+
+.table-scroll-hint {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: var(--app-secondary-font-size);
+  margin: 0 0 8px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--app-border-color);
+  border-radius: 8px;
+}
+
+@media (max-width: 576px) {
+  .app-header-title {
+    font-size: 16px !important;
+  }
+
+  .city-selector-row {
+    flex-direction: column;
+  }
+
+  .city-selector-input,
+  .city-selector-button {
+    width: 100%;
+  }
+
+  .mode-switcher {
+    width: 100%;
+  }
+
+  .mode-switcher .ant-segmented {
+    width: 100%;
+  }
 }

@@ -20,7 +20,7 @@ export function buildYearTableColumns(): ColumnsType<YearWeatherRow> {
       fixed: 'left',
     },
     {
-      title: 't° min / max',
+      title: 't° мин / макс',
       key: 'temperature',
       width: 120,
       align: 'center',
