@@ -7,7 +7,7 @@
 - [x] **Bootstrap документации и каркаса** (#22): `docs/CONSTITUTION.md`, `docs/MVP_PLAN.md`, `docs/AGENT_PIPELINE.md`, `AGENTS.md`, runnable Vite/React/PWA проект.
 - [ ] **Этап 1 — Выбор города и геолокация** (#23): PR с UI выбора города и geolocation.
 - [x] **Этап 2 — Выбор якорной даты** (#24): PR с DatePicker, валидацией, state anchor date и утилитой диапазона лет ±10.
-- [ ] **Этап 3 — API-слой Open-Meteo Archive** (#25): PR с клиентом Archive API и нормализацией данных.
+- [x] **Этап 3 — API-слой Open-Meteo Archive** (#25): PR с клиентом Archive API и нормализацией данных.
 - [ ] **Этап 4 — Режим A** (#26): PR с таблицей по годам.
 - [ ] **Этап 5 — Режим B** (#27): PR с таблицей год × неделя.
 - [ ] **Этап 6 — PWA offline** (#28): PR с offline-кэшем API.
@@ -25,4 +25,17 @@
 - [ ] Выбранная дата отображается; state доступен через `useWeatherAppState`.
 - [ ] Диапазон лет `anchorYear − 10 … anchorYear + 10` отображается и экспортирован (`getYearRange`).
 - [ ] `isValidCalendarDate(2, 29, year)` — false для невисокосных годов.
+- [ ] `npm run lint`, `npm run build` — без ошибок.
+
+## Чеклист QA — этап 3 (#25)
+
+- [ ] `fetchModeA` возвращает до 21 нормализованной суточной записи (1 день/год).
+- [ ] `fetchModeB` возвращает до 21 окна по 15 дней (−7…+7 от якорной даты).
+- [ ] Daily-поля: t° min/max, precipitation/rain/snowfall, wind; hourly `weather_code` и `cloud_cover`.
+- [ ] Диапазон `anchorYear ± 10`; годы до 1940 и будущие даты — `hasData: false`, без прогноза.
+- [ ] 29.02 в невисокосные годы — `noDataReason: 'feb29'`.
+- [ ] ERA5 lag (~5 дней) — `noDataReason: 'archive_lag'`.
+- [ ] In-memory cache: повторный вызов не обращается к API.
+- [ ] Параллелизм 3–5 одновременных запросов (режим B).
+- [ ] Хуки `useModeAWeather` / `useModeBWeather`: loading / error / data.
 - [ ] `npm run lint`, `npm run build` — без ошибок.
