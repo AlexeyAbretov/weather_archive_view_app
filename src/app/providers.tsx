@@ -5,6 +5,7 @@ import ruRU from 'antd/locale/ru_RU';
 import dayjs from 'dayjs';
 import type { ReactNode } from 'react';
 
+import { LocationProvider } from '../features/location/LocationProvider.tsx';
 import { WeatherAppProvider } from '../state/WeatherAppContext.tsx';
 
 dayjs.locale('ru');
@@ -16,7 +17,9 @@ type AppProvidersProps = {
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <ConfigProvider locale={ruRU}>
-      <WeatherAppProvider>{children}</WeatherAppProvider>
+      <WeatherAppProvider>
+        <LocationProvider>{children}</LocationProvider>
+      </WeatherAppProvider>
     </ConfigProvider>
   );
 }
