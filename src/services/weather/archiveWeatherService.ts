@@ -22,6 +22,7 @@ import {
 } from '../../domain/weather/weatherDayRecord.ts';
 import { buildYearRange } from '../../domain/weather/yearRange.ts';
 import { runWithConcurrencyLimit } from '../../lib/concurrencyPool.ts';
+import { isValidCalendarDate } from '../../lib/date/anchorDate.ts';
 import { MemoryCache } from '../../lib/memoryCache.ts';
 
 export type ArchiveWeatherParams = {
@@ -146,19 +147,14 @@ export async function fetchModeBYear(
   year: number,
 ): Promise<YearWeatherWindow> {
   const windowDates = resolveModeBWindow(params.anchorDate, year);
-  const targetDate = resolveTargetDate(params.anchorDate, year);
-
-  if (!targetDate) {
-    return {
-      year,
-      days: windowDates.map((date) =>
-        createNoDataRecord(formatIsoDate(date), year, 'feb29'),
-      ),
-    };
-  }
 
   const dayRecords = windowDates.map((date) => {
     const isoDate = formatIsoDate(date);
+
+    if (!isValidCalendarDate(date.month() + 1, date.date(), date.year())) {
+      return createNoDataRecord(isoDate, year, 'feb29');
+    }
+
     const fetchability = checkDateFetchability(date);
 
     if (!fetchability.fetchable) {

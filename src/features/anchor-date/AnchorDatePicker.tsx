@@ -1,4 +1,5 @@
 import { DatePicker, message } from 'antd';
+import ruRU from 'antd/es/locale/ru_RU';
 import type { Dayjs } from 'dayjs';
 
 import { toDayjs } from '../../lib/date/anchorDate.ts';
@@ -32,6 +33,7 @@ export function AnchorDatePicker({
       allowClear={false}
       disabled={disabled}
       format={DATE_FORMAT}
+      locale={ruRU.DatePicker}
       onChange={handleChange}
       picker="date"
       placeholder="Выберите дату"
