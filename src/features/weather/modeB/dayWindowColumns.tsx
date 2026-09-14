@@ -8,14 +8,16 @@ import type { WeatherDayRecord } from '../../../domain/weather/weatherDayRecord.
 
 function formatDayOffsetLabel(offset: number): string {
   if (offset === 0) {
-    return 'D';
+    return 'день';
   }
+
+  const days = Math.abs(offset);
 
   if (offset > 0) {
-    return `D+${offset}`;
+    return `${days} дн. после`;
   }
 
-  return `D${offset}`;
+  return `${days} дн. до`;
 }
 
 function formatDayColumnTitle(record: WeatherDayRecord, index: number): string {

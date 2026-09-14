@@ -69,18 +69,20 @@ export function CitySelector() {
   }
 
   return (
-    <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-      <Space wrap>
+    <Space className="filter-controls" direction="vertical" size="middle">
+      <div className="city-selector-row">
         <AutoComplete
+          className="city-selector-input"
           value={query}
           options={options}
-          style={{ minWidth: 320 }}
+          style={{ width: '100%' }}
           placeholder="Введите название города"
           notFoundContent={getNotFoundContent(status, errorMessage)}
           onChange={setQuery}
           onSelect={handleSelect}
         />
         <Button
+          className="city-selector-button"
           icon={<EnvironmentOutlined />}
           loading={isLocating}
           onClick={() => {
@@ -89,7 +91,7 @@ export function CitySelector() {
         >
           Моё местоположение
         </Button>
-      </Space>
+      </div>
       {location ? (
         <Text>
           Выбран: <Tag color="blue">{location.name}</Tag>

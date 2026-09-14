@@ -19,15 +19,15 @@ export function WeatherViewPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('A');
 
   return (
-    <Space direction="vertical" size="large" style={{ width: '100%' }}>
-      <div>
+    <Space className="filter-bar" direction="vertical" size="large">
+      <div className="filter-section">
         <Title level={4}>Город</Title>
         <CitySelector />
       </div>
 
-      <div>
+      <div className="filter-section">
         <Title level={4}>Якорная дата</Title>
-        <Space direction="vertical" size="middle">
+        <Space className="filter-controls" direction="vertical" size="middle">
           <AnchorDatePicker onChange={setAnchorDate} value={anchorDate} />
           <Text>
             Выбранная дата: <Text strong>{formatAnchorDate(anchorDate)}</Text>
@@ -38,12 +38,12 @@ export function WeatherViewPage() {
         </Space>
       </div>
 
-      <div>
+      <div className="filter-section">
         <Title level={4}>Режим просмотра</Title>
         <ModeSwitcher onChange={setViewMode} value={viewMode} />
       </div>
 
-      <div>
+      <div className="filter-section">
         {viewMode === 'A' ? (
           <ModeAView anchorDate={anchorDate} location={location} />
         ) : (

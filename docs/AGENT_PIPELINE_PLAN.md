@@ -10,7 +10,7 @@
 - [x] **Этап 3 — API-слой Open-Meteo Archive** (#25): PR с клиентом Archive API и нормализацией данных.
 - [x] **Этап 4 — Режим A** (#26): PR с таблицей по годам.
 - [x] **Этап 5 — Режим B** (#27): PR с таблицей год × неделя.
-- [ ] **Этап 6 — PWA offline** (#28): PR с offline-кэшем API.
+- [x] **Этап 6 — PWA и полировка UI** (#28): PR с installable PWA, responsive layout и полировкой UI.
 
 ## Правила PR
 
@@ -59,3 +59,11 @@
 - [ ] Loading / error / «нет данных» на уровне года и дня.
 - [ ] Переключение A ↔ B без потери фильтров (город, дата).
 - [ ] `npm run lint`, `npm run build` — без ошибок.
+
+## Чеклист QA — этап 6 (#28)
+
+- [x] Manifest, иконки (192/512, maskable) и meta-теги присутствуют; `npm run build` генерирует SW в `dist/`.
+- [x] Lighthouse PWA: **Installable** на `npm run preview` (http://localhost:4173).
+- [x] Responsive layout: FilterBar, CitySelector, ModeSwitcher usable на 320–768 px; таблицы с горизонтальным scroll.
+- [x] Все пользовательские тексты на русском; режимы A/B — единообразные подписи и состояния loading/error/empty.
+- [x] `npm run lint`, `npm run build` — без ошибок.
