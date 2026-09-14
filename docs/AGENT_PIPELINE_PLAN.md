@@ -5,7 +5,7 @@
 ## Этапы
 
 - [x] **Bootstrap документации и каркаса** (#22): `docs/CONSTITUTION.md`, `docs/MVP_PLAN.md`, `docs/AGENT_PIPELINE.md`, `AGENTS.md`, runnable Vite/React/PWA проект.
-- [ ] **Этап 1 — Выбор города и геолокация** (#23): PR с UI выбора города и geolocation.
+- [x] **Этап 1 — Выбор города и геолокация** (#23): PR с autocomplete, geolocation и сохранением координат.
 - [x] **Этап 2 — Выбор якорной даты** (#24): PR с DatePicker, валидацией, state anchor date и утилитой диапазона лет ±10.
 - [ ] **Этап 3 — API-слой Open-Meteo Archive** (#25): PR с клиентом Archive API и нормализацией данных.
 - [ ] **Этап 4 — Режим A** (#26): PR с таблицей по годам.
