@@ -20,7 +20,7 @@ function App() {
         <HomePage />
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Архив погоды · выбор города и якорной даты
+        Архив погоды · этап 4 — режим A (таблица по годам)
       </Footer>
     </Layout>
   );

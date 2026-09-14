@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import type { SelectedLocation } from './types';
+import type { SelectedLocation } from './types.ts';
 
 type LocationContextValue = {
   location: SelectedLocation | null;
