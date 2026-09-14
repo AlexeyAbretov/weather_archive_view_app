@@ -1,9 +1,11 @@
-import { Button, Layout, Typography } from 'antd';
+import { Layout, Typography } from 'antd';
 
 import { CloudOutlined } from '@ant-design/icons';
 
+import { HomePage } from './pages/HomePage.tsx';
+
 const { Content, Footer, Header } = Layout;
-const { Paragraph, Title } = Typography;
+const { Title } = Typography;
 
 function App() {
   return (
@@ -15,16 +17,10 @@ function App() {
         </Title>
       </Header>
       <Content style={{ padding: '24px 48px' }}>
-        <Title level={2}>Добро пожаловать</Title>
-        <Paragraph>
-          PWA-приложение для просмотра архива погоды по данным Open-Meteo. Выбор
-          города, даты и режимы отображения будут добавлены на следующих этапах
-          MVP.
-        </Paragraph>
-        <Button type="primary">Начать работу</Button>
+        <HomePage />
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Архив погоды · этап 0 — bootstrap
+        Архив погоды · этап 2 — выбор якорной даты
       </Footer>
     </Layout>
   );
