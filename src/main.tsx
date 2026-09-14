@@ -1,3 +1,5 @@
+import '@ant-design/v5-patch-for-react-19';
+import './app/locale.ts';
 import './index.css';
 
 import { StrictMode } from 'react';
