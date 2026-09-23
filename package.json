@@ -11,6 +11,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint src --max-warnings=0",
     "lint:fix": "eslint src --fix",
+    "sync-cursor": "node node_modules/@llm/linting/scripts/sync-cursor.js",
     "preview": "vite preview"
   },
   "dependencies": {
