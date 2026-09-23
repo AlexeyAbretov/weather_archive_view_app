@@ -1,8 +1,7 @@
+import type { YearWeatherWindow } from '@domain/weather/weatherDayRecord.ts';
+import { fetchModeB } from '@services/weather/archiveWeatherService.ts';
 import type { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
-
-import type { YearWeatherWindow } from '../domain/weather/weatherDayRecord.ts';
-import { fetchModeB } from '../services/weather/archiveWeatherService.ts';
 
 export type UseModeBWeatherParams = {
   lat: number | null;

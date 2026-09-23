@@ -1,13 +1,11 @@
 import { getNoDataLabel } from '@components/weather/noDataLabel.ts';
+import type { YearWeatherWindow } from '@domain/weather/weatherDayRecord.ts';
 import { Alert, Button, Spin, Table, Typography } from 'antd';
 import type { Key } from 'react';
 import { useMemo } from 'react';
 
 import { DayWindowTable } from './DayWindowTable.tsx';
 import styles from './YearWindowTable.module.css';
-
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { YearWeatherWindow } from '../../../domain/weather/weatherDayRecord.ts';
 
 const { Text } = Typography;
 

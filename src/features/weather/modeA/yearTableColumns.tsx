@@ -2,10 +2,8 @@ import { PrecipitationCell } from '@components/weather/PrecipitationCell.tsx';
 import { TemperatureCell } from '@components/weather/TemperatureCell.tsx';
 import { WeatherIcon } from '@components/weather/WeatherIcon.tsx';
 import { WindCell } from '@components/weather/WindCell.tsx';
+import type { YearWeatherRow } from '@domain/weather/weatherDayRecord.ts';
 import type { ColumnsType } from 'antd/es/table';
-
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { YearWeatherRow } from '../../../domain/weather/weatherDayRecord.ts';
 
 export const buildYearTableColumns = (): ColumnsType<YearWeatherRow> => {
   return [

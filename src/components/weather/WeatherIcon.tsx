@@ -1,3 +1,5 @@
+import { mapWeatherCode } from '@domain/weather/weatherCodeCatalog.ts';
+import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Typography } from 'antd';
 
 import {
@@ -9,10 +11,6 @@ import {
 
 import { getNoDataLabel } from './noDataLabel.ts';
 import styles from './weatherCells.module.css';
-
-import { mapWeatherCode } from '../../domain/weather/weatherCodeCatalog.ts';
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { WeatherDayRecord } from '../../domain/weather/weatherDayRecord.ts';
 
 const { Text } = Typography;
 

@@ -1,9 +1,8 @@
+import { isValidCalendarDate } from '@lib/date/anchorDate.ts';
 import dayjs, { type Dayjs } from 'dayjs';
 
 import type { NoDataReason } from './weatherDayRecord.ts';
 import { ARCHIVE_MIN_YEAR } from './yearRange.ts';
-
-import { isValidCalendarDate } from '../../lib/date/anchorDate.ts';
 
 export const ARCHIVE_LAG_DAYS = 5;
 export const MODE_B_WINDOW_DAYS = 15;

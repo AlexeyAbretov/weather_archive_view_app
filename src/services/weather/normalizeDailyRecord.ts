@@ -1,12 +1,10 @@
 // eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
 import type { OpenMeteoArchiveResponse } from '@api/openMeteo/archiveResponse.types.ts';
-
 import {
   mapWeatherCode,
   resolvePrecipitationType,
-} from '../../domain/weather/weatherCodeCatalog.ts';
-// eslint-disable-next-line @stylistic/max-len -- путь доменного модуля
-import type { WeatherDayRecord } from '../../domain/weather/weatherDayRecord.ts';
+} from '@domain/weather/weatherCodeCatalog.ts';
+import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 
 const indexByDate = (times: string[]): Map<string, number> => {
   const map = new Map<string, number>();

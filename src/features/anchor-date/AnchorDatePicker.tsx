@@ -1,10 +1,9 @@
+import { toDayjs } from '@lib/date/anchorDate.ts';
 import { DatePicker, message } from 'antd';
 import ruRU from 'antd/es/locale/ru_RU';
 import type { Dayjs } from 'dayjs';
 
 import type { AnchorDate } from '@types';
-
-import { toDayjs } from '../../lib/date/anchorDate.ts';
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 

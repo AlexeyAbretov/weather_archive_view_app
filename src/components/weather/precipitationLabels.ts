@@ -1,5 +1,4 @@
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { PrecipitationType } from '../../domain/weather/weatherDayRecord.ts';
+import type { PrecipitationType } from '@domain/weather/weatherDayRecord.ts';
 
 const PRECIPITATION_LABELS: Record<PrecipitationType, string> = {
   none: 'без осадков',

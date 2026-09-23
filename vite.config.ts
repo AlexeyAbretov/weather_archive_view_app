@@ -11,9 +11,15 @@ export default defineConfig({
   resolve: {
     alias: {
       "@api": path.join(srcDir, "api"),
+      "@app": path.join(srcDir, "app"),
       "@components": path.join(srcDir, "components"),
+      "@domain": path.join(srcDir, "domain"),
+      "@features": path.join(srcDir, "features"),
       "@hooks": path.join(srcDir, "hooks"),
+      "@lib": path.join(srcDir, "lib"),
       "@pages": path.join(srcDir, "pages"),
+      "@services": path.join(srcDir, "services"),
+      "@state": path.join(srcDir, "state"),
       "@types": path.join(srcDir, "types"),
     },
   },

@@ -1,8 +1,7 @@
+import type { YearWeatherRow } from '@domain/weather/weatherDayRecord.ts';
+import { fetchModeA } from '@services/weather/archiveWeatherService.ts';
 import type { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
-
-import type { YearWeatherRow } from '../domain/weather/weatherDayRecord.ts';
-import { fetchModeA } from '../services/weather/archiveWeatherService.ts';
 
 export type UseModeAWeatherParams = {
   lat: number | null;

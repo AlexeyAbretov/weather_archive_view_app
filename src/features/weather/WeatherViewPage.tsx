@@ -1,3 +1,5 @@
+import { formatAnchorDate } from '@lib/date/anchorDate.ts';
+import { useWeatherAppState } from '@state/useWeatherAppState.ts';
 import { Space, Typography } from 'antd';
 import { useState } from 'react';
 
@@ -5,8 +7,6 @@ import { ModeAView } from './modeA/ModeAView.tsx';
 import { ModeBView } from './modeB/ModeBView.tsx';
 import { ModeSwitcher, type ViewMode } from './ModeSwitcher.tsx';
 
-import { formatAnchorDate } from '../../lib/date/anchorDate.ts';
-import { useWeatherAppState } from '../../state/useWeatherAppState.ts';
 import { AnchorDatePicker } from '../anchor-date/AnchorDatePicker.tsx';
 import { CitySelector } from '../location/CitySelector.tsx';
 import { useSelectedLocation } from '../location/LocationProvider.tsx';

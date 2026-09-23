@@ -1,10 +1,9 @@
+import { resolveTargetDate } from '@domain/weather/anchorDates.ts';
+import type { YearWeatherWindow } from '@domain/weather/weatherDayRecord.ts';
+import { buildYearRange } from '@domain/weather/yearRange.ts';
+import { fetchModeBYear } from '@services/weather/archiveWeatherService.ts';
 import type { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
-import { resolveTargetDate } from '../domain/weather/anchorDates.ts';
-import type { YearWeatherWindow } from '../domain/weather/weatherDayRecord.ts';
-import { buildYearRange } from '../domain/weather/yearRange.ts';
-import { fetchModeBYear } from '../services/weather/archiveWeatherService.ts';
 
 export type UseModeBLazyWeatherParams = {
   lat: number | null;

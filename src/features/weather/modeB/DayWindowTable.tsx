@@ -1,11 +1,9 @@
+import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Table } from 'antd';
 import { useMemo } from 'react';
 
 import { buildDayWindowColumns } from './dayWindowColumns.tsx';
 import styles from './YearWindowTable.module.css';
-
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { WeatherDayRecord } from '../../../domain/weather/weatherDayRecord.ts';
 
 type DayWindowRow = {
   key: string;

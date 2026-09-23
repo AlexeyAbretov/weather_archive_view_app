@@ -1,11 +1,9 @@
+import type { YearWeatherRow } from '@domain/weather/weatherDayRecord.ts';
 import { Table, Typography } from 'antd';
 import { useMemo } from 'react';
 
 import { buildYearTableColumns } from './yearTableColumns.tsx';
 import styles from './YearWeatherTable.module.css';
-
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { YearWeatherRow } from '../../../domain/weather/weatherDayRecord.ts';
 
 const { Text } = Typography;
 

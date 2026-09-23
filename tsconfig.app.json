@@ -24,9 +24,15 @@
 
     "paths": {
       "@api/*": ["./src/api/*"],
+      "@app/*": ["./src/app/*"],
       "@components/*": ["./src/components/*"],
+      "@domain/*": ["./src/domain/*"],
+      "@features/*": ["./src/features/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@lib/*": ["./src/lib/*"],
       "@pages/*": ["./src/pages/*"],
+      "@services/*": ["./src/services/*"],
+      "@state/*": ["./src/state/*"],
       "@types": ["./src/types/index.ts"]
     }
   },

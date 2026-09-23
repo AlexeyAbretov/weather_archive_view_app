@@ -1,10 +1,8 @@
 import { DayWeatherCell } from '@components/weather/DayWeatherCell.tsx';
+import { MODE_B_OFFSET_DAYS } from '@domain/weather/anchorDates.ts';
+import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import type { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
-
-import { MODE_B_OFFSET_DAYS } from '../../../domain/weather/anchorDates.ts';
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { WeatherDayRecord } from '../../../domain/weather/weatherDayRecord.ts';
 
 const formatDayOffsetLabel = (offset: number): string => {
   if (offset === 0) {

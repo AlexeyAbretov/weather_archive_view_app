@@ -1,4 +1,5 @@
 import { useModeAWeather } from '@hooks/useModeAWeather.ts';
+import { toDayjs } from '@lib/date/anchorDate.ts';
 import { Alert, Button, Empty, Spin } from 'antd';
 import { useMemo } from 'react';
 
@@ -6,7 +7,6 @@ import type { AnchorDate } from '@types';
 
 import { YearWeatherTable } from './YearWeatherTable.tsx';
 
-import { toDayjs } from '../../../lib/date/anchorDate.ts';
 import type { SelectedLocation } from '../../location/types.ts';
 
 type ModeAViewProps = {

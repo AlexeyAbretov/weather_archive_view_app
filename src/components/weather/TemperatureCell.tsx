@@ -1,11 +1,9 @@
+import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Typography } from 'antd';
 
 import { formatTemperature } from './formatters.ts';
 import { getNoDataLabel } from './noDataLabel.ts';
 import styles from './weatherCells.module.css';
-
-// eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
-import type { WeatherDayRecord } from '../../domain/weather/weatherDayRecord.ts';
 
 const { Text } = Typography;
 

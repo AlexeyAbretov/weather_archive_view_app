@@ -1,29 +1,28 @@
 import { fetchArchive } from '@api/openMeteo/archiveClient.ts';
 // eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
 import type { OpenMeteoArchiveResponse } from '@api/openMeteo/archiveResponse.types.ts';
+import {
+  checkDateFetchability,
+  formatIsoDate,
+  resolveModeBWindow,
+  resolveTargetDate,
+} from '@domain/weather/anchorDates.ts';
+import {
+  createNoDataRecord,
+  type WeatherDayRecord,
+  type YearWeatherRow,
+  type YearWeatherWindow,
+} from '@domain/weather/weatherDayRecord.ts';
+import { buildYearRange } from '@domain/weather/yearRange.ts';
+import { runWithConcurrencyLimit } from '@lib/concurrencyPool.ts';
+import { isValidCalendarDate } from '@lib/date/anchorDate.ts';
+import { MemoryCache } from '@lib/memoryCache.ts';
 import type { Dayjs } from 'dayjs';
 
 import {
   normalizeDailyRecord,
   normalizeDailyRecords,
 } from './normalizeDailyRecord.ts';
-
-import {
-  checkDateFetchability,
-  formatIsoDate,
-  resolveModeBWindow,
-  resolveTargetDate,
-} from '../../domain/weather/anchorDates.ts';
-import {
-  createNoDataRecord,
-  type WeatherDayRecord,
-  type YearWeatherRow,
-  type YearWeatherWindow,
-} from '../../domain/weather/weatherDayRecord.ts';
-import { buildYearRange } from '../../domain/weather/yearRange.ts';
-import { runWithConcurrencyLimit } from '../../lib/concurrencyPool.ts';
-import { isValidCalendarDate } from '../../lib/date/anchorDate.ts';
-import { MemoryCache } from '../../lib/memoryCache.ts';
 
 export type ArchiveWeatherParams = {
   lat: number;
