@@ -47,4 +47,3 @@ npm run preview
 
 - [docs/CONSTITUTION.md](./docs/CONSTITUTION.md) — принципы каталога
 - [docs/MVP_PLAN.md](./docs/MVP_PLAN.md) — этапы MVP
-- [docs/AGENT_PIPELINE.md](./docs/AGENT_PIPELINE.md) — пайплайн агентов
