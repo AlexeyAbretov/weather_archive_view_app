@@ -1,5 +1,6 @@
-import { WeatherViewPage } from '@features/weather/WeatherViewPage.tsx';
 import { Space, Typography } from 'antd';
+
+import { WeatherViewPage } from '@features';
 
 const { Paragraph } = Typography;
 

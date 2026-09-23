@@ -5,7 +5,7 @@
 import type {
   OpenMeteoArchiveError,
   OpenMeteoArchiveResponse,
-} from './archiveResponse.types.ts';
+} from './archiveResponse.types';
 
 const ARCHIVE_API_URL = 'https://archive-api.open-meteo.com/v1/archive';
 

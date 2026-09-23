@@ -1,14 +1,17 @@
-import { resolveTargetDate } from '@domain/weather/anchorDates.ts';
-import type { YearWeatherWindow } from '@domain/weather/weatherDayRecord.ts';
-import { buildYearRange } from '@domain/weather/yearRange.ts';
-import { fetchModeBYear } from '@services/weather/archiveWeatherService.ts';
-import type { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import {
+  buildYearRange,
+  resolveTargetDate,
+  type YearWeatherWindow,
+} from '@domain';
+import { fetchModeBYear } from '@services';
+import type { AnchorDate } from '@types';
 
 export type UseModeBLazyWeatherParams = {
   lat: number | null;
   lon: number | null;
-  anchorDate: Dayjs | null;
+  anchorDate: AnchorDate | null;
   enabled?: boolean;
 };
 

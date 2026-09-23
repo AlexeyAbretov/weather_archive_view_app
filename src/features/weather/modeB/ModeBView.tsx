@@ -1,13 +1,11 @@
-import { useModeBLazyWeather } from '@hooks/useModeBLazyWeather.ts';
-import { toDayjs } from '@lib/date/anchorDate.ts';
 import { Empty } from 'antd';
-import { useMemo } from 'react';
 
+import { useModeBLazyWeather } from '@hooks';
 import type { AnchorDate } from '@types';
 
-import { YearWindowTable } from './YearWindowTable.tsx';
+import { YearWindowTable } from './YearWindowTable';
 
-import type { SelectedLocation } from '../../location/types.ts';
+import type { SelectedLocation } from '../../location/location.types';
 
 type ModeBViewProps = {
   location: SelectedLocation | null;
@@ -15,8 +13,6 @@ type ModeBViewProps = {
 };
 
 export const ModeBView = ({ location, anchorDate }: ModeBViewProps) => {
-  const anchorDayjs = useMemo(() => toDayjs(anchorDate), [anchorDate]);
-
   const {
     years,
     windowsByYear,
@@ -30,7 +26,7 @@ export const ModeBView = ({ location, anchorDate }: ModeBViewProps) => {
   } = useModeBLazyWeather({
     lat: location?.lat ?? null,
     lon: location?.lon ?? null,
-    anchorDate: anchorDayjs,
+    anchorDate,
     enabled: location != null,
   });
 

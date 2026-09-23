@@ -1,8 +1,9 @@
-import type { YearWeatherRow } from '@domain/weather/weatherDayRecord.ts';
 import { Table, Typography } from 'antd';
 import { useMemo } from 'react';
 
-import { buildYearTableColumns } from './yearTableColumns.tsx';
+import type { YearWeatherRow } from '@domain';
+
+import { buildYearTableColumns } from './yearTableColumns';
 import styles from './YearWeatherTable.module.css';
 
 const { Text } = Typography;

@@ -1,4 +1,4 @@
-import type { NoDataReason } from '@domain/weather/weatherDayRecord.ts';
+import type { NoDataReason } from '@domain';
 
 const NO_DATA_LABELS: Record<NoDataReason, string> = {
   future: 'нет данных',

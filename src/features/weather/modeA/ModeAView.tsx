@@ -1,13 +1,11 @@
-import { useModeAWeather } from '@hooks/useModeAWeather.ts';
-import { toDayjs } from '@lib/date/anchorDate.ts';
 import { Alert, Button, Empty, Spin } from 'antd';
-import { useMemo } from 'react';
 
+import { useModeAWeather } from '@hooks';
 import type { AnchorDate } from '@types';
 
-import { YearWeatherTable } from './YearWeatherTable.tsx';
+import { YearWeatherTable } from './YearWeatherTable';
 
-import type { SelectedLocation } from '../../location/types.ts';
+import type { SelectedLocation } from '../../location/location.types';
 
 type ModeAViewProps = {
   location: SelectedLocation | null;
@@ -15,12 +13,10 @@ type ModeAViewProps = {
 };
 
 export const ModeAView = ({ location, anchorDate }: ModeAViewProps) => {
-  const anchorDayjs = useMemo(() => toDayjs(anchorDate), [anchorDate]);
-
   const { data, loading, error, reload } = useModeAWeather({
     lat: location?.lat ?? null,
     lon: location?.lon ?? null,
-    anchorDate: anchorDayjs,
+    anchorDate,
     enabled: location != null,
   });
 

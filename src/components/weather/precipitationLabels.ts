@@ -1,4 +1,4 @@
-import type { PrecipitationType } from '@domain/weather/weatherDayRecord.ts';
+import type { PrecipitationType } from '@domain';
 
 const PRECIPITATION_LABELS: Record<PrecipitationType, string> = {
   none: 'без осадков',

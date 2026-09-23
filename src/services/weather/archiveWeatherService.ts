@@ -1,33 +1,31 @@
-import { fetchArchive } from '@api/openMeteo/archiveClient.ts';
-// eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
-import type { OpenMeteoArchiveResponse } from '@api/openMeteo/archiveResponse.types.ts';
+import { fetchArchive, type OpenMeteoArchiveResponse } from '@api';
 import {
+  buildYearRange,
   checkDateFetchability,
+  createNoDataRecord,
   formatIsoDate,
   resolveModeBWindow,
   resolveTargetDate,
-} from '@domain/weather/anchorDates.ts';
-import {
-  createNoDataRecord,
   type WeatherDayRecord,
   type YearWeatherRow,
   type YearWeatherWindow,
-} from '@domain/weather/weatherDayRecord.ts';
-import { buildYearRange } from '@domain/weather/yearRange.ts';
-import { runWithConcurrencyLimit } from '@lib/concurrencyPool.ts';
-import { isValidCalendarDate } from '@lib/date/anchorDate.ts';
-import { MemoryCache } from '@lib/memoryCache.ts';
-import type { Dayjs } from 'dayjs';
+} from '@domain';
+import {
+  isValidCalendarDate,
+  MemoryCache,
+  runWithConcurrencyLimit,
+} from '@lib';
+import type { AnchorDate } from '@types';
 
 import {
   normalizeDailyRecord,
   normalizeDailyRecords,
-} from './normalizeDailyRecord.ts';
+} from './normalizeDailyRecord';
 
 export type ArchiveWeatherParams = {
   lat: number;
   lon: number;
-  anchorDate: Dayjs;
+  anchorDate: AnchorDate;
 };
 
 type FetchWindowParams = ArchiveWeatherParams & {
@@ -39,9 +37,9 @@ type FetchWindowParams = ArchiveWeatherParams & {
 
 const responseCache = new MemoryCache<OpenMeteoArchiveResponse>();
 
-const placeholderDateForYear = (anchor: Dayjs, year: number): string => {
-  const month = String(anchor.month() + 1).padStart(2, '0');
-  const day = String(anchor.date()).padStart(2, '0');
+const placeholderDateForYear = (anchor: AnchorDate, year: number): string => {
+  const month = String(anchor.month).padStart(2, '0');
+  const day = String(anchor.day).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
 };
@@ -84,7 +82,10 @@ const fetchArchiveWindow = async (
   return response;
 };
 
-const resolveModeADay = (anchorDate: Dayjs, year: number): WeatherDayRecord => {
+const resolveModeADay = (
+  anchorDate: AnchorDate,
+  year: number,
+): WeatherDayRecord => {
   const targetDate = resolveTargetDate(anchorDate, year);
 
   if (!targetDate) {
@@ -150,7 +151,7 @@ export const fetchModeBYear = async (
   const dayRecords = windowDates.map((date) => {
     const isoDate = formatIsoDate(date);
 
-    if (!isValidCalendarDate(date.month() + 1, date.date(), date.year())) {
+    if (!isValidCalendarDate(date.month, date.day, date.year)) {
       return createNoDataRecord(isoDate, year, 'feb29');
     }
 
@@ -232,7 +233,7 @@ export const fetchModeB = async (
 };
 
 export const previewModeADay = (
-  anchorDate: Dayjs,
+  anchorDate: AnchorDate,
   year: number,
 ): WeatherDayRecord => {
   return resolveModeADay(anchorDate, year);

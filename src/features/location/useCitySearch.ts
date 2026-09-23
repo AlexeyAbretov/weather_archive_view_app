@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { isSearchQueryValid, searchCities } from './geocodingApi.ts';
-import type { CitySearchResult } from './types.ts';
+import { isSearchQueryValid, searchCities } from './geocodingApi';
+import type { CitySearchResult } from './location.types';
 
 const DEBOUNCE_MS = 350;
 

@@ -1,5 +1,3 @@
-import { mapWeatherCode } from '@domain/weather/weatherCodeCatalog.ts';
-import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Typography } from 'antd';
 
 import {
@@ -8,8 +6,9 @@ import {
   SunOutlined,
   ThunderboltOutlined,
 } from '@ant-design/icons';
+import { mapWeatherCode, type WeatherDayRecord } from '@domain';
 
-import { getNoDataLabel } from './noDataLabel.ts';
+import { getNoDataLabel } from './noDataLabel';
 import styles from './weatherCells.module.css';
 
 const { Text } = Typography;

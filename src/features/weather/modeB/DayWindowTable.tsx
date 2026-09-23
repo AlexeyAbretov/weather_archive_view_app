@@ -1,8 +1,9 @@
-import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Table } from 'antd';
 import { useMemo } from 'react';
 
-import { buildDayWindowColumns } from './dayWindowColumns.tsx';
+import type { WeatherDayRecord } from '@domain';
+
+import { buildDayWindowColumns } from './dayWindowColumns';
 import styles from './YearWindowTable.module.css';
 
 type DayWindowRow = {

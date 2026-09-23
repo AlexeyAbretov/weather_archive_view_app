@@ -1,15 +1,22 @@
-import { toDayjs } from '@lib/date/anchorDate.ts';
+import 'dayjs/locale/ru';
+
 import { DatePicker, message } from 'antd';
 import ruRU from 'antd/es/locale/ru_RU';
-import type { Dayjs } from 'dayjs';
+import dayjs, { type Dayjs } from 'dayjs';
 
 import type { AnchorDate } from '@types';
 
+dayjs.locale('ru');
+
 const DATE_FORMAT = 'DD.MM.YYYY';
+
+const toPickerDate = (anchor: AnchorDate): Dayjs => {
+  return dayjs(new Date(anchor.year, anchor.month - 1, anchor.day));
+};
 
 type AnchorDatePickerProps = {
   value: AnchorDate;
-  onChange: (date: Dayjs | null) => void;
+  onChange: (date: AnchorDate) => void;
   disabled?: boolean;
 };
 
@@ -19,13 +26,17 @@ export const AnchorDatePicker = ({
   disabled,
 }: AnchorDatePickerProps) => {
   const handleChange = (date: Dayjs | null) => {
-    if (date && !date.isValid()) {
+    if (!date?.isValid()) {
       message.warning('Некорректная дата');
 
       return;
     }
 
-    onChange(date);
+    onChange({
+      year: date.year(),
+      month: date.month() + 1,
+      day: date.date(),
+    });
   };
 
   return (
@@ -37,7 +48,7 @@ export const AnchorDatePicker = ({
       onChange={handleChange}
       picker="date"
       placeholder="Выберите дату"
-      value={toDayjs(value)}
+      value={toPickerDate(value)}
     />
   );
 };

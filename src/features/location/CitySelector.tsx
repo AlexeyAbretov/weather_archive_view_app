@@ -3,10 +3,10 @@ import { useMemo } from 'react';
 
 import { EnvironmentOutlined } from '@ant-design/icons';
 
-import { useSelectedLocation } from './LocationProvider.tsx';
-import type { CitySearchResult } from './types.ts';
-import { useCitySearch } from './useCitySearch.ts';
-import { useGeolocation } from './useGeolocation.ts';
+import type { CitySearchResult } from './location.types';
+import { useSelectedLocation } from './LocationProvider';
+import { useCitySearch } from './useCitySearch';
+import { useGeolocation } from './useGeolocation';
 
 const { Text } = Typography;
 

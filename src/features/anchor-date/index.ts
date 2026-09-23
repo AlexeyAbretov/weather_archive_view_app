@@ -1,4 +1,4 @@
-export { AnchorDatePicker } from './AnchorDatePicker.tsx';
+export { AnchorDatePicker } from './AnchorDatePicker';
 export {
   formatAnchorDate,
   formatYearRange,
@@ -6,6 +6,5 @@ export {
   getYearRange,
   isLeapYear,
   isValidCalendarDate,
-  parseAnchorDate,
-  toDayjs,
-} from '@lib/date/anchorDate.ts';
+  todayAnchorDate,
+} from '@lib';

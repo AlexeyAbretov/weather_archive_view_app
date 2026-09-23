@@ -1,9 +1,10 @@
-import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Typography } from 'antd';
 
-import { formatPrecipitationMm } from './formatters.ts';
-import { getNoDataLabel } from './noDataLabel.ts';
-import { getPrecipitationLabel } from './precipitationLabels.ts';
+import type { WeatherDayRecord } from '@domain';
+
+import { formatPrecipitationMm } from './formatters';
+import { getNoDataLabel } from './noDataLabel';
+import { getPrecipitationLabel } from './precipitationLabels';
 import styles from './weatherCells.module.css';
 
 const { Text } = Typography;

@@ -1,10 +1,4 @@
 import {
-  formatYearRange,
-  getYearRange,
-  parseAnchorDate,
-} from '@lib/date/anchorDate.ts';
-import dayjs, { type Dayjs } from 'dayjs';
-import {
   createContext,
   type ReactNode,
   useCallback,
@@ -12,13 +6,14 @@ import {
   useState,
 } from 'react';
 
+import { formatYearRange, getYearRange, todayAnchorDate } from '@lib';
 import type { AnchorDate } from '@types';
 
 export type WeatherAppState = {
   anchorDate: AnchorDate;
   yearRange: number[];
   yearRangeLabel: string;
-  setAnchorDate: (date: Dayjs | null) => void;
+  setAnchorDate: (date: AnchorDate) => void;
 };
 
 export const WeatherAppContext = createContext<WeatherAppState | null>(null);
@@ -28,16 +23,11 @@ type WeatherAppProviderProps = {
 };
 
 export const WeatherAppProvider = ({ children }: WeatherAppProviderProps) => {
-  const [anchorDate, setAnchorDateState] = useState<AnchorDate>(() =>
-    parseAnchorDate(dayjs()),
-  );
+  const [anchorDate, setAnchorDateState] =
+    useState<AnchorDate>(todayAnchorDate);
 
-  const setAnchorDate = useCallback((date: Dayjs | null) => {
-    if (!date?.isValid()) {
-      return;
-    }
-
-    setAnchorDateState(parseAnchorDate(date));
+  const setAnchorDate = useCallback((date: AnchorDate) => {
+    setAnchorDateState(date);
   }, []);
 
   const yearRange = useMemo(() => getYearRange(anchorDate), [anchorDate]);

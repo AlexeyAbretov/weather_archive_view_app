@@ -1,10 +1,10 @@
-import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
+import type { WeatherDayRecord } from '@domain';
 
-import { PrecipitationCell } from './PrecipitationCell.tsx';
-import { TemperatureCell } from './TemperatureCell.tsx';
+import { PrecipitationCell } from './PrecipitationCell';
+import { TemperatureCell } from './TemperatureCell';
 import styles from './weatherCells.module.css';
-import { WeatherIcon } from './WeatherIcon.tsx';
-import { WindCell } from './WindCell.tsx';
+import { WeatherIcon } from './WeatherIcon';
+import { WindCell } from './WindCell';
 
 type DayWeatherCellProps = {
   record: WeatherDayRecord;

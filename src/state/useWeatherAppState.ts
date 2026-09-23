@@ -1,9 +1,6 @@
 import { useContext } from 'react';
 
-import {
-  WeatherAppContext,
-  type WeatherAppState,
-} from './WeatherAppContext.tsx';
+import { WeatherAppContext, type WeatherAppState } from './WeatherAppContext';
 
 export const useWeatherAppState = (): WeatherAppState => {
   const context = useContext(WeatherAppContext);

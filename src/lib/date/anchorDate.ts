@@ -1,8 +1,12 @@
-import dayjs, { type Dayjs } from 'dayjs';
-
 import type { AnchorDate } from '@types';
 
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+const anchorDateFormatter = new Intl.DateTimeFormat('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
 
 export const isLeapYear = (year: number): boolean => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -27,24 +31,25 @@ export const isValidCalendarDate = (
   return day <= maxDay;
 };
 
-export const parseAnchorDate = (date: Dayjs): AnchorDate => {
+export const todayAnchorDate = (): AnchorDate => {
+  const now = new Date();
+
   return {
-    month: date.month() + 1,
-    day: date.date(),
-    year: date.year(),
+    year: now.getFullYear(),
+    month: now.getMonth() + 1,
+    day: now.getDate(),
   };
 };
 
-export const toDayjs = (anchor: AnchorDate): Dayjs => {
-  return dayjs()
-    .year(anchor.year)
-    .month(anchor.month - 1)
-    .date(anchor.day)
-    .startOf('day');
-};
-
 export const formatAnchorDate = (anchor: AnchorDate): string => {
-  return toDayjs(anchor).format('D MMMM YYYY');
+  const parts = anchorDateFormatter.formatToParts(
+    new Date(anchor.year, anchor.month - 1, anchor.day),
+  );
+  const day = parts.find((part) => part.type === 'day')?.value ?? '';
+  const month = parts.find((part) => part.type === 'month')?.value ?? '';
+  const year = parts.find((part) => part.type === 'year')?.value ?? '';
+
+  return `${day} ${month} ${year}`;
 };
 
 export const getAnchorYear = (anchor: AnchorDate): number => {

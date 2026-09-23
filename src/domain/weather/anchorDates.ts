@@ -1,8 +1,8 @@
-import { isValidCalendarDate } from '@lib/date/anchorDate.ts';
-import dayjs, { type Dayjs } from 'dayjs';
+import { isValidCalendarDate, todayAnchorDate } from '@lib';
+import type { AnchorDate } from '@types';
 
-import type { NoDataReason } from './weatherDayRecord.ts';
-import { ARCHIVE_MIN_YEAR } from './yearRange.ts';
+import type { NoDataReason } from './weatherDayRecord';
+import { ARCHIVE_MIN_YEAR } from './yearRange';
 
 export const ARCHIVE_LAG_DAYS = 5;
 export const MODE_B_WINDOW_DAYS = 15;
@@ -11,65 +11,79 @@ export const MODE_B_OFFSET_DAYS = 7;
 export type DateFetchability =
   { fetchable: true } | { fetchable: false; reason: NoDataReason };
 
-export const resolveTargetDate = (
-  anchor: Dayjs,
-  year: number,
-): Dayjs | null => {
-  const month = anchor.month() + 1;
-  const day = anchor.date();
+const toDayStamp = (date: AnchorDate): number => {
+  return Date.UTC(date.year, date.month - 1, date.day);
+};
 
-  if (!isValidCalendarDate(month, day, year)) {
+const addDays = (date: AnchorDate, days: number): AnchorDate => {
+  const next = new Date(date.year, date.month - 1, date.day + days);
+
+  return {
+    year: next.getFullYear(),
+    month: next.getMonth() + 1,
+    day: next.getDate(),
+  };
+};
+
+const isAfterDay = (date: AnchorDate, other: AnchorDate): boolean => {
+  return toDayStamp(date) > toDayStamp(other);
+};
+
+export const resolveTargetDate = (
+  anchor: AnchorDate,
+  year: number,
+): AnchorDate | null => {
+  if (!isValidCalendarDate(anchor.month, anchor.day, year)) {
     return null;
   }
 
-  return dayjs()
-    .year(year)
-    .month(anchor.month())
-    .date(anchor.date())
-    .startOf('day');
+  return {
+    year,
+    month: anchor.month,
+    day: anchor.day,
+  };
 };
 
-export const resolveModeBWindow = (anchor: Dayjs, year: number): Dayjs[] => {
+export const resolveModeBWindow = (
+  anchor: AnchorDate,
+  year: number,
+): AnchorDate[] => {
   const anchorInYear = resolveTargetDate(anchor, year);
-
-  if (!anchorInYear) {
-    const fallbackCenter = dayjs()
-      .year(year)
-      .month(anchor.month())
-      .date(Math.min(anchor.date(), 28))
-      .startOf('day');
-
-    return Array.from({ length: MODE_B_WINDOW_DAYS }, (_, index) =>
-      fallbackCenter.add(index - MODE_B_OFFSET_DAYS, 'day'),
-    );
-  }
+  const center = anchorInYear ?? {
+    year,
+    month: anchor.month,
+    day: Math.min(anchor.day, 28),
+  };
 
   return Array.from({ length: MODE_B_WINDOW_DAYS }, (_, index) =>
-    anchorInYear.add(index - MODE_B_OFFSET_DAYS, 'day'),
+    addDays(center, index - MODE_B_OFFSET_DAYS),
   );
 };
 
 export const checkDateFetchability = (
-  targetDate: Dayjs,
-  today: Dayjs = dayjs().startOf('day'),
+  targetDate: AnchorDate,
+  today: AnchorDate = todayAnchorDate(),
 ): DateFetchability => {
-  if (targetDate.year() < ARCHIVE_MIN_YEAR) {
+  if (targetDate.year < ARCHIVE_MIN_YEAR) {
     return { fetchable: false, reason: 'missing' };
   }
 
-  if (targetDate.isAfter(today, 'day')) {
+  if (isAfterDay(targetDate, today)) {
     return { fetchable: false, reason: 'future' };
   }
 
-  const archiveCutoff = today.subtract(ARCHIVE_LAG_DAYS, 'day');
+  const archiveCutoff = addDays(today, -ARCHIVE_LAG_DAYS);
 
-  if (targetDate.isAfter(archiveCutoff, 'day')) {
+  if (isAfterDay(targetDate, archiveCutoff)) {
     return { fetchable: false, reason: 'archive_lag' };
   }
 
   return { fetchable: true };
 };
 
-export const formatIsoDate = (date: Dayjs): string => {
-  return date.format('YYYY-MM-DD');
+export const formatIsoDate = (date: AnchorDate): string => {
+  const month = String(date.month).padStart(2, '0');
+  const day = String(date.day).padStart(2, '0');
+
+  return `${date.year}-${month}-${day}`;
 };

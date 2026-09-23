@@ -1,1 +1,1 @@
-export type { AnchorDate } from './anchorDate.ts';
+export type { AnchorDate } from './types';

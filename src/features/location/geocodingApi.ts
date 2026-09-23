@@ -1,4 +1,4 @@
-import type { CitySearchResult } from './types.ts';
+import type { CitySearchResult } from './location.types';
 
 const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 const MIN_QUERY_LENGTH = 2;

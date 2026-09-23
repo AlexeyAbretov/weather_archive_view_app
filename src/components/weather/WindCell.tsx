@@ -1,8 +1,9 @@
-import type { WeatherDayRecord } from '@domain/weather/weatherDayRecord.ts';
 import { Typography } from 'antd';
 
-import { formatWindSpeed } from './formatters.ts';
-import { getNoDataLabel } from './noDataLabel.ts';
+import type { WeatherDayRecord } from '@domain';
+
+import { formatWindSpeed } from './formatters';
+import { getNoDataLabel } from './noDataLabel';
 import styles from './weatherCells.module.css';
 
 const { Text } = Typography;

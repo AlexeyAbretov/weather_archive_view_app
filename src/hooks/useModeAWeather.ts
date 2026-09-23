@@ -1,12 +1,13 @@
-import type { YearWeatherRow } from '@domain/weather/weatherDayRecord.ts';
-import { fetchModeA } from '@services/weather/archiveWeatherService.ts';
-import type { Dayjs } from 'dayjs';
 import { useCallback, useEffect, useState } from 'react';
+
+import type { YearWeatherRow } from '@domain';
+import { fetchModeA } from '@services';
+import type { AnchorDate } from '@types';
 
 export type UseModeAWeatherParams = {
   lat: number | null;
   lon: number | null;
-  anchorDate: Dayjs | null;
+  anchorDate: AnchorDate | null;
   enabled?: boolean;
 };
 

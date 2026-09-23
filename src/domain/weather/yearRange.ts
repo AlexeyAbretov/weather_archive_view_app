@@ -1,10 +1,10 @@
-import type { Dayjs } from 'dayjs';
+import type { AnchorDate } from '@types';
 
 export const ARCHIVE_MIN_YEAR = 1940;
 
 /** Диапазон anchorYear − 10 … anchorYear + 10 (до 21 года). */
-export const buildYearRange = (anchorDate: Dayjs): number[] => {
-  const anchorYear = anchorDate.year();
+export const buildYearRange = (anchorDate: AnchorDate): number[] => {
+  const anchorYear = anchorDate.year;
   const years: number[] = [];
 
   for (let year = anchorYear - 10; year <= anchorYear + 10; year++) {

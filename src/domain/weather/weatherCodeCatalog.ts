@@ -1,4 +1,4 @@
-import type { PrecipitationType } from './weatherDayRecord.ts';
+import type { PrecipitationType } from './weatherDayRecord';
 
 export type WeatherCodeInfo = {
   description: string;

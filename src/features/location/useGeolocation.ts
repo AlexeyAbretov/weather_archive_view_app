@@ -1,8 +1,8 @@
 import { message } from 'antd';
 import { useCallback, useState } from 'react';
 
-import { reverseGeocode } from './nominatimApi.ts';
-import type { SelectedLocation } from './types.ts';
+import type { SelectedLocation } from './location.types';
+import { reverseGeocode } from './nominatimApi';
 
 const GEOLOCATION_TIMEOUT_MS = 10_000;
 

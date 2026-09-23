@@ -36,8 +36,8 @@ body {
   padding-block: max(0px, env(safe-area-inset-top));
 }
 
-.app-header-title {
-  color: #fff;
+.app-header-title.ant-typography {
+  color: #fff !important;
   margin: 0 !important;
   white-space: nowrap;
   overflow: hidden;
@@ -47,14 +47,6 @@ body {
 .app-content {
   padding: var(--app-content-padding);
   padding-bottom: max(24px, env(safe-area-inset-bottom));
-}
-
-.app-footer {
-  text-align: center;
-  font-size: var(--app-secondary-font-size);
-  padding-inline: max(16px, env(safe-area-inset-left))
-    max(16px, env(safe-area-inset-right));
-  padding-bottom: max(12px, env(safe-area-inset-bottom));
 }
 
 .filter-bar {
