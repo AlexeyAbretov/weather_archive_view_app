@@ -25,12 +25,12 @@ export type UseModeBLazyWeatherResult = {
   isYearExpandable: (year: number) => boolean;
 };
 
-export function useModeBLazyWeather({
+export const useModeBLazyWeather = ({
   lat,
   lon,
   anchorDate,
   enabled = true,
-}: UseModeBLazyWeatherParams): UseModeBLazyWeatherResult {
+}: UseModeBLazyWeatherParams): UseModeBLazyWeatherResult => {
   const [windowsByYear, setWindowsByYear] = useState<
     Map<number, YearWeatherWindow>
   >(new Map());
@@ -158,4 +158,4 @@ export function useModeBLazyWeather({
     reloadYear,
     isYearExpandable,
   };
-}
+};

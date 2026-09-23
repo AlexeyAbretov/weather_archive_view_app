@@ -8,10 +8,10 @@ const NO_DATA_LABELS: Record<NoDataReason, string> = {
   missing: '—',
 };
 
-export function getNoDataLabel(reason?: NoDataReason): string {
+export const getNoDataLabel = (reason?: NoDataReason): string => {
   if (!reason) {
     return '—';
   }
 
   return NO_DATA_LABELS[reason];
-}
+};

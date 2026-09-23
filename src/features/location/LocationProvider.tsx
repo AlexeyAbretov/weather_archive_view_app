@@ -21,7 +21,7 @@ type LocationProviderProps = {
   children: ReactNode;
 };
 
-export function LocationProvider({ children }: LocationProviderProps) {
+export const LocationProvider = ({ children }: LocationProviderProps) => {
   const [location, setLocationState] = useState<SelectedLocation | null>(null);
 
   const setLocation = useCallback((nextLocation: SelectedLocation) => {
@@ -46,9 +46,9 @@ export function LocationProvider({ children }: LocationProviderProps) {
       {children}
     </LocationContext.Provider>
   );
-}
+};
 
-export function useSelectedLocation(): LocationContextValue {
+export const useSelectedLocation = (): LocationContextValue => {
   const context = useContext(LocationContext);
 
   if (!context) {
@@ -58,4 +58,4 @@ export function useSelectedLocation(): LocationContextValue {
   }
 
   return context;
-}
+};

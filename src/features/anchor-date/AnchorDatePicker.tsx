@@ -2,8 +2,9 @@ import { DatePicker, message } from 'antd';
 import ruRU from 'antd/es/locale/ru_RU';
 import type { Dayjs } from 'dayjs';
 
+import type { AnchorDate } from '@types';
+
 import { toDayjs } from '../../lib/date/anchorDate.ts';
-import type { AnchorDate } from '../../types/anchorDate.ts';
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 
@@ -13,12 +14,12 @@ type AnchorDatePickerProps = {
   disabled?: boolean;
 };
 
-export function AnchorDatePicker({
+export const AnchorDatePicker = ({
   value,
   onChange,
   disabled,
-}: AnchorDatePickerProps) {
-  function handleChange(date: Dayjs | null) {
+}: AnchorDatePickerProps) => {
+  const handleChange = (date: Dayjs | null) => {
     if (date && !date.isValid()) {
       message.warning('Некорректная дата');
 
@@ -26,7 +27,7 @@ export function AnchorDatePicker({
     }
 
     onChange(date);
-  }
+  };
 
   return (
     <DatePicker
@@ -40,4 +41,4 @@ export function AnchorDatePicker({
       value={toDayjs(value)}
     />
   );
-}
+};

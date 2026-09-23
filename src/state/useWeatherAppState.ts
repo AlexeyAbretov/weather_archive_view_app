@@ -5,7 +5,7 @@ import {
   type WeatherAppState,
 } from './WeatherAppContext.tsx';
 
-export function useWeatherAppState(): WeatherAppState {
+export const useWeatherAppState = (): WeatherAppState => {
   const context = useContext(WeatherAppContext);
 
   if (!context) {
@@ -15,4 +15,4 @@ export function useWeatherAppState(): WeatherAppState {
   }
 
   return context;
-}
+};

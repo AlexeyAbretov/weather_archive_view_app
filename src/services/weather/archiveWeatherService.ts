@@ -1,3 +1,6 @@
+import { fetchArchive } from '@api/openMeteo/archiveClient.ts';
+// eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
+import type { OpenMeteoArchiveResponse } from '@api/openMeteo/archiveResponse.types.ts';
 import type { Dayjs } from 'dayjs';
 
 import {
@@ -5,9 +8,6 @@ import {
   normalizeDailyRecords,
 } from './normalizeDailyRecord.ts';
 
-import { fetchArchive } from '../../api/openMeteo/archiveClient.ts';
-// eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
-import type { OpenMeteoArchiveResponse } from '../../api/openMeteo/archiveResponse.types.ts';
 import {
   checkDateFetchability,
   formatIsoDate,
@@ -40,18 +40,18 @@ type FetchWindowParams = ArchiveWeatherParams & {
 
 const responseCache = new MemoryCache<OpenMeteoArchiveResponse>();
 
-function placeholderDateForYear(anchor: Dayjs, year: number): string {
+const placeholderDateForYear = (anchor: Dayjs, year: number): string => {
   const month = String(anchor.month() + 1).padStart(2, '0');
   const day = String(anchor.date()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
-}
+};
 
-function roundCoordinate(value: number): string {
+const roundCoordinate = (value: number): string => {
   return value.toFixed(4);
-}
+};
 
-function buildCacheKey(params: FetchWindowParams): string {
+const buildCacheKey = (params: FetchWindowParams): string => {
   return [
     roundCoordinate(params.lat),
     roundCoordinate(params.lon),
@@ -61,11 +61,11 @@ function buildCacheKey(params: FetchWindowParams): string {
     params.startDate,
     params.endDate,
   ].join(':');
-}
+};
 
-async function fetchArchiveWindow(
+const fetchArchiveWindow = async (
   params: FetchWindowParams,
-): Promise<OpenMeteoArchiveResponse> {
+): Promise<OpenMeteoArchiveResponse> => {
   const cacheKey = buildCacheKey(params);
   const cached = responseCache.get(cacheKey);
 
@@ -83,9 +83,9 @@ async function fetchArchiveWindow(
   responseCache.set(cacheKey, response);
 
   return response;
-}
+};
 
-function resolveModeADay(anchorDate: Dayjs, year: number): WeatherDayRecord {
+const resolveModeADay = (anchorDate: Dayjs, year: number): WeatherDayRecord => {
   const targetDate = resolveTargetDate(anchorDate, year);
 
   if (!targetDate) {
@@ -104,12 +104,12 @@ function resolveModeADay(anchorDate: Dayjs, year: number): WeatherDayRecord {
   }
 
   return createNoDataRecord(isoDate, year, 'missing');
-}
+};
 
-async function fetchModeADay(
+const fetchModeADay = async (
   params: ArchiveWeatherParams,
   year: number,
-): Promise<WeatherDayRecord> {
+): Promise<WeatherDayRecord> => {
   const targetDate = resolveTargetDate(params.anchorDate, year);
 
   if (!targetDate) {
@@ -140,12 +140,12 @@ async function fetchModeADay(
   } catch {
     return createNoDataRecord(isoDate, year, 'api_error');
   }
-}
+};
 
-export async function fetchModeBYear(
+export const fetchModeBYear = async (
   params: ArchiveWeatherParams,
   year: number,
-): Promise<YearWeatherWindow> {
+): Promise<YearWeatherWindow> => {
   const windowDates = resolveModeBWindow(params.anchorDate, year);
 
   const dayRecords = windowDates.map((date) => {
@@ -208,11 +208,11 @@ export async function fetchModeBYear(
   }
 
   return { year, days: dayRecords };
-}
+};
 
-export async function fetchModeA(
+export const fetchModeA = async (
   params: ArchiveWeatherParams,
-): Promise<YearWeatherRow[]> {
+): Promise<YearWeatherRow[]> => {
   const years = buildYearRange(params.anchorDate);
 
   const tasks = years.map(
@@ -220,28 +220,28 @@ export async function fetchModeA(
   );
 
   return runWithConcurrencyLimit(tasks);
-}
+};
 
-export async function fetchModeB(
+export const fetchModeB = async (
   params: ArchiveWeatherParams,
-): Promise<YearWeatherWindow[]> {
+): Promise<YearWeatherWindow[]> => {
   const years = buildYearRange(params.anchorDate);
 
   const tasks = years.map((year) => () => fetchModeBYear(params, year));
 
   return runWithConcurrencyLimit(tasks);
-}
+};
 
-export function previewModeADay(
+export const previewModeADay = (
   anchorDate: Dayjs,
   year: number,
-): WeatherDayRecord {
+): WeatherDayRecord => {
   return resolveModeADay(anchorDate, year);
-}
+};
 
-export function clearArchiveWeatherCache(): void {
+export const clearArchiveWeatherCache = (): void => {
   responseCache.clear();
-}
+};
 
 export type ArchiveWeatherService = {
   fetchModeA: typeof fetchModeA;

@@ -41,9 +41,9 @@ export class ArchiveApiError extends Error {
   }
 }
 
-export async function fetchArchive(
+export const fetchArchive = async (
   params: ArchiveRequestParams,
-): Promise<OpenMeteoArchiveResponse> {
+): Promise<OpenMeteoArchiveResponse> => {
   const url = new URL(ARCHIVE_API_URL);
 
   url.searchParams.set('latitude', String(params.lat));
@@ -78,4 +78,4 @@ export async function fetchArchive(
   }
 
   return payload as OpenMeteoArchiveResponse;
-}
+};

@@ -1,4 +1,4 @@
-export function formatTemperature(value: number | undefined): string {
+export const formatTemperature = (value: number | undefined): string => {
   if (value == null) {
     return '—';
   }
@@ -7,9 +7,9 @@ export function formatTemperature(value: number | undefined): string {
   const sign = rounded > 0 ? '+' : '';
 
   return `${sign}${rounded}°`;
-}
+};
 
-export function formatPrecipitationMm(value: number | undefined): string {
+export const formatPrecipitationMm = (value: number | undefined): string => {
   if (value == null) {
     return '—';
   }
@@ -19,12 +19,12 @@ export function formatPrecipitationMm(value: number | undefined): string {
   }
 
   return `${value.toFixed(1)} мм`;
-}
+};
 
-export function formatWindSpeed(value: number | undefined): string {
+export const formatWindSpeed = (value: number | undefined): string => {
   if (value == null) {
     return '—';
   }
 
   return `${Math.round(value)} км/ч`;
-}
+};

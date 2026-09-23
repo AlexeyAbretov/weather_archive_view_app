@@ -11,7 +11,7 @@ type DayWeatherCellProps = {
   record: WeatherDayRecord;
 };
 
-export function DayWeatherCell({ record }: DayWeatherCellProps) {
+export const DayWeatherCell = ({ record }: DayWeatherCellProps) => {
   return (
     <div className={styles.dayWeatherCell}>
       <TemperatureCell record={record} />
@@ -20,4 +20,4 @@ export function DayWeatherCell({ record }: DayWeatherCellProps) {
       <WeatherIcon record={record} />
     </div>
   );
-}
+};

@@ -21,7 +21,7 @@ type GeocodingApiResponse = {
 
 const searchCache = new Map<string, CitySearchResult[]>();
 
-function formatCityLabel(result: GeocodingApiResult): string {
+const formatCityLabel = (result: GeocodingApiResult): string => {
   const parts = [result.name];
 
   if (result.admin1) {
@@ -33,18 +33,18 @@ function formatCityLabel(result: GeocodingApiResult): string {
   }
 
   return parts.join(', ');
-}
+};
 
-function mapResult(result: GeocodingApiResult): CitySearchResult {
+const mapResult = (result: GeocodingApiResult): CitySearchResult => {
   return {
     name: result.name,
     lat: result.latitude,
     lon: result.longitude,
     label: formatCityLabel(result),
   };
-}
+};
 
-function trimCache(): void {
+const trimCache = (): void => {
   if (searchCache.size <= MAX_CACHE_SIZE) {
     return;
   }
@@ -54,16 +54,16 @@ function trimCache(): void {
   if (oldestKey) {
     searchCache.delete(oldestKey);
   }
-}
+};
 
-export function isSearchQueryValid(query: string): boolean {
+export const isSearchQueryValid = (query: string): boolean => {
   return query.trim().length >= MIN_QUERY_LENGTH;
-}
+};
 
-export async function searchCities(
+export const searchCities = async (
   query: string,
   signal?: AbortSignal,
-): Promise<CitySearchResult[]> {
+): Promise<CitySearchResult[]> => {
   const normalizedQuery = query.trim();
 
   if (!isSearchQueryValid(normalizedQuery)) {
@@ -104,4 +104,4 @@ export async function searchCities(
   trimCache();
 
   return results;
-}
+};

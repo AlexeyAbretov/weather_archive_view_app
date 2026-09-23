@@ -13,15 +13,15 @@ type WindCellProps = {
   record: WeatherDayRecord;
 };
 
-function getWindArrowRotation(degrees: number | undefined): number {
+const getWindArrowRotation = (degrees: number | undefined): number => {
   if (degrees == null) {
     return 0;
   }
 
   return degrees;
-}
+};
 
-export function WindCell({ record }: WindCellProps) {
+export const WindCell = ({ record }: WindCellProps) => {
   if (!record.hasData) {
     return (
       <Text className={styles.noData} type="secondary">
@@ -44,4 +44,4 @@ export function WindCell({ record }: WindCellProps) {
       <Text>{formatWindSpeed(record.windSpeedMax)}</Text>
     </div>
   );
-}
+};

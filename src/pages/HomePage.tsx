@@ -4,7 +4,7 @@ import { WeatherViewPage } from '../features/weather/WeatherViewPage.tsx';
 
 const { Paragraph } = Typography;
 
-export function HomePage() {
+export const HomePage = () => {
   return (
     <Space className="filter-bar" direction="vertical" size="large">
       <Paragraph style={{ marginBottom: 0 }}>
@@ -14,4 +14,4 @@ export function HomePage() {
       <WeatherViewPage />
     </Space>
   );
-}
+};

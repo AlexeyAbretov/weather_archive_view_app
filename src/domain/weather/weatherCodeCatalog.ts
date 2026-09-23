@@ -139,15 +139,15 @@ const DEFAULT_WEATHER_CODE: WeatherCodeInfo = {
   iconKey: 'unknown',
 };
 
-export function mapWeatherCode(
+export const mapWeatherCode = (
   code: number | null | undefined,
-): WeatherCodeInfo {
+): WeatherCodeInfo => {
   if (code == null) {
     return DEFAULT_WEATHER_CODE;
   }
 
   return WEATHER_CODE_MAP[code] ?? DEFAULT_WEATHER_CODE;
-}
+};
 
 type PrecipitationInput = {
   rainMm?: number | null;
@@ -155,9 +155,9 @@ type PrecipitationInput = {
   weatherCode?: number | null;
 };
 
-export function resolvePrecipitationType(
+export const resolvePrecipitationType = (
   record: PrecipitationInput,
-): PrecipitationType {
+): PrecipitationType => {
   const rain = record.rainMm ?? 0;
   const snow = record.snowfallCm ?? 0;
 
@@ -174,4 +174,4 @@ export function resolvePrecipitationType(
   }
 
   return mapWeatherCode(record.weatherCode).precipitationType;
-}
+};

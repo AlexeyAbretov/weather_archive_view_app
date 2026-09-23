@@ -15,7 +15,7 @@ type DayWindowTableProps = {
   days: WeatherDayRecord[];
 };
 
-export function DayWindowTable({ days }: DayWindowTableProps) {
+export const DayWindowTable = ({ days }: DayWindowTableProps) => {
   const columns = useMemo(() => buildDayWindowColumns(days), [days]);
   const dataSource = useMemo<DayWindowRow[]>(() => [{ key: 'window' }], []);
 
@@ -34,4 +34,4 @@ export function DayWindowTable({ days }: DayWindowTableProps) {
       />
     </div>
   );
-}
+};

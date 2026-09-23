@@ -1,10 +1,10 @@
 import { Empty } from 'antd';
 
-export function ModeBPlaceholder() {
+export const ModeBPlaceholder = () => {
   return (
     <Empty
       description="Режим B — в разработке"
       image={Empty.PRESENTED_IMAGE_SIMPLE}
     />
   );
-}
+};

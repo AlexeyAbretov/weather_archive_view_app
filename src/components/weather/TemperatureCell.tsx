@@ -13,7 +13,7 @@ type TemperatureCellProps = {
   record: WeatherDayRecord;
 };
 
-export function TemperatureCell({ record }: TemperatureCellProps) {
+export const TemperatureCell = ({ record }: TemperatureCellProps) => {
   if (!record.hasData) {
     return (
       <Text className={styles.noData} type="secondary">
@@ -33,4 +33,4 @@ export function TemperatureCell({ record }: TemperatureCellProps) {
       </Text>
     </div>
   );
-}
+};

@@ -11,7 +11,7 @@ type GeolocationPosition = {
   lon: number;
 };
 
-function getCurrentPosition(): Promise<GeolocationPosition> {
+const getCurrentPosition = (): Promise<GeolocationPosition> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       reject(new Error('Geolocation недоступен в этом браузере'));
@@ -36,18 +36,18 @@ function getCurrentPosition(): Promise<GeolocationPosition> {
       },
     );
   });
-}
+};
 
-function formatCoordinatesFallback(lat: number, lon: number): string {
+const formatCoordinatesFallback = (lat: number, lon: number): string => {
   return `Моё местоположение (${lat.toFixed(2)}, ${lon.toFixed(2)})`;
-}
+};
 
 type UseGeolocationResult = {
   isLocating: boolean;
   detectLocation: () => Promise<SelectedLocation | null>;
 };
 
-export function useGeolocation(): UseGeolocationResult {
+export const useGeolocation = (): UseGeolocationResult => {
   const [isLocating, setIsLocating] = useState(false);
 
   const detectLocation =
@@ -97,4 +97,4 @@ export function useGeolocation(): UseGeolocationResult {
     isLocating,
     detectLocation,
   };
-}
+};

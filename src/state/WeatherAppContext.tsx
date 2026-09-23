@@ -7,12 +7,13 @@ import {
   useState,
 } from 'react';
 
+import type { AnchorDate } from '@types';
+
 import {
   formatYearRange,
   getYearRange,
   parseAnchorDate,
 } from '../lib/date/anchorDate.ts';
-import type { AnchorDate } from '../types/anchorDate.ts';
 
 export type WeatherAppState = {
   anchorDate: AnchorDate;
@@ -27,7 +28,7 @@ type WeatherAppProviderProps = {
   children: ReactNode;
 };
 
-export function WeatherAppProvider({ children }: WeatherAppProviderProps) {
+export const WeatherAppProvider = ({ children }: WeatherAppProviderProps) => {
   const [anchorDate, setAnchorDateState] = useState<AnchorDate>(() =>
     parseAnchorDate(dayjs()),
   );
@@ -61,4 +62,4 @@ export function WeatherAppProvider({ children }: WeatherAppProviderProps) {
       {children}
     </WeatherAppContext.Provider>
   );
-}
+};

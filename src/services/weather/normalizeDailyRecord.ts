@@ -1,5 +1,6 @@
 // eslint-disable-next-line @stylistic/max-len -- длинный путь модуля API
-import type { OpenMeteoArchiveResponse } from '../../api/openMeteo/archiveResponse.types.ts';
+import type { OpenMeteoArchiveResponse } from '@api/openMeteo/archiveResponse.types.ts';
+
 import {
   mapWeatherCode,
   resolvePrecipitationType,
@@ -7,7 +8,7 @@ import {
 // eslint-disable-next-line @stylistic/max-len -- путь доменного модуля
 import type { WeatherDayRecord } from '../../domain/weather/weatherDayRecord.ts';
 
-function indexByDate(times: string[]): Map<string, number> {
+const indexByDate = (times: string[]): Map<string, number> => {
   const map = new Map<string, number>();
 
   times.forEach((time, index) => {
@@ -15,13 +16,13 @@ function indexByDate(times: string[]): Map<string, number> {
   });
 
   return map;
-}
+};
 
-function pickDailyWeatherCode(
+const pickDailyWeatherCode = (
   hourlyTimes: string[],
   hourlyCodes: (number | null)[],
   date: string,
-): number | null {
+): number | null => {
   const dayCodes = hourlyTimes
     .map((time, index) => ({ time, code: hourlyCodes[index] }))
     .filter((entry) => entry.time.startsWith(date) && entry.code != null);
@@ -33,13 +34,13 @@ function pickDailyWeatherCode(
   const middayIndex = Math.floor(dayCodes.length / 2);
 
   return dayCodes[middayIndex]?.code ?? dayCodes[0]?.code ?? null;
-}
+};
 
-function averageHourlyCloudCover(
+const averageHourlyCloudCover = (
   hourlyTimes: string[],
   hourlyCloudCover: (number | null)[],
   date: string,
-): number | undefined {
+): number | undefined => {
   const values = hourlyTimes
     .map((time, index) => ({ time, value: hourlyCloudCover[index] }))
     .filter((entry) => entry.time.startsWith(date) && entry.value != null)
@@ -52,12 +53,12 @@ function averageHourlyCloudCover(
   const sum = values.reduce((acc, value) => acc + value, 0);
 
   return Math.round(sum / values.length);
-}
+};
 
-function hasDailyValues(
+const hasDailyValues = (
   dailyIndex: number,
   response: OpenMeteoArchiveResponse,
-): boolean {
+): boolean => {
   const { daily } = response;
   const values = [
     daily.temperature_2m_max[dailyIndex],
@@ -66,13 +67,13 @@ function hasDailyValues(
   ];
 
   return values.some((value) => value != null);
-}
+};
 
-export function normalizeDailyRecord(
+export const normalizeDailyRecord = (
   response: OpenMeteoArchiveResponse,
   date: string,
   year: number,
-): WeatherDayRecord {
+): WeatherDayRecord => {
   const dailyIndex = indexByDate(response.daily.time).get(date);
 
   if (dailyIndex == null || !hasDailyValues(dailyIndex, response)) {
@@ -114,13 +115,13 @@ export function normalizeDailyRecord(
       weatherCode,
     }),
   };
-}
+};
 
-export function normalizeDailyRecords(
+export const normalizeDailyRecords = (
   response: OpenMeteoArchiveResponse,
   dates: { date: string; year: number }[],
-): WeatherDayRecord[] {
+): WeatherDayRecord[] => {
   return dates.map(({ date, year }) =>
     normalizeDailyRecord(response, date, year),
   );
-}
+};

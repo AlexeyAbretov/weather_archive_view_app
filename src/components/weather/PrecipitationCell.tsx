@@ -14,7 +14,7 @@ type PrecipitationCellProps = {
   record: WeatherDayRecord;
 };
 
-export function PrecipitationCell({ record }: PrecipitationCellProps) {
+export const PrecipitationCell = ({ record }: PrecipitationCellProps) => {
   if (!record.hasData) {
     return (
       <Text className={styles.noData} type="secondary">
@@ -34,4 +34,4 @@ export function PrecipitationCell({ record }: PrecipitationCellProps) {
       </Text>
     </div>
   );
-}
+};

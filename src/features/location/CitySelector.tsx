@@ -10,10 +10,10 @@ import { useGeolocation } from './useGeolocation.ts';
 
 const { Text } = Typography;
 
-function getNotFoundContent(
+const getNotFoundContent = (
   status: ReturnType<typeof useCitySearch>['status'],
   errorMessage: string | null,
-): React.ReactNode {
+): React.ReactNode => {
   if (status === 'loading') {
     return <Spin size="small" />;
   }
@@ -27,9 +27,9 @@ function getNotFoundContent(
   }
 
   return null;
-}
+};
 
-export function CitySelector() {
+export const CitySelector = () => {
   const { location, setLocation } = useSelectedLocation();
   const { query, setQuery, results, status, errorMessage } = useCitySearch();
   const { isLocating, detectLocation } = useGeolocation();
@@ -44,7 +44,10 @@ export function CitySelector() {
     [results],
   );
 
-  function handleSelect(_value: string, option: { city?: CitySearchResult }) {
+  const handleSelect = (
+    _value: string,
+    option: { city?: CitySearchResult },
+  ) => {
     if (!option.city) {
       return;
     }
@@ -55,9 +58,9 @@ export function CitySelector() {
       lon: option.city.lon,
     });
     setQuery(option.city.label);
-  }
+  };
 
-  async function handleDetectLocation(): Promise<void> {
+  const handleDetectLocation = async (): Promise<void> => {
     const detected = await detectLocation();
 
     if (!detected) {
@@ -66,7 +69,7 @@ export function CitySelector() {
 
     setLocation(detected);
     setQuery(detected.name);
-  }
+  };
 
   return (
     <Space className="filter-controls" direction="vertical" size="middle">
@@ -106,4 +109,4 @@ export function CitySelector() {
       )}
     </Space>
   );
-}
+};

@@ -12,7 +12,7 @@ const MODE_OPTIONS = [
   { label: 'По неделям (B)', value: 'B' as const },
 ];
 
-export function ModeSwitcher({ value, onChange }: ModeSwitcherProps) {
+export const ModeSwitcher = ({ value, onChange }: ModeSwitcherProps) => {
   return (
     <div className="mode-switcher">
       <Segmented
@@ -25,4 +25,4 @@ export function ModeSwitcher({ value, onChange }: ModeSwitcherProps) {
       />
     </div>
   );
-}
+};

@@ -14,10 +14,10 @@ type YearWeatherTableProps = {
   loading?: boolean;
 };
 
-export function YearWeatherTable({
+export const YearWeatherTable = ({
   data,
   loading = false,
-}: YearWeatherTableProps) {
+}: YearWeatherTableProps) => {
   const columns = useMemo(() => buildYearTableColumns(), []);
 
   return (
@@ -39,4 +39,4 @@ export function YearWeatherTable({
       </div>
     </div>
   );
-}
+};

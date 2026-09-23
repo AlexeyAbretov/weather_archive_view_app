@@ -20,7 +20,7 @@ type WeatherIconProps = {
   record: WeatherDayRecord;
 };
 
-function resolveIcon(iconKey: string | undefined) {
+const resolveIcon = (iconKey: string | undefined) => {
   switch (iconKey) {
     case 'clear':
     case 'mainly-clear':
@@ -44,9 +44,9 @@ function resolveIcon(iconKey: string | undefined) {
     default:
       return <QuestionCircleOutlined className={styles.iconUnknown} />;
   }
-}
+};
 
-export function WeatherIcon({ record }: WeatherIconProps) {
+export const WeatherIcon = ({ record }: WeatherIconProps) => {
   if (!record.hasData) {
     return (
       <Text className={styles.noData} type="secondary">
@@ -68,4 +68,4 @@ export function WeatherIcon({ record }: WeatherIconProps) {
       ) : null}
     </div>
   );
-}
+};

@@ -18,12 +18,12 @@ export type UseModeAWeatherResult = {
   reload: () => void;
 };
 
-export function useModeAWeather({
+export const useModeAWeather = ({
   lat,
   lon,
   anchorDate,
   enabled = true,
-}: UseModeAWeatherParams): UseModeAWeatherResult {
+}: UseModeAWeatherParams): UseModeAWeatherResult => {
   const [data, setData] = useState<YearWeatherRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -44,7 +44,7 @@ export function useModeAWeather({
 
     let cancelled = false;
 
-    async function load(): Promise<void> {
+    const load = async (): Promise<void> => {
       setLoading(true);
       setError(null);
 
@@ -72,7 +72,7 @@ export function useModeAWeather({
           setLoading(false);
         }
       }
-    }
+    };
 
     void load();
 
@@ -82,4 +82,4 @@ export function useModeAWeather({
   }, [anchorDate, enabled, lat, lon, reloadToken]);
 
   return { data, loading, error, reload };
-}
+};

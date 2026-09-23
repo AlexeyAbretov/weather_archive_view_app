@@ -1,15 +1,13 @@
+import { PrecipitationCell } from '@components/weather/PrecipitationCell.tsx';
+import { TemperatureCell } from '@components/weather/TemperatureCell.tsx';
+import { WeatherIcon } from '@components/weather/WeatherIcon.tsx';
+import { WindCell } from '@components/weather/WindCell.tsx';
 import type { ColumnsType } from 'antd/es/table';
 
-// eslint-disable-next-line @stylistic/max-len -- путь компонента
-import { PrecipitationCell } from '../../../components/weather/PrecipitationCell.tsx';
-// eslint-disable-next-line @stylistic/max-len -- путь компонента
-import { TemperatureCell } from '../../../components/weather/TemperatureCell.tsx';
-import { WeatherIcon } from '../../../components/weather/WeatherIcon.tsx';
-import { WindCell } from '../../../components/weather/WindCell.tsx';
 // eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
 import type { YearWeatherRow } from '../../../domain/weather/weatherDayRecord.ts';
 
-export function buildYearTableColumns(): ColumnsType<YearWeatherRow> {
+export const buildYearTableColumns = (): ColumnsType<YearWeatherRow> => {
   return [
     {
       title: 'Год',
@@ -48,4 +46,4 @@ export function buildYearTableColumns(): ColumnsType<YearWeatherRow> {
       render: (_value, row) => <WeatherIcon record={row.day} />,
     },
   ];
-}
+};

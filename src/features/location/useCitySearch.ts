@@ -15,7 +15,7 @@ type UseCitySearchResult = {
   errorMessage: string | null;
 };
 
-export function useCitySearch(): UseCitySearchResult {
+export const useCitySearch = (): UseCitySearchResult => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<CitySearchResult[]>([]);
   const [status, setStatus] = useState<CitySearchStatus>('idle');
@@ -81,4 +81,4 @@ export function useCitySearch(): UseCitySearchResult {
     status,
     errorMessage,
   };
-}
+};

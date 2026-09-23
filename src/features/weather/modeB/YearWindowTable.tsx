@@ -1,3 +1,4 @@
+import { getNoDataLabel } from '@components/weather/noDataLabel.ts';
 import { Alert, Button, Spin, Table, Typography } from 'antd';
 import type { Key } from 'react';
 import { useMemo } from 'react';
@@ -5,7 +6,6 @@ import { useMemo } from 'react';
 import { DayWindowTable } from './DayWindowTable.tsx';
 import styles from './YearWindowTable.module.css';
 
-import { getNoDataLabel } from '../../../components/weather/noDataLabel.ts';
 // eslint-disable-next-line @stylistic/max-len -- путь domain-модуля
 import type { YearWeatherWindow } from '../../../domain/weather/weatherDayRecord.ts';
 
@@ -28,7 +28,7 @@ type YearWindowTableProps = {
   isYearExpandable: (year: number) => boolean;
 };
 
-export function YearWindowTable({
+export const YearWindowTable = ({
   years,
   windowsByYear,
   loadingYears,
@@ -38,7 +38,7 @@ export function YearWindowTable({
   onExpandYear,
   onRetryYear,
   isYearExpandable,
-}: YearWindowTableProps) {
+}: YearWindowTableProps) => {
   const dataSource = useMemo<YearRow[]>(
     () =>
       years.map((year) => ({
@@ -134,4 +134,4 @@ export function YearWindowTable({
       </div>
     </div>
   );
-}
+};

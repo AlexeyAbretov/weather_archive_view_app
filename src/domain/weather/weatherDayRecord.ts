@@ -40,15 +40,15 @@ export type YearWeatherWindow = {
   days: WeatherDayRecord[];
 };
 
-export function createNoDataRecord(
+export const createNoDataRecord = (
   date: string,
   year: number,
   reason: NoDataReason,
-): WeatherDayRecord {
+): WeatherDayRecord => {
   return {
     date,
     year,
     hasData: false,
     noDataReason: reason,
   };
-}
+};

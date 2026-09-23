@@ -9,7 +9,7 @@ type AppProvidersProps = {
   children: ReactNode;
 };
 
-export function AppProviders({ children }: AppProvidersProps) {
+export const AppProviders = ({ children }: AppProvidersProps) => {
   return (
     <ConfigProvider locale={ruRU}>
       <WeatherAppProvider>
@@ -17,4 +17,4 @@ export function AppProviders({ children }: AppProvidersProps) {
       </WeatherAppProvider>
     </ConfigProvider>
   );
-}
+};

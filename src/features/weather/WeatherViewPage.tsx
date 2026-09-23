@@ -13,7 +13,7 @@ import { useSelectedLocation } from '../location/LocationProvider.tsx';
 
 const { Text, Title } = Typography;
 
-export function WeatherViewPage() {
+export const WeatherViewPage = () => {
   const { location } = useSelectedLocation();
   const { anchorDate, setAnchorDate, yearRangeLabel } = useWeatherAppState();
   const [viewMode, setViewMode] = useState<ViewMode>('A');
@@ -52,4 +52,4 @@ export function WeatherViewPage() {
       </div>
     </Space>
   );
-}
+};

@@ -12,12 +12,12 @@ const PRECIPITATION_LABELS: Record<PrecipitationType, string> = {
   hail: 'град',
 };
 
-export function getPrecipitationLabel(
+export const getPrecipitationLabel = (
   type: PrecipitationType | undefined,
-): string {
+): string => {
   if (!type) {
     return '—';
   }
 
   return PRECIPITATION_LABELS[type];
-}
+};

@@ -1,13 +1,12 @@
+import { HomePage } from '@pages/HomePage.tsx';
 import { Layout, Typography } from 'antd';
 
 import { CloudOutlined } from '@ant-design/icons';
 
-import { HomePage } from './pages/HomePage.tsx';
-
 const { Content, Footer, Header } = Layout;
 const { Title } = Typography;
 
-function App() {
+const App = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Header className="app-header">
@@ -33,6 +32,6 @@ function App() {
       </Footer>
     </Layout>
   );
-}
+};
 
 export default App;

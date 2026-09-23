@@ -12,7 +12,7 @@ type NominatimResponse = {
   address?: NominatimAddress;
 };
 
-function extractCityName(address: NominatimAddress): string | null {
+const extractCityName = (address: NominatimAddress): string | null => {
   return (
     address.city ??
     address.town ??
@@ -20,13 +20,13 @@ function extractCityName(address: NominatimAddress): string | null {
     address.municipality ??
     null
   );
-}
+};
 
-export async function reverseGeocode(
+export const reverseGeocode = async (
   lat: number,
   lon: number,
   signal?: AbortSignal,
-): Promise<string | null> {
+): Promise<string | null> => {
   const params = new URLSearchParams({
     lat: String(lat),
     lon: String(lon),
@@ -53,4 +53,4 @@ export async function reverseGeocode(
   }
 
   return extractCityName(data.address);
-}
+};
