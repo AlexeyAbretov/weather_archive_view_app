@@ -1,0 +1,160 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`YearWindowTable > раскрывает год, ошибку, загрузку и дни 1`] = `
+<div>
+  <div>
+    <span
+      class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
+    >
+      Раскройте строку года, чтобы увидеть 15 дней вокруг якорной даты. Прокрутите вложенную таблицу для просмотра всех дней.
+    </span>
+    <div
+      class="table-wrapper _tableWrapper_1889ea"
+    >
+      <div
+        class="ant-table-wrapper _table_1889ea css-dev-only-do-not-override-mncuj7"
+      >
+        <div
+          class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
+        >
+          <div
+            class="ant-spin-container"
+          >
+            <div
+              class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+            >
+              <div
+                class="ant-table-container"
+              >
+                <div
+                  class="ant-table-content"
+                  style="overflow-x: auto; overflow-y: hidden;"
+                >
+                  <table
+                    style="width: max-content; min-width: 100%; table-layout: auto;"
+                  >
+                    <colgroup>
+                      <col
+                        class="ant-table-expand-icon-col"
+                      />
+                      <col
+                        style="width: 120px;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="ant-table-thead"
+                    >
+                      <tr>
+                        <th
+                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
+                          style="position: sticky; left: 0px;"
+                        />
+                        <th
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                          scope="col"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          Год
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="ant-table-tbody"
+                    >
+                      <tr
+                        aria-hidden="true"
+                        class="ant-table-measure-row"
+                        tabindex="-1"
+                      >
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                             
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Год
+                          </div>
+                        </th>
+                      </tr>
+                      <tr
+                        class="ant-table-row ant-table-row-level-0"
+                        data-row-key="2019"
+                      >
+                        <td
+                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
+                          style="position: sticky; left: 0px;"
+                        >
+                          <button
+                            aria-expanded="false"
+                            aria-label="Развернуть строку"
+                            class="ant-table-row-expand-icon ant-table-row-expand-icon-spaced"
+                            type="button"
+                          />
+                        </td>
+                        <td
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          <div>
+                            <div
+                              class="_yearCell_1889ea"
+                            >
+                              2019
+                            </div>
+                            <span
+                              class="ant-typography ant-typography-secondary _unavailableYear_1889ea css-dev-only-do-not-override-mncuj7"
+                            >
+                              нет данных
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        class="ant-table-row ant-table-row-level-0"
+                        data-row-key="2020"
+                      >
+                        <td
+                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
+                          style="position: sticky; left: 0px;"
+                        >
+                          <button
+                            aria-expanded="false"
+                            aria-label="Развернуть строку"
+                            class="ant-table-row-expand-icon ant-table-row-expand-icon-collapsed"
+                            type="button"
+                          />
+                        </td>
+                        <td
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          <div>
+                            <div
+                              class="_yearCell_1889ea"
+                            >
+                              2020
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

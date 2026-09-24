@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PrecipitationCell > показывает осадки и отсутствие данных 1`] = `
+<div>
+  <div
+    class="_precipitation_83fdbe"
+  >
+    <span
+      class="ant-typography css-dev-only-do-not-override-mncuj7"
+    >
+      дождь
+    </span>
+    <span
+      class="ant-typography ant-typography-secondary _precipitationMm_83fdbe css-dev-only-do-not-override-mncuj7"
+    >
+      1.2 мм
+    </span>
+  </div>
+</div>
+`;
+
+exports[`PrecipitationCell > показывает осадки и отсутствие данных 2`] = `
+<div>
+  <span
+    class="ant-typography ant-typography-secondary _noData_83fdbe css-dev-only-do-not-override-mncuj7"
+  >
+    нет данных
+  </span>
+</div>
+`;

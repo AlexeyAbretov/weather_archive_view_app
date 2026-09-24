@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WindCell > показывает стрелку, скорость и отсутствие данных 1`] = `
+<div>
+  <div
+    class="_wind_69fcf6"
+  >
+    <span
+      aria-hidden="true"
+      class="_windArrow_69fcf6"
+      style="transform: rotate(180deg);"
+    >
+      ↑
+    </span>
+    <span
+      class="ant-typography css-dev-only-do-not-override-mncuj7"
+    >
+      16 км/ч
+    </span>
+  </div>
+</div>
+`;
+
+exports[`WindCell > показывает стрелку, скорость и отсутствие данных 2`] = `
+<div>
+  <span
+    class="ant-typography ant-typography-secondary _noData_69fcf6 css-dev-only-do-not-override-mncuj7"
+  >
+    нет данных
+  </span>
+</div>
+`;

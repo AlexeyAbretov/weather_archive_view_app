@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TemperatureCell > показывает диапазон и отсутствие данных 1`] = `
+<div>
+  <div
+    class="_temperature_7e00af"
+  >
+    <span
+      class="ant-typography _tempMin_7e00af css-dev-only-do-not-override-mncuj7"
+    >
+      -1°
+    </span>
+    <span
+      class="ant-typography _tempSeparator_7e00af css-dev-only-do-not-override-mncuj7"
+    >
+      /
+    </span>
+    <span
+      class="ant-typography _tempMax_7e00af css-dev-only-do-not-override-mncuj7"
+    >
+      +17°
+    </span>
+  </div>
+</div>
+`;
+
+exports[`TemperatureCell > показывает диапазон и отсутствие данных 2`] = `
+<div>
+  <span
+    class="ant-typography ant-typography-secondary _noData_7e00af css-dev-only-do-not-override-mncuj7"
+  >
+    —
+  </span>
+</div>
+`;

@@ -1,0 +1,484 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`YearWeatherTable > показывает строки, загрузку и пустую таблицу 1`] = `
+<div>
+  <div>
+    <span
+      class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
+    >
+      Прокрутите таблицу влево или вправо, чтобы увидеть все колонки.
+    </span>
+    <div
+      class="table-wrapper _tableWrapper_2a8263"
+    >
+      <div
+        class="ant-table-wrapper _table_2a8263 css-dev-only-do-not-override-mncuj7"
+      >
+        <div
+          class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
+        >
+          <div
+            class="ant-spin-container"
+          >
+            <div
+              class="ant-table ant-table-small css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+            >
+              <div
+                class="ant-table-container"
+              >
+                <div
+                  class="ant-table-content"
+                  style="overflow-x: auto; overflow-y: hidden;"
+                >
+                  <table
+                    style="width: max-content; min-width: 100%; table-layout: auto;"
+                  >
+                    <colgroup>
+                      <col
+                        style="width: 80px;"
+                      />
+                      <col
+                        style="width: 120px;"
+                      />
+                      <col
+                        style="width: 140px;"
+                      />
+                      <col
+                        style="width: 110px;"
+                      />
+                      <col
+                        style="width: 100px;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="ant-table-thead"
+                    >
+                      <tr>
+                        <th
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
+                          scope="col"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          Год
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          t° мин / макс
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Осадки
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Ветер
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Облачность
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="ant-table-tbody"
+                    >
+                      <tr
+                        aria-hidden="true"
+                        class="ant-table-measure-row"
+                        tabindex="-1"
+                      >
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Год
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            t° мин / макс
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Осадки
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Ветер
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Облачность
+                          </div>
+                        </th>
+                      </tr>
+                      <tr
+                        class="ant-table-row ant-table-row-level-0"
+                        data-row-key="2020"
+                      >
+                        <td
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          2020
+                        </td>
+                        <td
+                          class="ant-table-cell"
+                          style="text-align: center;"
+                        >
+                          <div
+                            class="_temperature_7e00af"
+                          >
+                            <span
+                              class="ant-typography _tempMin_7e00af css-dev-only-do-not-override-mncuj7"
+                            >
+                              -1°
+                            </span>
+                            <span
+                              class="ant-typography _tempSeparator_7e00af css-dev-only-do-not-override-mncuj7"
+                            >
+                              /
+                            </span>
+                            <span
+                              class="ant-typography _tempMax_7e00af css-dev-only-do-not-override-mncuj7"
+                            >
+                              +17°
+                            </span>
+                          </div>
+                        </td>
+                        <td
+                          class="ant-table-cell"
+                          style="text-align: center;"
+                        >
+                          <div
+                            class="_precipitation_83fdbe"
+                          >
+                            <span
+                              class="ant-typography css-dev-only-do-not-override-mncuj7"
+                            >
+                              дождь
+                            </span>
+                            <span
+                              class="ant-typography ant-typography-secondary _precipitationMm_83fdbe css-dev-only-do-not-override-mncuj7"
+                            >
+                              1.2 мм
+                            </span>
+                          </div>
+                        </td>
+                        <td
+                          class="ant-table-cell"
+                          style="text-align: center;"
+                        >
+                          <div
+                            class="_wind_69fcf6"
+                          >
+                            <span
+                              aria-hidden="true"
+                              class="_windArrow_69fcf6"
+                              style="transform: rotate(180deg);"
+                            >
+                              ↑
+                            </span>
+                            <span
+                              class="ant-typography css-dev-only-do-not-override-mncuj7"
+                            >
+                              16 км/ч
+                            </span>
+                          </div>
+                        </td>
+                        <td
+                          class="ant-table-cell"
+                          style="text-align: center;"
+                        >
+                          <div
+                            class="_weatherIcon_67de4e"
+                            title="Дождь слабый"
+                          >
+                            <span
+                              aria-label="cloud"
+                              class="anticon anticon-cloud _iconRain_67de4e"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                data-icon="cloud"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="64 64 896 896"
+                                width="1em"
+                              >
+                                <path
+                                  d="M811.4 418.7C765.6 297.9 648.9 212 512.2 212S258.8 297.8 213 418.6C127.3 441.1 64 519.1 64 612c0 110.5 89.5 200 199.9 200h496.2C870.5 812 960 722.5 960 612c0-92.7-63.1-170.7-148.6-193.3zm36.3 281a123.07 123.07 0 01-87.6 36.3H263.9c-33.1 0-64.2-12.9-87.6-36.3A123.3 123.3 0 01140 612c0-28 9.1-54.3 26.2-76.3a125.7 125.7 0 0166.1-43.7l37.9-9.9 13.9-36.6c8.6-22.8 20.6-44.1 35.7-63.4a245.6 245.6 0 0152.4-49.9c41.1-28.9 89.5-44.2 140-44.2s98.9 15.3 140 44.2c19.9 14 37.5 30.8 52.4 49.9 15.1 19.3 27.1 40.7 35.7 63.4l13.8 36.5 37.8 10c54.3 14.5 92.1 63.8 92.1 120 0 33.1-12.9 64.3-36.3 87.7z"
+                                />
+                              </svg>
+                            </span>
+                            <span
+                              class="ant-typography ant-typography-secondary _cloudCover_67de4e css-dev-only-do-not-override-mncuj7"
+                            >
+                              40
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`YearWeatherTable > показывает строки, загрузку и пустую таблицу 2`] = `
+<div>
+  <div>
+    <span
+      class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
+    >
+      Прокрутите таблицу влево или вправо, чтобы увидеть все колонки.
+    </span>
+    <div
+      class="table-wrapper _tableWrapper_2a8263"
+    >
+      <div
+        class="ant-table-wrapper _table_2a8263 css-dev-only-do-not-override-mncuj7"
+      >
+        <div
+          class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
+        >
+          <div
+            class="ant-spin-container"
+          >
+            <div
+              class="ant-table ant-table-small ant-table-empty css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+            >
+              <div
+                class="ant-table-container"
+              >
+                <div
+                  class="ant-table-content"
+                  style="overflow-x: auto; overflow-y: hidden;"
+                >
+                  <table
+                    style="width: max-content; min-width: 100%; table-layout: auto;"
+                  >
+                    <colgroup>
+                      <col
+                        style="width: 80px;"
+                      />
+                      <col
+                        style="width: 120px;"
+                      />
+                      <col
+                        style="width: 140px;"
+                      />
+                      <col
+                        style="width: 110px;"
+                      />
+                      <col
+                        style="width: 100px;"
+                      />
+                    </colgroup>
+                    <thead
+                      class="ant-table-thead"
+                    >
+                      <tr>
+                        <th
+                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
+                          scope="col"
+                          style="position: sticky; left: 0px; text-align: center;"
+                        >
+                          Год
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          t° мин / макс
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Осадки
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Ветер
+                        </th>
+                        <th
+                          class="ant-table-cell"
+                          scope="col"
+                          style="text-align: center;"
+                        >
+                          Облачность
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="ant-table-tbody"
+                    >
+                      <tr
+                        aria-hidden="true"
+                        class="ant-table-measure-row"
+                        tabindex="-1"
+                      >
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Год
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            t° мин / макс
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Осадки
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Ветер
+                          </div>
+                        </th>
+                        <th
+                          class="ant-table-measure-cell"
+                        >
+                          <div
+                            class="ant-table-measure-cell-content"
+                          >
+                            Облачность
+                          </div>
+                        </th>
+                      </tr>
+                      <tr
+                        class="ant-table-placeholder"
+                      >
+                        <td
+                          class="ant-table-cell"
+                          colspan="5"
+                        >
+                          <div
+                            class="css-dev-only-do-not-override-mncuj7 ant-empty ant-empty-normal"
+                          >
+                            <div
+                              class="ant-empty-image"
+                            >
+                              <svg
+                                height="41"
+                                viewBox="0 0 64 41"
+                                width="64"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <title>
+                                  Нет данных
+                                </title>
+                                <g
+                                  fill="none"
+                                  fill-rule="evenodd"
+                                  transform="translate(0 1)"
+                                >
+                                  <ellipse
+                                    cx="32"
+                                    cy="33"
+                                    fill="#f5f5f5"
+                                    rx="32"
+                                    ry="7"
+                                  />
+                                  <g
+                                    fill-rule="nonzero"
+                                    stroke="#d9d9d9"
+                                  >
+                                    <path
+                                      d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"
+                                    />
+                                    <path
+                                      d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+                                      fill="#fafafa"
+                                    />
+                                  </g>
+                                </g>
+                              </svg>
+                            </div>
+                            <div
+                              class="ant-empty-description"
+                            >
+                              Нет данных
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

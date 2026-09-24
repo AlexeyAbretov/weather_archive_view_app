@@ -1,0 +1,916 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HomePage > показывает режимы A и B 1`] = `
+<div>
+  <div
+    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-large ant-space-gap-col-large filter-bar"
+  >
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="ant-typography css-dev-only-do-not-override-mncuj7"
+        style="margin-bottom: 0px;"
+      >
+        Сравнение погоды в выбранном городе по одной якорной дате на горизонте ±10 лет.
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Город
+        </h4>
+        <div
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+        >
+          <div
+            class="ant-space-item"
+          >
+            <div
+              class="city-selector-row"
+            >
+              <div
+                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-show-search"
+                style="width: 100%;"
+              >
+                <div
+                  class="ant-select-selector"
+                >
+                  <span
+                    class="ant-select-selection-wrap"
+                  >
+                    <span
+                      class="ant-select-selection-search"
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="rc_select_TEST_OR_SSR_list"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
+                        aria-owns="rc_select_TEST_OR_SSR_list"
+                        autocomplete="off"
+                        class="ant-select-selection-search-input"
+                        id="rc_select_TEST_OR_SSR"
+                        role="combobox"
+                        type="search"
+                        value=""
+                      />
+                    </span>
+                    <span
+                      class="ant-select-selection-placeholder"
+                    >
+                      Введите название города
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <button
+                class="ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined city-selector-button"
+                type="button"
+              >
+                <span
+                  class="ant-btn-icon"
+                >
+                  <span
+                    aria-label="environment"
+                    class="anticon anticon-environment"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="environment"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M854.6 289.1a362.49 362.49 0 00-79.9-115.7 370.83 370.83 0 00-118.2-77.8C610.7 76.6 562.1 67 512 67c-50.1 0-98.7 9.6-144.5 28.5-44.3 18.3-84 44.5-118.2 77.8A363.6 363.6 0 00169.4 289c-19.5 45-29.4 92.8-29.4 142 0 70.6 16.9 140.9 50.1 208.7 26.7 54.5 64 107.6 111 158.1 80.3 86.2 164.5 138.9 188.4 153a43.9 43.9 0 0022.4 6.1c7.8 0 15.5-2 22.4-6.1 23.9-14.1 108.1-66.8 188.4-153 47-50.4 84.3-103.6 111-158.1C867.1 572 884 501.8 884 431.1c0-49.2-9.9-97-29.4-142zM512 880.2c-65.9-41.9-300-207.8-300-449.1 0-77.9 31.1-151.1 87.6-206.3C356.3 169.5 431.7 139 512 139s155.7 30.5 212.4 85.9C780.9 280 812 353.2 812 431.1c0 241.3-234.1 407.2-300 449.1zm0-617.2c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 551c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 439c0-29.9 11.7-58 32.8-79.2C454 338.6 482.1 327 512 327c29.9 0 58 11.6 79.2 32.8C612.4 381 624 409.1 624 439c0 29.9-11.6 58-32.8 79.2z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span>
+                  Моё местоположение
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Выбран: 
+              <span
+                class="ant-tag ant-tag-blue css-dev-only-do-not-override-mncuj7"
+              >
+                Москва
+              </span>
+              <span
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-mncuj7"
+              >
+                (
+                55.7500
+                , 
+                37.6200
+                )
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Якорная дата
+        </h4>
+        <div
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+        >
+          <div
+            class="ant-space-item"
+          >
+            <div
+              class="ant-picker ant-picker-outlined css-dev-only-do-not-override-mncuj7"
+            >
+              <div
+                class="ant-picker-input"
+              >
+                <input
+                  aria-invalid="false"
+                  autocomplete="off"
+                  placeholder="Выберите дату"
+                  size="12"
+                  value="15.09.2020"
+                />
+                <span
+                  class="ant-picker-suffix"
+                >
+                  <span
+                    aria-label="calendar"
+                    class="anticon anticon-calendar"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="calendar"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Выбранная дата: 
+              <span
+                class="ant-typography css-dev-only-do-not-override-mncuj7"
+              >
+                <strong>
+                  15 сентября 2020
+                </strong>
+              </span>
+            </span>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Диапазон лет: 
+              <span
+                class="ant-typography css-dev-only-do-not-override-mncuj7"
+              >
+                <strong>
+                  2010–2030
+                </strong>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Режим просмотра
+        </h4>
+        <div
+          class="mode-switcher"
+        >
+          <div
+            aria-label="segmented control"
+            aria-orientation="horizontal"
+            class="ant-segmented ant-segmented-block css-dev-only-do-not-override-mncuj7"
+            role="radiogroup"
+            tabindex="0"
+          >
+            <div
+              class="ant-segmented-group"
+            >
+              <label
+                class="ant-segmented-item ant-segmented-item-selected"
+              >
+                <input
+                  checked=""
+                  class="ant-segmented-item-input"
+                  name="test-id"
+                  type="radio"
+                />
+                <div
+                  class="ant-segmented-item-label"
+                  title="По годам (A)"
+                >
+                  По годам (A)
+                </div>
+              </label>
+              <label
+                class="ant-segmented-item"
+              >
+                <input
+                  class="ant-segmented-item-input"
+                  name="test-id"
+                  type="radio"
+                />
+                <div
+                  class="ant-segmented-item-label"
+                  title="По неделям (B)"
+                >
+                  По неделям (B)
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <div>
+          <span
+            class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
+          >
+            Прокрутите таблицу влево или вправо, чтобы увидеть все колонки.
+          </span>
+          <div
+            class="table-wrapper _tableWrapper_2a8263"
+          >
+            <div
+              class="ant-table-wrapper _table_2a8263 css-dev-only-do-not-override-mncuj7"
+            >
+              <div
+                class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
+              >
+                <div
+                  class="ant-spin-container"
+                >
+                  <div
+                    class="ant-table ant-table-small ant-table-empty css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+                  >
+                    <div
+                      class="ant-table-container"
+                    >
+                      <div
+                        class="ant-table-content"
+                        style="overflow-x: auto; overflow-y: hidden;"
+                      >
+                        <table
+                          style="width: max-content; min-width: 100%; table-layout: auto;"
+                        >
+                          <colgroup>
+                            <col
+                              style="width: 80px;"
+                            />
+                            <col
+                              style="width: 120px;"
+                            />
+                            <col
+                              style="width: 140px;"
+                            />
+                            <col
+                              style="width: 110px;"
+                            />
+                            <col
+                              style="width: 100px;"
+                            />
+                          </colgroup>
+                          <thead
+                            class="ant-table-thead"
+                          >
+                            <tr>
+                              <th
+                                class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
+                                scope="col"
+                                style="position: sticky; left: 0px; text-align: center;"
+                              >
+                                Год
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                                scope="col"
+                                style="text-align: center;"
+                              >
+                                t° мин / макс
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                                scope="col"
+                                style="text-align: center;"
+                              >
+                                Осадки
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                                scope="col"
+                                style="text-align: center;"
+                              >
+                                Ветер
+                              </th>
+                              <th
+                                class="ant-table-cell"
+                                scope="col"
+                                style="text-align: center;"
+                              >
+                                Облачность
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="ant-table-tbody"
+                          >
+                            <tr
+                              aria-hidden="true"
+                              class="ant-table-measure-row"
+                              tabindex="-1"
+                            >
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  Год
+                                </div>
+                              </th>
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  t° мин / макс
+                                </div>
+                              </th>
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  Осадки
+                                </div>
+                              </th>
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  Ветер
+                                </div>
+                              </th>
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  Облачность
+                                </div>
+                              </th>
+                            </tr>
+                            <tr
+                              class="ant-table-placeholder"
+                            >
+                              <td
+                                class="ant-table-cell"
+                                colspan="5"
+                              >
+                                <div
+                                  class="css-dev-only-do-not-override-mncuj7 ant-empty ant-empty-normal"
+                                >
+                                  <div
+                                    class="ant-empty-image"
+                                  >
+                                    <svg
+                                      height="41"
+                                      viewBox="0 0 64 41"
+                                      width="64"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <title>
+                                        Нет данных
+                                      </title>
+                                      <g
+                                        fill="none"
+                                        fill-rule="evenodd"
+                                        transform="translate(0 1)"
+                                      >
+                                        <ellipse
+                                          cx="32"
+                                          cy="33"
+                                          fill="#f5f5f5"
+                                          rx="32"
+                                          ry="7"
+                                        />
+                                        <g
+                                          fill-rule="nonzero"
+                                          stroke="#d9d9d9"
+                                        >
+                                          <path
+                                            d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"
+                                          />
+                                          <path
+                                            d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+                                            fill="#fafafa"
+                                          />
+                                        </g>
+                                      </g>
+                                    </svg>
+                                  </div>
+                                  <div
+                                    class="ant-empty-description"
+                                  >
+                                    Нет данных
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`HomePage > показывает режимы A и B 2`] = `
+<div>
+  <div
+    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-large ant-space-gap-col-large filter-bar"
+  >
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="ant-typography css-dev-only-do-not-override-mncuj7"
+        style="margin-bottom: 0px;"
+      >
+        Сравнение погоды в выбранном городе по одной якорной дате на горизонте ±10 лет.
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Город
+        </h4>
+        <div
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+        >
+          <div
+            class="ant-space-item"
+          >
+            <div
+              class="city-selector-row"
+            >
+              <div
+                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-show-search"
+                style="width: 100%;"
+              >
+                <div
+                  class="ant-select-selector"
+                >
+                  <span
+                    class="ant-select-selection-wrap"
+                  >
+                    <span
+                      class="ant-select-selection-search"
+                    >
+                      <input
+                        aria-autocomplete="list"
+                        aria-controls="rc_select_TEST_OR_SSR_list"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
+                        aria-owns="rc_select_TEST_OR_SSR_list"
+                        autocomplete="off"
+                        class="ant-select-selection-search-input"
+                        id="rc_select_TEST_OR_SSR"
+                        role="combobox"
+                        type="search"
+                        value=""
+                      />
+                    </span>
+                    <span
+                      class="ant-select-selection-placeholder"
+                    >
+                      Введите название города
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <button
+                class="ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-default ant-btn-color-default ant-btn-variant-outlined city-selector-button"
+                type="button"
+              >
+                <span
+                  class="ant-btn-icon"
+                >
+                  <span
+                    aria-label="environment"
+                    class="anticon anticon-environment"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="environment"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M854.6 289.1a362.49 362.49 0 00-79.9-115.7 370.83 370.83 0 00-118.2-77.8C610.7 76.6 562.1 67 512 67c-50.1 0-98.7 9.6-144.5 28.5-44.3 18.3-84 44.5-118.2 77.8A363.6 363.6 0 00169.4 289c-19.5 45-29.4 92.8-29.4 142 0 70.6 16.9 140.9 50.1 208.7 26.7 54.5 64 107.6 111 158.1 80.3 86.2 164.5 138.9 188.4 153a43.9 43.9 0 0022.4 6.1c7.8 0 15.5-2 22.4-6.1 23.9-14.1 108.1-66.8 188.4-153 47-50.4 84.3-103.6 111-158.1C867.1 572 884 501.8 884 431.1c0-49.2-9.9-97-29.4-142zM512 880.2c-65.9-41.9-300-207.8-300-449.1 0-77.9 31.1-151.1 87.6-206.3C356.3 169.5 431.7 139 512 139s155.7 30.5 212.4 85.9C780.9 280 812 353.2 812 431.1c0 241.3-234.1 407.2-300 449.1zm0-617.2c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 551c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 439c0-29.9 11.7-58 32.8-79.2C454 338.6 482.1 327 512 327c29.9 0 58 11.6 79.2 32.8C612.4 381 624 409.1 624 439c0 29.9-11.6 58-32.8 79.2z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span>
+                  Моё местоположение
+                </span>
+              </button>
+            </div>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Выбран: 
+              <span
+                class="ant-tag ant-tag-blue css-dev-only-do-not-override-mncuj7"
+              >
+                Москва
+              </span>
+              <span
+                class="ant-typography ant-typography-secondary css-dev-only-do-not-override-mncuj7"
+              >
+                (
+                55.7500
+                , 
+                37.6200
+                )
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Якорная дата
+        </h4>
+        <div
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+        >
+          <div
+            class="ant-space-item"
+          >
+            <div
+              class="ant-picker ant-picker-outlined css-dev-only-do-not-override-mncuj7"
+            >
+              <div
+                class="ant-picker-input"
+              >
+                <input
+                  aria-invalid="false"
+                  autocomplete="off"
+                  placeholder="Выберите дату"
+                  size="12"
+                  value="15.09.2020"
+                />
+                <span
+                  class="ant-picker-suffix"
+                >
+                  <span
+                    aria-label="calendar"
+                    class="anticon anticon-calendar"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="calendar"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Выбранная дата: 
+              <span
+                class="ant-typography css-dev-only-do-not-override-mncuj7"
+              >
+                <strong>
+                  15 сентября 2020
+                </strong>
+              </span>
+            </span>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              class="ant-typography css-dev-only-do-not-override-mncuj7"
+            >
+              Диапазон лет: 
+              <span
+                class="ant-typography css-dev-only-do-not-override-mncuj7"
+              >
+                <strong>
+                  2010–2030
+                </strong>
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <h4
+          class="ant-typography css-dev-only-do-not-override-mncuj7"
+        >
+          Режим просмотра
+        </h4>
+        <div
+          class="mode-switcher"
+        >
+          <div
+            aria-label="segmented control"
+            aria-orientation="horizontal"
+            class="ant-segmented ant-segmented-block css-dev-only-do-not-override-mncuj7"
+            role="radiogroup"
+            tabindex="0"
+          >
+            <div
+              class="ant-segmented-group"
+            >
+              <label
+                class="ant-segmented-item"
+              >
+                <input
+                  checked=""
+                  class="ant-segmented-item-input"
+                  name="test-id"
+                  type="radio"
+                />
+                <div
+                  class="ant-segmented-item-label"
+                  title="По годам (A)"
+                >
+                  По годам (A)
+                </div>
+              </label>
+              <label
+                class="ant-segmented-item ant-segmented-item-selected"
+              >
+                <input
+                  class="ant-segmented-item-input"
+                  name="test-id"
+                  type="radio"
+                />
+                <div
+                  class="ant-segmented-item-label"
+                  title="По неделям (B)"
+                >
+                  По неделям (B)
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-space-item"
+    >
+      <div
+        class="filter-section"
+      >
+        <div>
+          <span
+            class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
+          >
+            Раскройте строку года, чтобы увидеть 15 дней вокруг якорной даты. Прокрутите вложенную таблицу для просмотра всех дней.
+          </span>
+          <div
+            class="table-wrapper _tableWrapper_1889ea"
+          >
+            <div
+              class="ant-table-wrapper _table_1889ea css-dev-only-do-not-override-mncuj7"
+            >
+              <div
+                class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
+              >
+                <div
+                  class="ant-spin-container"
+                >
+                  <div
+                    class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+                  >
+                    <div
+                      class="ant-table-container"
+                    >
+                      <div
+                        class="ant-table-content"
+                        style="overflow-x: auto; overflow-y: hidden;"
+                      >
+                        <table
+                          style="width: max-content; min-width: 100%; table-layout: auto;"
+                        >
+                          <colgroup>
+                            <col
+                              class="ant-table-expand-icon-col"
+                            />
+                            <col
+                              style="width: 120px;"
+                            />
+                          </colgroup>
+                          <thead
+                            class="ant-table-thead"
+                          >
+                            <tr>
+                              <th
+                                class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
+                                style="position: sticky; left: 0px;"
+                              />
+                              <th
+                                class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                                scope="col"
+                                style="position: sticky; left: 0px; text-align: center;"
+                              >
+                                Год
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody
+                            class="ant-table-tbody"
+                          >
+                            <tr
+                              aria-hidden="true"
+                              class="ant-table-measure-row"
+                              tabindex="-1"
+                            >
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                   
+                                </div>
+                              </th>
+                              <th
+                                class="ant-table-measure-cell"
+                              >
+                                <div
+                                  class="ant-table-measure-cell-content"
+                                >
+                                  Год
+                                </div>
+                              </th>
+                            </tr>
+                            <tr
+                              class="ant-table-row ant-table-row-level-0"
+                              data-row-key="2020"
+                            >
+                              <td
+                                class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
+                                style="position: sticky; left: 0px;"
+                              >
+                                <button
+                                  aria-expanded="false"
+                                  aria-label="Развернуть строку"
+                                  class="ant-table-row-expand-icon ant-table-row-expand-icon-collapsed"
+                                  type="button"
+                                />
+                              </td>
+                              <td
+                                class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                                style="position: sticky; left: 0px; text-align: center;"
+                              >
+                                <div>
+                                  <div
+                                    class="_yearCell_1889ea"
+                                  >
+                                    2020
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
