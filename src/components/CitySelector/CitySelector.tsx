@@ -34,6 +34,7 @@ export const CitySelector = ({
   errorMessage,
   isLocating,
   location,
+  onClear,
   onDetectLocation,
   onQueryChange,
   onSelect,
@@ -51,6 +52,10 @@ export const CitySelector = ({
     [results],
   );
 
+  const handleQueryChange = (value?: string) => {
+    onQueryChange(value || '');
+  };
+
   const handleSelect = (
     _value: string,
     option: { city?: CitySearchResult },
@@ -66,9 +71,11 @@ export const CitySelector = ({
     <Space className="filter-controls" direction="vertical" size="middle">
       <div className="city-selector-row">
         <AutoComplete
+          allowClear
           className="city-selector-input"
           notFoundContent={getNotFoundContent(status, errorMessage)}
-          onChange={onQueryChange}
+          onChange={handleQueryChange}
+          onClear={onClear}
           onSelect={handleSelect}
           options={options}
           placeholder="Введите название города"

@@ -3,7 +3,7 @@ import { useCitySearch, useGeolocation, useSelectedLocation } from '@hooks';
 import type { CitySearchResult } from '@types';
 
 export const CitySelectorContainer = () => {
-  const { location, setLocation } = useSelectedLocation();
+  const { location, setLocation, clearLocation } = useSelectedLocation();
   const { query, setQuery, results, status, errorMessage } = useCitySearch(
     location?.label ?? '',
   );
@@ -17,6 +17,11 @@ export const CitySelectorContainer = () => {
       lon: city.lon,
     });
     setQuery(city.label);
+  };
+
+  const handleClear = () => {
+    clearLocation();
+    setQuery('');
   };
 
   const handleDetectLocation = async (): Promise<void> => {
@@ -35,6 +40,7 @@ export const CitySelectorContainer = () => {
       errorMessage={errorMessage}
       isLocating={isLocating}
       location={location}
+      onClear={handleClear}
       onDetectLocation={() => {
         void handleDetectLocation();
       }}

@@ -6,6 +6,7 @@ export type CitySelectorProps = {
   errorMessage: string | null;
   isLocating: boolean;
   location: SelectedLocation | null;
+  onClear: () => void;
   onDetectLocation: () => void;
   onQueryChange: (query: string) => void;
   onSelect: (city: CitySearchResult) => void;

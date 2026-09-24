@@ -19,6 +19,7 @@ describe('CitySelector', () => {
         errorMessage={null}
         isLocating={false}
         location={null}
+        onClear={vi.fn()}
         onDetectLocation={vi.fn()}
         onQueryChange={vi.fn()}
         onSelect={vi.fn()}
@@ -36,6 +37,7 @@ describe('CitySelector', () => {
         errorMessage={null}
         isLocating
         location={city}
+        onClear={vi.fn()}
         onDetectLocation={vi.fn()}
         onQueryChange={vi.fn()}
         onSelect={vi.fn()}
@@ -59,6 +61,7 @@ describe('CitySelector', () => {
         errorMessage="Сеть"
         isLocating={false}
         location={null}
+        onClear={vi.fn()}
         onDetectLocation={onDetectLocation}
         onQueryChange={onQueryChange}
         onSelect={onSelect}
@@ -88,6 +91,7 @@ describe('CitySelector', () => {
         errorMessage={null}
         isLocating={false}
         location={null}
+        onClear={vi.fn()}
         onDetectLocation={vi.fn()}
         onQueryChange={vi.fn()}
         onSelect={vi.fn()}
@@ -104,6 +108,7 @@ describe('CitySelector', () => {
         errorMessage={null}
         isLocating={false}
         location={null}
+        onClear={vi.fn()}
         onDetectLocation={vi.fn()}
         onQueryChange={vi.fn()}
         onSelect={vi.fn()}
@@ -114,5 +119,32 @@ describe('CitySelector', () => {
     );
 
     expect(screen.getAllByRole('combobox')[0]).toHaveValue('Ыы');
+  });
+
+  it('очищает поле', () => {
+    const onClear = vi.fn();
+    const onQueryChange = vi.fn();
+
+    const { container } = renderWithLocale(
+      <CitySelector
+        errorMessage={null}
+        isLocating={false}
+        location={city}
+        onClear={onClear}
+        onDetectLocation={vi.fn()}
+        onQueryChange={onQueryChange}
+        onSelect={vi.fn()}
+        query={city.label}
+        results={[]}
+        status="idle"
+      />,
+    );
+
+    fireEvent.mouseDown(
+      container.querySelector('.ant-select-clear') as HTMLElement,
+    );
+
+    expect(onClear).toHaveBeenCalled();
+    expect(onQueryChange).toHaveBeenCalledWith('');
   });
 });

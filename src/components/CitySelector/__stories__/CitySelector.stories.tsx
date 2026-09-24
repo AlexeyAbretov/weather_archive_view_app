@@ -17,6 +17,7 @@ const meta = {
     errorMessage: null,
     isLocating: false,
     location: null,
+    onClear: fn(),
     onDetectLocation: fn(),
     onQueryChange: fn(),
     onSelect: fn(),

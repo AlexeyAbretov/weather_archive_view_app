@@ -38,6 +38,7 @@ describe('CitySelector select', () => {
         errorMessage={null}
         isLocating={false}
         location={null}
+        onClear={vi.fn()}
         onDetectLocation={vi.fn()}
         onQueryChange={vi.fn()}
         onSelect={onSelect}

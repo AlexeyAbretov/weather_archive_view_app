@@ -36,7 +36,7 @@ exports[`HomePage > показывает режимы A и B 1`] = `
               class="city-selector-row"
             >
               <div
-                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-show-search"
+                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-allow-clear ant-select-show-search"
                 style="width: 100%;"
               >
                 <div
@@ -501,7 +501,7 @@ exports[`HomePage > показывает режимы A и B 2`] = `
               class="city-selector-row"
             >
               <div
-                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-show-search"
+                class="ant-select ant-select-outlined ant-select-auto-complete city-selector-input css-dev-only-do-not-override-mncuj7 ant-select-single ant-select-allow-clear ant-select-show-search"
                 style="width: 100%;"
               >
                 <div

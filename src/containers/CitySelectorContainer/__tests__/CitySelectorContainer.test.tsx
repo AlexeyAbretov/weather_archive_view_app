@@ -7,6 +7,7 @@ import { renderWithLocale } from '../../../../test/render';
 import { CitySelectorContainer } from '../CitySelectorContainer';
 
 const state = vi.hoisted(() => ({
+  clearLocation: vi.fn(),
   detectLocation: vi.fn(),
   location: null as {
     name: string;
@@ -23,6 +24,7 @@ vi.mock('@hooks', () => ({
   useSelectedLocation: () => ({
     location: state.location,
     setLocation: state.setLocation,
+    clearLocation: state.clearLocation,
   }),
   useCitySearch: (initialQuery = '') => {
     state.searchInitialQuery = initialQuery;
@@ -50,6 +52,7 @@ vi.mock('@hooks', () => ({
 
 describe('CitySelectorContainer', () => {
   beforeEach(() => {
+    state.clearLocation.mockReset();
     state.detectLocation.mockReset();
     state.location = null;
     state.searchInitialQuery = '';
@@ -120,5 +123,23 @@ describe('CitySelectorContainer', () => {
     expect(state.searchInitialQuery).toBe('Казань, Татарстан, Россия');
     expect(screen.getByText('Казань')).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  it('очищает выбранный город', () => {
+    state.location = {
+      name: 'Казань',
+      label: 'Казань, Татарстан, Россия',
+      lat: 55.79,
+      lon: 49.12,
+    };
+
+    const { container } = renderWithLocale(<CitySelectorContainer />);
+
+    fireEvent.mouseDown(
+      container.querySelector('.ant-select-clear') as HTMLElement,
+    );
+
+    expect(state.clearLocation).toHaveBeenCalled();
+    expect(state.setQuery).toHaveBeenCalledWith('');
   });
 });
