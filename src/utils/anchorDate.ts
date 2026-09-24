@@ -56,12 +56,19 @@ export const getAnchorYear = (anchor: AnchorDate): number => {
   return anchor.year;
 };
 
-/** Диапазон лет anchorYear − 10 … anchorYear + 10 (21 год). */
-export const getYearRange = (anchor: AnchorDate): number[] => {
+/**
+ * Годы от anchorYear − 10 до min(anchorYear + 10, currentYear).
+ * Годы позже текущего в диапазон не входят: архива для них нет.
+ */
+export const getYearRange = (
+  anchor: AnchorDate,
+  currentYear: number = todayAnchorDate().year,
+): number[] => {
   const anchorYear = getAnchorYear(anchor);
+  const lastYear = Math.min(anchorYear + 10, currentYear);
   const years: number[] = [];
 
-  for (let year = anchorYear - 10; year <= anchorYear + 10; year++) {
+  for (let year = anchorYear - 10; year <= lastYear; year++) {
     years.push(year);
   }
 

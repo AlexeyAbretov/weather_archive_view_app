@@ -43,13 +43,26 @@ describe('anchorDate', () => {
   });
 
   it('форматирует дату и диапазон лет', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 24));
+
     const anchor = { year: 2020, month: 9, day: 15 };
 
     expect(formatAnchorDate(anchor)).toBe('15 сентября 2020');
     expect(getAnchorYear(anchor)).toBe(2020);
-    expect(getYearRange(anchor)).toEqual(
+    expect(getYearRange(anchor, 2030)).toEqual(
       Array.from({ length: 21 }, (_, index) => 2010 + index),
     );
-    expect(formatYearRange(anchor)).toBe('2010–2030');
+    expect(getYearRange(anchor)).toEqual(
+      Array.from({ length: 17 }, (_, index) => 2010 + index),
+    );
+    expect(formatYearRange(anchor)).toBe('2010–2026');
+    expect(formatYearRange({ year: 2026, month: 9, day: 24 })).toBe(
+      '2016–2026',
+    );
+    expect(formatYearRange({ year: 2022, month: 6, day: 1 })).toBe('2012–2026');
+    expect(formatYearRange({ year: 2012, month: 3, day: 1 })).toBe('2002–2022');
+
+    vi.useRealTimers();
   });
 });

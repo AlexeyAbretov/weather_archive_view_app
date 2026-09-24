@@ -1,17 +1,11 @@
 import type { AnchorDate } from '@types';
+import { getYearRange, todayAnchorDate } from '@utils';
 
 export const ARCHIVE_MIN_YEAR = 1940;
 
-/** Диапазон anchorYear − 10 … anchorYear + 10 (до 21 года). */
+/** Годы от anchorYear − 10 до min(anchorYear + 10, текущий год). */
 export const buildYearRange = (anchorDate: AnchorDate): number[] => {
-  const anchorYear = anchorDate.year;
-  const years: number[] = [];
-
-  for (let year = anchorYear - 10; year <= anchorYear + 10; year++) {
-    years.push(year);
-  }
-
-  return years;
+  return getYearRange(anchorDate, todayAnchorDate().year);
 };
 
 export const isYearBeforeArchive = (year: number): boolean => {

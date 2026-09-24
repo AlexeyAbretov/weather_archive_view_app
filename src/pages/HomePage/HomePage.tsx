@@ -19,8 +19,8 @@ export const HomePage = () => {
   return (
     <Space className="filter-bar" direction="vertical" size="large">
       <Paragraph style={{ marginBottom: 0 }}>
-        Сравнение погоды в выбранном городе по одной якорной дате на горизонте
-        ±10 лет.
+        Сравнение погоды в выбранном городе по одной якорной дате: 10 лет до неё
+        и до 10 лет после, не позже текущего года.
       </Paragraph>
 
       <div className="filter-section">

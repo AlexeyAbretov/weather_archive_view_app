@@ -100,14 +100,14 @@ describe('ArchiveWeatherService forecast', () => {
         endDate: '2025-09-24',
       }),
     );
+    expect(rows.map((row) => row.year)).toEqual(
+      Array.from({ length: 11 }, (_, index) => 2016 + index),
+    );
     expect(rows.find((row) => row.year === 2026)?.day).toMatchObject({
       hasData: true,
       tempMax: 18,
     });
-    expect(rows.find((row) => row.year === 2027)?.day).toMatchObject({
-      hasData: false,
-      noDataReason: 'future',
-    });
+    expect(rows.find((row) => row.year === 2027)).toBeUndefined();
   });
 
   it('берёт прогноз в лаге архива и не дальше горизонта', async () => {

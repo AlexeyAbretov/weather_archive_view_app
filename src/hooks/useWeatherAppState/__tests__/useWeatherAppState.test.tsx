@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { WeatherAppProvider } from '@providers';
 import { act, renderHook } from '@testing-library/react';
@@ -18,10 +18,15 @@ describe('useWeatherAppState', () => {
   });
 
   it('отдаёт якорную дату и диапазон лет', () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 24));
+
     const { result } = renderHook(() => useWeatherAppState(), { wrapper });
 
-    expect(result.current.yearRange).toHaveLength(21);
-    expect(result.current.yearRangeLabel).toContain('–');
+    expect(result.current.yearRange).toEqual(
+      Array.from({ length: 11 }, (_, index) => 2016 + index),
+    );
+    expect(result.current.yearRangeLabel).toBe('2016–2026');
 
     act(() => {
       result.current.setAnchorDate({ year: 2020, month: 9, day: 15 });
@@ -32,6 +37,14 @@ describe('useWeatherAppState', () => {
       month: 9,
       day: 15,
     });
-    expect(result.current.yearRangeLabel).toBe('2010–2030');
+    expect(result.current.yearRangeLabel).toBe('2010–2026');
+
+    act(() => {
+      result.current.setAnchorDate({ year: 2012, month: 3, day: 1 });
+    });
+
+    expect(result.current.yearRangeLabel).toBe('2002–2022');
+
+    vi.useRealTimers();
   });
 });

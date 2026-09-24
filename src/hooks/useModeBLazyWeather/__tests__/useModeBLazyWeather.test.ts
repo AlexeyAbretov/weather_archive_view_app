@@ -64,6 +64,9 @@ describe('useModeBLazyWeather', () => {
         }),
     );
 
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 24));
+
     const { result, rerender } = renderHook(
       (props: { lat: number }) =>
         useModeBLazyWeather({
@@ -74,7 +77,11 @@ describe('useModeBLazyWeather', () => {
       { initialProps: { lat: 1 } },
     );
 
-    expect(result.current.years).toHaveLength(21);
+    expect(result.current.years).toEqual(
+      Array.from({ length: 17 }, (_, index) => 2010 + index),
+    );
+
+    vi.useRealTimers();
 
     act(() => {
       result.current.setExpandedYears([2020]);
