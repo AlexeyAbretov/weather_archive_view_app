@@ -1,0 +1,17 @@
+.wind {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.windArrow {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  color: #595959;
+}
+
+.noData {
+  font-size: 12px;
+}

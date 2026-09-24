@@ -26,13 +26,12 @@
       "@api": ["./src/api"],
       "@components": ["./src/components"],
       "@domain": ["./src/domain"],
-      "@features": ["./src/features"],
       "@hooks": ["./src/hooks"],
-      "@lib": ["./src/lib"],
       "@pages": ["./src/pages"],
+      "@providers": ["./src/providers"],
       "@services": ["./src/services"],
-      "@state": ["./src/state"],
-      "@types": ["./src/types"]
+      "@types": ["./src/types"],
+      "@utils": ["./src/utils"]
     }
   },
   "include": ["src"]

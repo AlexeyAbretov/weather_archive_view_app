@@ -7,9 +7,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { CloudOutlined } from '@ant-design/icons';
-import { LocationProvider } from '@features';
 import { HomePage } from '@pages';
-import { WeatherAppProvider } from '@state';
+import { LocationProvider, WeatherAppProvider } from '@providers';
 
 const { Content, Header } = Layout;
 const { Title } = Typography;

@@ -1,5 +1,5 @@
-import { isValidCalendarDate, todayAnchorDate } from '@lib';
 import type { AnchorDate } from '@types';
+import { isValidCalendarDate, todayAnchorDate } from '@utils';
 
 import type { NoDataReason } from './weatherDayRecord';
 import { ARCHIVE_MIN_YEAR } from './yearRange';
