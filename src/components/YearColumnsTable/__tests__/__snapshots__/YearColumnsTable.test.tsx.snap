@@ -136,20 +136,11 @@ exports[`YearColumnsTable > показывает годы в заголовке 
                           class="ant-table-cell _anchorColumn_3ebb25"
                           style="text-align: center;"
                         >
-                          <div
-                            class="_precipitation_83fdbe"
+                          <span
+                            class="ant-typography css-dev-only-do-not-override-mncuj7"
                           >
-                            <span
-                              class="ant-typography css-dev-only-do-not-override-mncuj7"
-                            >
-                              дождь
-                            </span>
-                            <span
-                              class="ant-typography ant-typography-secondary _precipitationMm_83fdbe css-dev-only-do-not-override-mncuj7"
-                            >
-                              1.2 мм
-                            </span>
-                          </div>
+                            1.2 мм
+                          </span>
                         </td>
                         <td
                           class="ant-table-cell"

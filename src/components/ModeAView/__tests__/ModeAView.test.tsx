@@ -81,7 +81,8 @@ describe('ModeAView', () => {
     ).toContain('anchorColumn');
     expect(screen.queryByText('Показатель')).not.toBeInTheDocument();
     expect(screen.queryByText('Осадки')).not.toBeInTheDocument();
-    expect(screen.getByText('дождь')).toBeInTheDocument();
+    expect(screen.getByText('1.2 мм')).toBeInTheDocument();
+    expect(screen.queryByText('дождь')).not.toBeInTheDocument();
     expect(screen.getByText('16 км/ч')).toBeInTheDocument();
 
     await user.click(screen.getByText('Годы в строках'));

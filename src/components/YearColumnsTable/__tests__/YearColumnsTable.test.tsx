@@ -26,7 +26,8 @@ describe('YearColumnsTable', () => {
     ).not.toContain('anchorColumn');
     expect(screen.queryByText('Показатель')).not.toBeInTheDocument();
     expect(screen.queryByText('Осадки')).not.toBeInTheDocument();
-    expect(screen.getByText('дождь')).toBeInTheDocument();
+    expect(screen.getByText('1.2 мм')).toBeInTheDocument();
+    expect(screen.queryByText('дождь')).not.toBeInTheDocument();
     expect(screen.getByText('16 км/ч')).toBeInTheDocument();
     expect(screen.getByText('40%')).toBeInTheDocument();
     expect(container).toMatchSnapshot();

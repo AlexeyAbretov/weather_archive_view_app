@@ -24,20 +24,11 @@ exports[`DayWeatherCell > показывает день с данными и б�
         +17°
       </span>
     </div>
-    <div
-      class="_precipitation_83fdbe"
+    <span
+      class="ant-typography css-dev-only-do-not-override-mncuj7"
     >
-      <span
-        class="ant-typography css-dev-only-do-not-override-mncuj7"
-      >
-        дождь
-      </span>
-      <span
-        class="ant-typography ant-typography-secondary _precipitationMm_83fdbe css-dev-only-do-not-override-mncuj7"
-      >
-        1.2 мм
-      </span>
-    </div>
+      1.2 мм
+    </span>
     <div
       class="_wind_69fcf6"
     >
