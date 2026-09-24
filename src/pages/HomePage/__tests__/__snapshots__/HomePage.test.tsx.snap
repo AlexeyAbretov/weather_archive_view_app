@@ -3,7 +3,7 @@
 exports[`HomePage > показывает режимы A и B 1`] = `
 <div>
   <div
-    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-large ant-space-gap-col-large filter-bar"
+    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical filter-bar"
   >
     <div
       class="ant-space-item"
@@ -468,7 +468,7 @@ exports[`HomePage > показывает режимы A и B 1`] = `
 exports[`HomePage > показывает режимы A и B 2`] = `
 <div>
   <div
-    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-large ant-space-gap-col-large filter-bar"
+    class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical filter-bar"
   >
     <div
       class="ant-space-item"

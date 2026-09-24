@@ -6,11 +6,20 @@ exports[`WindCell > показывает стрелку, скорость и о�
     class="_wind_69fcf6"
   >
     <span
-      aria-hidden="true"
-      class="_windArrow_69fcf6"
-      style="transform: rotate(180deg);"
+      class="_direction_69fcf6"
     >
-      ↑
+      <span
+        aria-hidden="true"
+        class="_windArrow_69fcf6"
+        style="transform: rotate(180deg);"
+      >
+        ↑
+      </span>
+      <span
+        class="ant-typography css-dev-only-do-not-override-mncuj7"
+      >
+        Ю
+      </span>
     </span>
     <span
       class="ant-typography css-dev-only-do-not-override-mncuj7"

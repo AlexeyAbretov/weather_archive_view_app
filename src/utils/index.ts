@@ -14,6 +14,7 @@ export {
 export {
   formatPrecipitationMm,
   formatTemperature,
+  formatWindDirection,
   formatWindSpeed,
 } from './formatters';
 export { DEFAULT_CACHE_TTL_MS, MemoryCache } from './memoryCache';

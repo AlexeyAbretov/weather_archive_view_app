@@ -17,7 +17,7 @@ export const HomePage = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('A');
 
   return (
-    <Space className="filter-bar" direction="vertical" size="large">
+    <Space className="filter-bar" direction="vertical" size={0}>
       <Paragraph style={{ marginBottom: 0 }}>
         Сравнение погоды в выбранном городе по одной якорной дате: 10 лет до неё
         и до 10 лет после, не позже текущего года.

@@ -28,3 +28,27 @@ export const formatWindSpeed = (value: number | undefined): string => {
 
   return `${Math.round(value)} км/ч`;
 };
+
+const WIND_DIRECTION_LABELS = [
+  'С',
+  'СВ',
+  'В',
+  'ЮВ',
+  'Ю',
+  'ЮЗ',
+  'З',
+  'СЗ',
+] as const;
+
+export const formatWindDirection = (
+  degrees: number | undefined,
+): string | undefined => {
+  if (degrees == null || Number.isNaN(degrees)) {
+    return undefined;
+  }
+
+  const normalized = ((degrees % 360) + 360) % 360;
+  const index = Math.round(normalized / 45) % WIND_DIRECTION_LABELS.length;
+
+  return WIND_DIRECTION_LABELS[index];
+};
