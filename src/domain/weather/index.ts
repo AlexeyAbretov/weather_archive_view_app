@@ -2,7 +2,9 @@ export type { DateFetchability } from './anchorDates';
 export {
   ARCHIVE_LAG_DAYS,
   checkDateFetchability,
+  FORECAST_HORIZON_DAYS,
   formatIsoDate,
+  isCurrentYearForecastDate,
   MODE_B_OFFSET_DAYS,
   MODE_B_WINDOW_DAYS,
   resolveModeBWindow,

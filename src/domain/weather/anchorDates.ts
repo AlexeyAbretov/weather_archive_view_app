@@ -7,6 +7,8 @@ import { ARCHIVE_MIN_YEAR } from './yearRange';
 export const ARCHIVE_LAG_DAYS = 5;
 export const MODE_B_WINDOW_DAYS = 15;
 export const MODE_B_OFFSET_DAYS = 7;
+/** Forecast API: 16 суток, включая сегодня. */
+export const FORECAST_HORIZON_DAYS = 15;
 
 export type DateFetchability =
   { fetchable: true } | { fetchable: false; reason: NoDataReason };
@@ -79,6 +81,37 @@ export const checkDateFetchability = (
   }
 
   return { fetchable: true };
+};
+
+export const isCurrentYearForecastDate = (
+  targetDate: AnchorDate,
+  today: AnchorDate = todayAnchorDate(),
+): boolean => {
+  if (targetDate.year !== today.year) {
+    return false;
+  }
+
+  if (!isValidCalendarDate(targetDate.month, targetDate.day, targetDate.year)) {
+    return false;
+  }
+
+  const fetchability = checkDateFetchability(targetDate, today);
+
+  if (fetchability.fetchable) {
+    return false;
+  }
+
+  if (fetchability.reason === 'archive_lag') {
+    return true;
+  }
+
+  if (fetchability.reason !== 'future') {
+    return false;
+  }
+
+  const horizon = addDays(today, FORECAST_HORIZON_DAYS);
+
+  return !isAfterDay(targetDate, horizon);
 };
 
 export const formatIsoDate = (date: AnchorDate): string => {

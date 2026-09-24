@@ -1,9 +1,14 @@
-import { fetchArchive, type OpenMeteoArchiveResponse } from '@api';
+import {
+  fetchArchive,
+  fetchForecast,
+  type OpenMeteoArchiveResponse,
+} from '@api';
 import {
   buildYearRange,
   checkDateFetchability,
   createNoDataRecord,
   formatIsoDate,
+  isCurrentYearForecastDate,
   resolveModeBWindow,
   resolveTargetDate,
   type WeatherDayRecord,
@@ -17,10 +22,7 @@ import {
   runWithConcurrencyLimit,
 } from '@utils';
 
-import {
-  normalizeDailyRecord,
-  normalizeDailyRecords,
-} from './normalizeDailyRecord';
+import { normalizeDailyRecords } from './normalizeDailyRecord';
 
 export type ArchiveWeatherParams = {
   lat: number;
@@ -31,8 +33,13 @@ export type ArchiveWeatherParams = {
 type FetchWindowParams = ArchiveWeatherParams & {
   startDate: string;
   endDate: string;
-  cacheMode: 'A' | 'B';
+  cacheMode: 'A' | 'B' | 'F';
   cacheYear: number;
+};
+
+type DatedIndex = {
+  date: AnchorDate;
+  index: number;
 };
 
 const responseCache = new MemoryCache<OpenMeteoArchiveResponse>();
@@ -60,8 +67,9 @@ const buildCacheKey = (params: FetchWindowParams): string => {
   ].join(':');
 };
 
-const fetchArchiveWindow = async (
+const fetchWeatherWindow = async (
   params: FetchWindowParams,
+  load: (request: FetchWindowParams) => Promise<OpenMeteoArchiveResponse>,
 ): Promise<OpenMeteoArchiveResponse> => {
   const cacheKey = buildCacheKey(params);
   const cached = responseCache.get(cacheKey);
@@ -70,16 +78,81 @@ const fetchArchiveWindow = async (
     return cached;
   }
 
-  const response = await fetchArchive({
-    lat: params.lat,
-    lon: params.lon,
-    startDate: params.startDate,
-    endDate: params.endDate,
-  });
+  const response = await load(params);
 
   responseCache.set(cacheKey, response);
 
   return response;
+};
+
+const applyNormalizedDays = (
+  dayRecords: WeatherDayRecord[],
+  dates: DatedIndex[],
+  response: OpenMeteoArchiveResponse,
+  year: number,
+): void => {
+  const normalized = normalizeDailyRecords(
+    response,
+    dates.map(({ date }) => ({
+      date: formatIsoDate(date),
+      year,
+    })),
+  );
+
+  dates.forEach(({ index }, normalizedIndex) => {
+    const record = normalized[normalizedIndex];
+
+    if (record) {
+      dayRecords[index] = record;
+    }
+  });
+};
+
+const markApiError = (
+  dayRecords: WeatherDayRecord[],
+  dates: DatedIndex[],
+  year: number,
+): void => {
+  dates.forEach(({ index, date }) => {
+    dayRecords[index] = createNoDataRecord(
+      formatIsoDate(date),
+      year,
+      'api_error',
+    );
+  });
+};
+
+const fillDates = async (
+  params: ArchiveWeatherParams,
+  dates: DatedIndex[],
+  year: number,
+  dayRecords: WeatherDayRecord[],
+  cacheMode: FetchWindowParams['cacheMode'],
+  load: (request: FetchWindowParams) => Promise<OpenMeteoArchiveResponse>,
+): Promise<void> => {
+  const first = dates[0];
+  const last = dates[dates.length - 1];
+
+  if (!first || !last) {
+    return;
+  }
+
+  try {
+    const response = await fetchWeatherWindow(
+      {
+        ...params,
+        startDate: formatIsoDate(first.date),
+        endDate: formatIsoDate(last.date),
+        cacheMode,
+        cacheYear: year,
+      },
+      load,
+    );
+
+    applyNormalizedDays(dayRecords, dates, response, year);
+  } catch {
+    markApiError(dayRecords, dates, year);
+  }
 };
 
 const resolveModeADay = (
@@ -122,24 +195,25 @@ const fetchModeADay = async (
 
   const isoDate = formatIsoDate(targetDate);
   const fetchability = checkDateFetchability(targetDate);
+  const useForecast =
+    !fetchability.fetchable && isCurrentYearForecastDate(targetDate);
 
-  if (!fetchability.fetchable) {
+  if (!fetchability.fetchable && !useForecast) {
     return createNoDataRecord(isoDate, year, fetchability.reason);
   }
 
-  try {
-    const response = await fetchArchiveWindow({
-      ...params,
-      startDate: isoDate,
-      endDate: isoDate,
-      cacheMode: 'A',
-      cacheYear: year,
-    });
+  const dayRecords = [createNoDataRecord(isoDate, year, 'missing')];
 
-    return normalizeDailyRecord(response, isoDate, year);
-  } catch {
-    return createNoDataRecord(isoDate, year, 'api_error');
-  }
+  await fillDates(
+    params,
+    [{ date: targetDate, index: 0 }],
+    year,
+    dayRecords,
+    useForecast ? 'F' : 'A',
+    useForecast ? fetchForecast : fetchArchive,
+  );
+
+  return dayRecords[0] ?? createNoDataRecord(isoDate, year, 'missing');
 };
 
 export const fetchModeBYear = async (
@@ -157,55 +231,23 @@ export const fetchModeBYear = async (
 
     const fetchability = checkDateFetchability(date);
 
-    if (!fetchability.fetchable) {
-      return createNoDataRecord(isoDate, year, fetchability.reason);
+    if (fetchability.fetchable || isCurrentYearForecastDate(date)) {
+      return createNoDataRecord(isoDate, year, 'missing');
     }
 
-    return createNoDataRecord(isoDate, year, 'missing');
+    return createNoDataRecord(isoDate, year, fetchability.reason);
   });
 
-  const fetchableDates = windowDates
-    .map((date, index) => ({ date, index }))
-    .filter(({ date }) => checkDateFetchability(date).fetchable);
-
-  if (fetchableDates.length === 0) {
-    return { year, days: dayRecords };
-  }
-
-  const startDate = formatIsoDate(fetchableDates[0]!.date);
-  const endDate = formatIsoDate(
-    fetchableDates[fetchableDates.length - 1]!.date,
+  const indexedDates = windowDates.map((date, index) => ({ date, index }));
+  const archiveDates = indexedDates.filter(
+    ({ date }) => checkDateFetchability(date).fetchable,
+  );
+  const forecastDates = indexedDates.filter(({ date }) =>
+    isCurrentYearForecastDate(date),
   );
 
-  try {
-    const response = await fetchArchiveWindow({
-      ...params,
-      startDate,
-      endDate,
-      cacheMode: 'B',
-      cacheYear: year,
-    });
-
-    const normalized = normalizeDailyRecords(
-      response,
-      fetchableDates.map(({ date }) => ({
-        date: formatIsoDate(date),
-        year,
-      })),
-    );
-
-    fetchableDates.forEach(({ index }, normalizedIndex) => {
-      dayRecords[index] = normalized[normalizedIndex]!;
-    });
-  } catch {
-    fetchableDates.forEach(({ index, date }) => {
-      dayRecords[index] = createNoDataRecord(
-        formatIsoDate(date),
-        year,
-        'api_error',
-      );
-    });
-  }
+  await fillDates(params, archiveDates, year, dayRecords, 'B', fetchArchive);
+  await fillDates(params, forecastDates, year, dayRecords, 'F', fetchForecast);
 
   return { year, days: dayRecords };
 };
