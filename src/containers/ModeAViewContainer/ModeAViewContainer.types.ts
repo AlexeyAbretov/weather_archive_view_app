@@ -1,5 +1,5 @@
 import type { AnchorDate } from '@types';
 
-export type ModeBViewProps = {
+export type ModeAViewContainerProps = {
   anchorDate: AnchorDate;
 };

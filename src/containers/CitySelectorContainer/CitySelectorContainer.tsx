@@ -1,8 +1,8 @@
-import { CitySelector as CitySelectorView } from '@components';
+import { CitySelector } from '@components';
 import { useCitySearch, useGeolocation, useSelectedLocation } from '@hooks';
 import type { CitySearchResult } from '@types';
 
-export const CitySelector = () => {
+export const CitySelectorContainer = () => {
   const { location, setLocation } = useSelectedLocation();
   const { query, setQuery, results, status, errorMessage } = useCitySearch();
   const { isLocating, detectLocation } = useGeolocation();
@@ -28,7 +28,7 @@ export const CitySelector = () => {
   };
 
   return (
-    <CitySelectorView
+    <CitySelector
       errorMessage={errorMessage}
       isLocating={isLocating}
       location={location}

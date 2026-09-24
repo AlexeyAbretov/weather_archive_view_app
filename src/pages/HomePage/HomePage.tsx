@@ -2,7 +2,11 @@ import { Space, Typography } from 'antd';
 import { useState } from 'react';
 
 import { AnchorDatePicker, ModeSwitcher, type ViewMode } from '@components';
-import { CitySelector, ModeAView, ModeBView } from '@containers';
+import {
+  CitySelectorContainer,
+  ModeAViewContainer,
+  ModeBViewContainer,
+} from '@containers';
 import { useWeatherAppState } from '@hooks';
 import { formatAnchorDate } from '@utils';
 
@@ -21,7 +25,7 @@ export const HomePage = () => {
 
       <div className="filter-section">
         <Title level={4}>Город</Title>
-        <CitySelector />
+        <CitySelectorContainer />
       </div>
 
       <div className="filter-section">
@@ -44,9 +48,9 @@ export const HomePage = () => {
 
       <div className="filter-section">
         {viewMode === 'A' ? (
-          <ModeAView anchorDate={anchorDate} />
+          <ModeAViewContainer anchorDate={anchorDate} />
         ) : (
-          <ModeBView anchorDate={anchorDate} />
+          <ModeBViewContainer anchorDate={anchorDate} />
         )}
       </div>
     </Space>

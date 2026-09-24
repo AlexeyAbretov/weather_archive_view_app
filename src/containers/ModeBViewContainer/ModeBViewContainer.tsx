@@ -1,9 +1,9 @@
-import { ModeBView as ModeBViewUi } from '@components';
+import { ModeBView } from '@components';
 import { useModeBLazyWeather, useSelectedLocation } from '@hooks';
 
-import type { ModeBViewProps } from './ModeBView.types';
+import type { ModeBViewContainerProps } from './ModeBViewContainer.types';
 
-export const ModeBView = ({ anchorDate }: ModeBViewProps) => {
+export const ModeBViewContainer = ({ anchorDate }: ModeBViewContainerProps) => {
   const { location } = useSelectedLocation();
   const {
     years,
@@ -23,7 +23,7 @@ export const ModeBView = ({ anchorDate }: ModeBViewProps) => {
   });
 
   return (
-    <ModeBViewUi
+    <ModeBView
       errorYears={errorYears}
       expandedYears={expandedYears}
       isYearExpandable={isYearExpandable}
