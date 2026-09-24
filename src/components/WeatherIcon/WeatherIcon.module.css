@@ -3,35 +3,16 @@
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  font-size: 22px;
+}
+
+.picture {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
 .cloudCover {
   font-size: 11px;
-}
-
-.iconClear {
-  color: #faad14;
-}
-
-.iconCloud {
-  color: #8c8c8c;
-}
-
-.iconRain {
-  color: #1677ff;
-}
-
-.iconSnow {
-  color: #69b1ff;
-}
-
-.iconStorm {
-  color: #722ed1;
-}
-
-.iconUnknown {
-  color: #bfbfbf;
 }
 
 .noData {
