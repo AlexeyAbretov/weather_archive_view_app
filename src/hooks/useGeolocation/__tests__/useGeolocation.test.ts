@@ -51,6 +51,7 @@ describe('useGeolocation', () => {
     await act(async () => {
       await expect(result.current.detectLocation()).resolves.toEqual({
         name: 'Москва',
+        label: 'Москва',
         lat: 55.75,
         lon: 37.62,
       });
@@ -61,6 +62,7 @@ describe('useGeolocation', () => {
     await act(async () => {
       await expect(result.current.detectLocation()).resolves.toEqual({
         name: 'Моё местоположение (55.75, 37.62)',
+        label: 'Моё местоположение (55.75, 37.62)',
         lat: 55.75,
         lon: 37.62,
       });

@@ -3,7 +3,12 @@ import { fn } from 'storybook/test';
 
 import { ModeBView } from '../ModeBView';
 
-const location = { name: 'Москва', lat: 55.752, lon: 37.6178 };
+const location = {
+  name: 'Москва',
+  label: 'Москва, Москва, Россия',
+  lat: 55.752,
+  lon: 37.6178,
+};
 
 const meta = {
   title: 'Components/ModeBView',

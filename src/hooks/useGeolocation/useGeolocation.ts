@@ -69,6 +69,7 @@ export const useGeolocation = (): UseGeolocationResult => {
 
         return {
           name,
+          label: name,
           lat: position.lat,
           lon: position.lon,
         };

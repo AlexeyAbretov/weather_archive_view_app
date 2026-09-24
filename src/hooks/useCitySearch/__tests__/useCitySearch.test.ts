@@ -20,6 +20,29 @@ describe('useCitySearch', () => {
     vi.mocked(searchCities).mockReset();
   });
 
+  it('не ищет город, подставленный при загрузке', async () => {
+    vi.mocked(searchCities).mockResolvedValue([]);
+
+    const { result } = renderHook(() => useCitySearch('Москва'));
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(350);
+    });
+
+    expect(result.current.query).toBe('Москва');
+    expect(searchCities).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.setQuery('Ту');
+    });
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(350);
+    });
+
+    expect(searchCities).toHaveBeenCalledTimes(1);
+  });
+
   it('сбрасывает короткий запрос', () => {
     const { result } = renderHook(() => useCitySearch());
 

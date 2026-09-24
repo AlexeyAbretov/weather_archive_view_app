@@ -6,17 +6,26 @@ import type {
   LocationContextValue,
   LocationProviderProps,
 } from './LocationProvider.types';
+import {
+  clearSelectedLocation,
+  readSelectedLocation,
+  saveSelectedLocation,
+} from './LocationProvider.utils';
 
 export const LocationContext = createContext<LocationContextValue | null>(null);
 
 export const LocationProvider = ({ children }: LocationProviderProps) => {
-  const [location, setLocationState] = useState<SelectedLocation | null>(null);
+  const [location, setLocationState] = useState<SelectedLocation | null>(
+    readSelectedLocation,
+  );
 
   const setLocation = useCallback((nextLocation: SelectedLocation) => {
+    saveSelectedLocation(nextLocation);
     setLocationState(nextLocation);
   }, []);
 
   const clearLocation = useCallback(() => {
+    clearSelectedLocation();
     setLocationState(null);
   }, []);
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { LocationProvider } from '@providers';
 import { act, renderHook } from '@testing-library/react';
@@ -11,6 +11,10 @@ const wrapper = ({ children }: { children: ReactNode }) => {
 };
 
 describe('useSelectedLocation', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('требует провайдер', () => {
     expect(() => renderHook(() => useSelectedLocation())).toThrow(
       'useSelectedLocation должен использоваться в LocationProvider',
@@ -25,6 +29,7 @@ describe('useSelectedLocation', () => {
     act(() => {
       result.current.setLocation({
         name: 'Москва',
+        label: 'Москва, Москва, Россия',
         lat: 1,
         lon: 2,
       });
@@ -37,5 +42,29 @@ describe('useSelectedLocation', () => {
     });
 
     expect(result.current.location).toBeNull();
+  });
+
+  it('восстанавливает город после обновления', () => {
+    const first = renderHook(() => useSelectedLocation(), { wrapper });
+
+    act(() => {
+      first.result.current.setLocation({
+        name: 'Казань',
+        label: 'Казань, Татарстан, Россия',
+        lat: 55.79,
+        lon: 49.12,
+      });
+    });
+
+    first.unmount();
+
+    const second = renderHook(() => useSelectedLocation(), { wrapper });
+
+    expect(second.result.current.location).toEqual({
+      name: 'Казань',
+      label: 'Казань, Татарстан, Россия',
+      lat: 55.79,
+      lon: 49.12,
+    });
   });
 });

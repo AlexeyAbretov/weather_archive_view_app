@@ -15,15 +15,20 @@ type UseCitySearchResult = {
   errorMessage: string | null;
 };
 
-export const useCitySearch = (): UseCitySearchResult => {
-  const [query, setQuery] = useState('');
+export const useCitySearch = (initialQuery = ''): UseCitySearchResult => {
+  const [query, setQuery] = useState(initialQuery);
   const [results, setResults] = useState<CitySearchResult[]>([]);
   const [status, setStatus] = useState<CitySearchStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const restoredQueryRef = useRef(initialQuery);
 
   useEffect(() => {
     const trimmedQuery = query.trim();
+
+    if (query === restoredQueryRef.current && trimmedQuery.length > 0) {
+      return;
+    }
 
     if (!isSearchQueryValid(trimmedQuery)) {
       abortControllerRef.current?.abort();

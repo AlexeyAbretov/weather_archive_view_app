@@ -8,29 +8,40 @@ import { CitySelectorContainer } from '../CitySelectorContainer';
 
 const state = vi.hoisted(() => ({
   detectLocation: vi.fn(),
+  location: null as {
+    name: string;
+    label: string;
+    lat: number;
+    lon: number;
+  } | null,
+  searchInitialQuery: '',
   setLocation: vi.fn(),
   setQuery: vi.fn(),
 }));
 
 vi.mock('@hooks', () => ({
   useSelectedLocation: () => ({
-    location: null,
+    location: state.location,
     setLocation: state.setLocation,
   }),
-  useCitySearch: () => ({
-    query: 'Мо',
-    setQuery: state.setQuery,
-    results: [
-      {
-        name: 'Москва',
-        lat: 55.75,
-        lon: 37.62,
-        label: 'Москва, Москва, Россия',
-      },
-    ],
-    status: 'idle',
-    errorMessage: null,
-  }),
+  useCitySearch: (initialQuery = '') => {
+    state.searchInitialQuery = initialQuery;
+
+    return {
+      query: 'Мо',
+      setQuery: state.setQuery,
+      results: [
+        {
+          name: 'Москва',
+          lat: 55.75,
+          lon: 37.62,
+          label: 'Москва, Москва, Россия',
+        },
+      ],
+      status: 'idle',
+      errorMessage: null,
+    };
+  },
   useGeolocation: () => ({
     isLocating: false,
     detectLocation: state.detectLocation,
@@ -40,6 +51,8 @@ vi.mock('@hooks', () => ({
 describe('CitySelectorContainer', () => {
   beforeEach(() => {
     state.detectLocation.mockReset();
+    state.location = null;
+    state.searchInitialQuery = '';
     state.setLocation.mockReset();
     state.setQuery.mockReset();
   });
@@ -49,6 +62,7 @@ describe('CitySelectorContainer', () => {
     const { container } = renderWithLocale(<CitySelectorContainer />);
 
     expect(container).toMatchSnapshot();
+    expect(state.searchInitialQuery).toBe('');
 
     await user.type(screen.getAllByRole('combobox')[0], 'с');
     expect(state.setQuery).toHaveBeenCalled();
@@ -59,6 +73,7 @@ describe('CitySelectorContainer', () => {
 
     expect(state.setLocation).toHaveBeenCalledWith({
       name: 'Москва',
+      label: 'Москва, Москва, Россия',
       lat: 55.75,
       lon: 37.62,
     });
@@ -74,6 +89,7 @@ describe('CitySelectorContainer', () => {
 
     state.detectLocation.mockResolvedValueOnce({
       name: 'Тула',
+      label: 'Тула',
       lat: 54.2,
       lon: 37.6,
     });
@@ -84,9 +100,25 @@ describe('CitySelectorContainer', () => {
 
     expect(state.setLocation).toHaveBeenCalledWith({
       name: 'Тула',
+      label: 'Тула',
       lat: 54.2,
       lon: 37.6,
     });
     expect(state.setQuery).toHaveBeenCalledWith('Тула');
+  });
+
+  it('подставляет сохранённый город в поле поиска', () => {
+    state.location = {
+      name: 'Казань',
+      label: 'Казань, Татарстан, Россия',
+      lat: 55.79,
+      lon: 49.12,
+    };
+
+    const { container } = renderWithLocale(<CitySelectorContainer />);
+
+    expect(state.searchInitialQuery).toBe('Казань, Татарстан, Россия');
+    expect(screen.getByText('Казань')).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
   });
 });

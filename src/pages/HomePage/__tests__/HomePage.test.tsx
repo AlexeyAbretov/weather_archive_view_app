@@ -13,7 +13,12 @@ vi.mock('@hooks', () => ({
     yearRangeLabel: '2010–2030',
   }),
   useSelectedLocation: () => ({
-    location: { name: 'Москва', lat: 55.75, lon: 37.62 },
+    location: {
+      name: 'Москва',
+      label: 'Москва, Москва, Россия',
+      lat: 55.75,
+      lon: 37.62,
+    },
     setLocation: vi.fn(),
   }),
   useCitySearch: () => ({

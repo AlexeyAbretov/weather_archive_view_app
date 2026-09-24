@@ -4,12 +4,15 @@ import type { CitySearchResult } from '@types';
 
 export const CitySelectorContainer = () => {
   const { location, setLocation } = useSelectedLocation();
-  const { query, setQuery, results, status, errorMessage } = useCitySearch();
+  const { query, setQuery, results, status, errorMessage } = useCitySearch(
+    location?.label ?? '',
+  );
   const { isLocating, detectLocation } = useGeolocation();
 
   const handleSelect = (city: CitySearchResult) => {
     setLocation({
       name: city.name,
+      label: city.label,
       lat: city.lat,
       lon: city.lon,
     });
@@ -24,7 +27,7 @@ export const CitySelectorContainer = () => {
     }
 
     setLocation(detected);
-    setQuery(detected.name);
+    setQuery(detected.label);
   };
 
   return (

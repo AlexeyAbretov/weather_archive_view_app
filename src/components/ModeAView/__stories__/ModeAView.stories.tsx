@@ -5,7 +5,12 @@ import type { YearWeatherRow } from '@domain';
 
 import { ModeAView } from '../ModeAView';
 
-const location = { name: 'Москва', lat: 55.752, lon: 37.6178 };
+const location = {
+  name: 'Москва',
+  label: 'Москва, Москва, Россия',
+  lat: 55.752,
+  lon: 37.6178,
+};
 
 const row: YearWeatherRow = {
   year: 2020,

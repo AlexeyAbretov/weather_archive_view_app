@@ -8,6 +8,7 @@ export const anchorDate = {
 
 export const location = {
   name: 'Москва',
+  label: 'Москва, Москва, Россия',
   lat: 55.752,
   lon: 37.6178,
 };
