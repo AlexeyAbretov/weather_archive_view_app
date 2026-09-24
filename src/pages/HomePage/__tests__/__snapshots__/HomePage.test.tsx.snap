@@ -301,10 +301,9 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                 class="ant-segmented-group"
               >
                 <label
-                  class="ant-segmented-item ant-segmented-item-selected"
+                  class="ant-segmented-item"
                 >
                   <input
-                    checked=""
                     class="ant-segmented-item-input"
                     name="test-id"
                     type="radio"
@@ -317,9 +316,10 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                   </div>
                 </label>
                 <label
-                  class="ant-segmented-item"
+                  class="ant-segmented-item ant-segmented-item-selected"
                 >
                   <input
+                    checked=""
                     class="ant-segmented-item-input"
                     name="test-id"
                     type="radio"
@@ -338,13 +338,13 @@ exports[`HomePage > показывает режимы A и B 1`] = `
             <span
               class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
             >
-              Прокрутите таблицу влево или вправо, чтобы увидеть все колонки.
+              Прокрутите таблицу влево или вправо, чтобы увидеть все годы.
             </span>
             <div
-              class="table-wrapper _tableWrapper_2a8263"
+              class="table-wrapper _tableWrapper_3ebb25"
             >
               <div
-                class="ant-table-wrapper _table_2a8263 css-dev-only-do-not-override-mncuj7"
+                class="ant-table-wrapper _table_3ebb25 css-dev-only-do-not-override-mncuj7"
               >
                 <div
                   class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
@@ -353,7 +353,7 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                     class="ant-spin-container"
                   >
                     <div
-                      class="ant-table ant-table-small ant-table-empty css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+                      class="ant-table ant-table-small ant-table-empty css-dev-only-do-not-override-mncuj7 ant-table-scroll-horizontal"
                     >
                       <div
                         class="ant-table-container"
@@ -365,62 +365,13 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                           <table
                             style="width: max-content; min-width: 100%; table-layout: auto;"
                           >
-                            <colgroup>
-                              <col
-                                style="width: 80px;"
-                              />
-                              <col
-                                style="width: 120px;"
-                              />
-                              <col
-                                style="width: 140px;"
-                              />
-                              <col
-                                style="width: 110px;"
-                              />
-                              <col
-                                style="width: 100px;"
-                              />
-                            </colgroup>
                             <thead
                               class="ant-table-thead"
                             >
                               <tr>
                                 <th
-                                  class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
-                                  scope="col"
-                                  style="position: sticky; left: 0px; text-align: center;"
-                                >
-                                  Год
-                                </th>
-                                <th
                                   class="ant-table-cell"
-                                  scope="col"
-                                  style="text-align: center;"
-                                >
-                                  t° мин / макс
-                                </th>
-                                <th
-                                  class="ant-table-cell"
-                                  scope="col"
-                                  style="text-align: center;"
-                                >
-                                  Осадки
-                                </th>
-                                <th
-                                  class="ant-table-cell"
-                                  scope="col"
-                                  style="text-align: center;"
-                                >
-                                  Ветер
-                                </th>
-                                <th
-                                  class="ant-table-cell"
-                                  scope="col"
-                                  style="text-align: center;"
-                                >
-                                  Облачность
-                                </th>
+                                />
                               </tr>
                             </thead>
                             <tbody
@@ -437,43 +388,7 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                                   <div
                                     class="ant-table-measure-cell-content"
                                   >
-                                    Год
-                                  </div>
-                                </th>
-                                <th
-                                  class="ant-table-measure-cell"
-                                >
-                                  <div
-                                    class="ant-table-measure-cell-content"
-                                  >
-                                    t° мин / макс
-                                  </div>
-                                </th>
-                                <th
-                                  class="ant-table-measure-cell"
-                                >
-                                  <div
-                                    class="ant-table-measure-cell-content"
-                                  >
-                                    Осадки
-                                  </div>
-                                </th>
-                                <th
-                                  class="ant-table-measure-cell"
-                                >
-                                  <div
-                                    class="ant-table-measure-cell-content"
-                                  >
-                                    Ветер
-                                  </div>
-                                </th>
-                                <th
-                                  class="ant-table-measure-cell"
-                                >
-                                  <div
-                                    class="ant-table-measure-cell-content"
-                                  >
-                                    Облачность
+                                     
                                   </div>
                                 </th>
                               </tr>
@@ -482,7 +397,6 @@ exports[`HomePage > показывает режимы A и B 1`] = `
                               >
                                 <td
                                   class="ant-table-cell"
-                                  colspan="5"
                                 >
                                   <div
                                     class="css-dev-only-do-not-override-mncuj7 ant-empty ant-empty-normal"

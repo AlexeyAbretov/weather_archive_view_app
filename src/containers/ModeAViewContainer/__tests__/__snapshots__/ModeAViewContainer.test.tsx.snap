@@ -17,10 +17,9 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
           class="ant-segmented-group"
         >
           <label
-            class="ant-segmented-item ant-segmented-item-selected"
+            class="ant-segmented-item"
           >
             <input
-              checked=""
               class="ant-segmented-item-input"
               name="test-id"
               type="radio"
@@ -33,9 +32,10 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
             </div>
           </label>
           <label
-            class="ant-segmented-item"
+            class="ant-segmented-item ant-segmented-item-selected"
           >
             <input
+              checked=""
               class="ant-segmented-item-input"
               name="test-id"
               type="radio"
@@ -54,13 +54,13 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
       <span
         class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
       >
-        Прокрутите таблицу влево или вправо, чтобы увидеть все колонки.
+        Прокрутите таблицу влево или вправо, чтобы увидеть все годы.
       </span>
       <div
-        class="table-wrapper _tableWrapper_2a8263"
+        class="table-wrapper _tableWrapper_3ebb25"
       >
         <div
-          class="ant-table-wrapper _table_2a8263 css-dev-only-do-not-override-mncuj7"
+          class="ant-table-wrapper _table_3ebb25 css-dev-only-do-not-override-mncuj7"
         >
           <div
             class="ant-spin-nested-loading css-dev-only-do-not-override-mncuj7"
@@ -69,7 +69,7 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
               class="ant-spin-container"
             >
               <div
-                class="ant-table ant-table-small css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+                class="ant-table ant-table-small css-dev-only-do-not-override-mncuj7 ant-table-scroll-horizontal"
               >
                 <div
                   class="ant-table-container"
@@ -83,19 +83,7 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                     >
                       <colgroup>
                         <col
-                          style="width: 80px;"
-                        />
-                        <col
-                          style="width: 120px;"
-                        />
-                        <col
-                          style="width: 140px;"
-                        />
-                        <col
-                          style="width: 110px;"
-                        />
-                        <col
-                          style="width: 100px;"
+                          style="width: 84px;"
                         />
                       </colgroup>
                       <thead
@@ -103,39 +91,12 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                       >
                         <tr>
                           <th
-                            class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
-                            scope="col"
-                            style="position: sticky; left: 0px; text-align: center;"
-                          >
-                            Год
-                          </th>
-                          <th
-                            class="ant-table-cell"
+                            class="ant-table-cell _anchorColumn_3ebb25"
                             scope="col"
                             style="text-align: center;"
+                            title="Год выбранной даты"
                           >
-                            t° мин / макс
-                          </th>
-                          <th
-                            class="ant-table-cell"
-                            scope="col"
-                            style="text-align: center;"
-                          >
-                            Осадки
-                          </th>
-                          <th
-                            class="ant-table-cell"
-                            scope="col"
-                            style="text-align: center;"
-                          >
-                            Ветер
-                          </th>
-                          <th
-                            class="ant-table-cell"
-                            scope="col"
-                            style="text-align: center;"
-                          >
-                            Облачность
+                            2020
                           </th>
                         </tr>
                       </thead>
@@ -153,58 +114,16 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                             <div
                               class="ant-table-measure-cell-content"
                             >
-                              Год
-                            </div>
-                          </th>
-                          <th
-                            class="ant-table-measure-cell"
-                          >
-                            <div
-                              class="ant-table-measure-cell-content"
-                            >
-                              t° мин / макс
-                            </div>
-                          </th>
-                          <th
-                            class="ant-table-measure-cell"
-                          >
-                            <div
-                              class="ant-table-measure-cell-content"
-                            >
-                              Осадки
-                            </div>
-                          </th>
-                          <th
-                            class="ant-table-measure-cell"
-                          >
-                            <div
-                              class="ant-table-measure-cell-content"
-                            >
-                              Ветер
-                            </div>
-                          </th>
-                          <th
-                            class="ant-table-measure-cell"
-                          >
-                            <div
-                              class="ant-table-measure-cell-content"
-                            >
-                              Облачность
+                              2020
                             </div>
                           </th>
                         </tr>
                         <tr
-                          class="ant-table-row ant-table-row-level-0 _anchorRow_2a8263"
-                          data-row-key="2020"
+                          class="ant-table-row ant-table-row-level-0"
+                          data-row-key="temperature"
                         >
                           <td
-                            class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last"
-                            style="position: sticky; left: 0px; text-align: center;"
-                          >
-                            2020
-                          </td>
-                          <td
-                            class="ant-table-cell"
+                            class="ant-table-cell _anchorColumn_3ebb25"
                             style="text-align: center;"
                           >
                             <div
@@ -227,8 +146,13 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                               </span>
                             </div>
                           </td>
+                        </tr>
+                        <tr
+                          class="ant-table-row ant-table-row-level-0"
+                          data-row-key="precipitation"
+                        >
                           <td
-                            class="ant-table-cell"
+                            class="ant-table-cell _anchorColumn_3ebb25"
                             style="text-align: center;"
                           >
                             <span
@@ -237,8 +161,13 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                               1.2 мм
                             </span>
                           </td>
+                        </tr>
+                        <tr
+                          class="ant-table-row ant-table-row-level-0"
+                          data-row-key="wind"
+                        >
                           <td
-                            class="ant-table-cell"
+                            class="ant-table-cell _anchorColumn_3ebb25"
                             style="text-align: center;"
                           >
                             <div
@@ -258,8 +187,13 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                               </span>
                             </div>
                           </td>
+                        </tr>
+                        <tr
+                          class="ant-table-row ant-table-row-level-0"
+                          data-row-key="weather"
+                        >
                           <td
-                            class="ant-table-cell"
+                            class="ant-table-cell _anchorColumn_3ebb25"
                             style="text-align: center;"
                           >
                             <div

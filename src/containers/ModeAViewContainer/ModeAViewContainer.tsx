@@ -20,6 +20,7 @@ export const ModeAViewContainer = ({ anchorDate }: ModeAViewContainerProps) => {
       loading={loading}
       location={location}
       onReload={reload}
+      defaultLayout="columns"
     />
   );
 };

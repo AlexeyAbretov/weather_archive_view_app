@@ -10,4 +10,5 @@ export type ModeAViewProps = {
   loading: boolean;
   location: SelectedLocation | null;
   onReload: () => void;
+  defaultLayout?: YearTableLayout;
 };

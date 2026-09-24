@@ -19,8 +19,9 @@ export const ModeAView = ({
   loading,
   location,
   onReload,
+  defaultLayout = 'rows',
 }: ModeAViewProps) => {
-  const [layout, setLayout] = useState<YearTableLayout>('rows');
+  const [layout, setLayout] = useState<YearTableLayout>(defaultLayout);
 
   if (!location) {
     return (
