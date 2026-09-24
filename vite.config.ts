@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       "@api": path.join(srcDir, "api"),
       "@components": path.join(srcDir, "components"),
+      "@containers": path.join(srcDir, "containers"),
       "@domain": path.join(srcDir, "domain"),
       "@hooks": path.join(srcDir, "hooks"),
       "@pages": path.join(srcDir, "pages"),

@@ -25,6 +25,7 @@
     "paths": {
       "@api": ["./src/api"],
       "@components": ["./src/components"],
+      "@containers": ["./src/containers"],
       "@domain": ["./src/domain"],
       "@hooks": ["./src/hooks"],
       "@pages": ["./src/pages"],

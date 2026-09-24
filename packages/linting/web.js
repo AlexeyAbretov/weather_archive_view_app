@@ -38,6 +38,16 @@ const dayjsOutsidePickerFiles = [
   "src/**/__stories__/**/*.{ts,tsx}",
 ];
 
+const dataHookImportMessage =
+  "Do not use data hooks in components. Call them from a page or container and pass props.";
+
+const dataHookImportRules = [
+  {
+    selector: "ImportDeclaration[source.value=/^@hooks(\\/|$)/]",
+    message: dataHookImportMessage,
+  },
+];
+
 /**
  * Directories in `src` plus root `*.ts` modules (`config.ts` → `config`).
  *
@@ -184,6 +194,30 @@ function createWebOverrides(files, rootDir) {
             message: dayjsImportMessage,
           },
           ...dayjsLocaleRules,
+        ],
+      },
+    },
+    {
+      files: ["src/**/components/**/*.{ts,tsx}"],
+      rules: {
+        "no-restricted-syntax": [
+          "error",
+          ...dayjsLocaleRules,
+          ...dataHookImportRules,
+        ],
+      },
+    },
+    {
+      files: ["src/**/components/**/__stories__/**/*.{ts,tsx}"],
+      rules: {
+        "no-restricted-syntax": [
+          "error",
+          {
+            selector: "ImportDeclaration[source.value='dayjs']",
+            message: dayjsImportMessage,
+          },
+          ...dayjsLocaleRules,
+          ...dataHookImportRules,
         ],
       },
     },

@@ -1,29 +1,21 @@
 import { Empty } from 'antd';
 
-import { useModeBLazyWeather } from '@hooks';
-
 import type { ModeBViewProps } from './ModeBView.types';
 
 import { YearWindowTable } from '../YearWindowTable';
 
-export const ModeBView = ({ location, anchorDate }: ModeBViewProps) => {
-  const {
-    years,
-    windowsByYear,
-    loadingYears,
-    errorYears,
-    expandedYears,
-    setExpandedYears,
-    loadYear,
-    reloadYear,
-    isYearExpandable,
-  } = useModeBLazyWeather({
-    lat: location?.lat ?? null,
-    lon: location?.lon ?? null,
-    anchorDate,
-    enabled: location != null,
-  });
-
+export const ModeBView = ({
+  errorYears,
+  expandedYears,
+  isYearExpandable,
+  loadingYears,
+  location,
+  onExpandYear,
+  onExpandedYearsChange,
+  onRetryYear,
+  windowsByYear,
+  years,
+}: ModeBViewProps) => {
   if (!location) {
     return (
       <Empty
@@ -39,9 +31,9 @@ export const ModeBView = ({ location, anchorDate }: ModeBViewProps) => {
       expandedYears={expandedYears}
       isYearExpandable={isYearExpandable}
       loadingYears={loadingYears}
-      onExpandYear={loadYear}
-      onExpandedYearsChange={setExpandedYears}
-      onRetryYear={reloadYear}
+      onExpandYear={onExpandYear}
+      onExpandedYearsChange={onExpandedYearsChange}
+      onRetryYear={onRetryYear}
       windowsByYear={windowsByYear}
       years={years}
     />

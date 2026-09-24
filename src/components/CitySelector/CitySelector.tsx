@@ -2,13 +2,17 @@ import { AutoComplete, Button, Space, Spin, Tag, Typography } from 'antd';
 import { useMemo } from 'react';
 
 import { EnvironmentOutlined } from '@ant-design/icons';
-import { useCitySearch, useGeolocation, useSelectedLocation } from '@hooks';
 import type { CitySearchResult } from '@types';
+
+import type {
+  CitySelectorProps,
+  CitySelectorStatus,
+} from './CitySelector.types';
 
 const { Text } = Typography;
 
 const getNotFoundContent = (
-  status: ReturnType<typeof useCitySearch>['status'],
+  status: CitySelectorStatus,
   errorMessage: string | null,
 ): React.ReactNode => {
   if (status === 'loading') {
@@ -26,11 +30,17 @@ const getNotFoundContent = (
   return null;
 };
 
-export const CitySelector = () => {
-  const { location, setLocation } = useSelectedLocation();
-  const { query, setQuery, results, status, errorMessage } = useCitySearch();
-  const { isLocating, detectLocation } = useGeolocation();
-
+export const CitySelector = ({
+  errorMessage,
+  isLocating,
+  location,
+  onDetectLocation,
+  onQueryChange,
+  onSelect,
+  query,
+  results,
+  status,
+}: CitySelectorProps) => {
   const options = useMemo(
     () =>
       results.map((city: CitySearchResult) => ({
@@ -49,23 +59,7 @@ export const CitySelector = () => {
       return;
     }
 
-    setLocation({
-      name: option.city.name,
-      lat: option.city.lat,
-      lon: option.city.lon,
-    });
-    setQuery(option.city.label);
-  };
-
-  const handleDetectLocation = async (): Promise<void> => {
-    const detected = await detectLocation();
-
-    if (!detected) {
-      return;
-    }
-
-    setLocation(detected);
-    setQuery(detected.name);
+    onSelect(option.city);
   };
 
   return (
@@ -73,21 +67,19 @@ export const CitySelector = () => {
       <div className="city-selector-row">
         <AutoComplete
           className="city-selector-input"
-          value={query}
-          options={options}
-          style={{ width: '100%' }}
-          placeholder="Введите название города"
           notFoundContent={getNotFoundContent(status, errorMessage)}
-          onChange={setQuery}
+          onChange={onQueryChange}
           onSelect={handleSelect}
+          options={options}
+          placeholder="Введите название города"
+          style={{ width: '100%' }}
+          value={query}
         />
         <Button
           className="city-selector-button"
           icon={<EnvironmentOutlined />}
           loading={isLocating}
-          onClick={() => {
-            void handleDetectLocation();
-          }}
+          onClick={onDetectLocation}
         >
           Моё местоположение
         </Button>

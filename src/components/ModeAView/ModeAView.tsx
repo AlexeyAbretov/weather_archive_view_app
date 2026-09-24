@@ -1,19 +1,16 @@
 import { Alert, Button, Empty, Spin } from 'antd';
 
-import { useModeAWeather } from '@hooks';
-
 import type { ModeAViewProps } from './ModeAView.types';
 
 import { YearWeatherTable } from '../YearWeatherTable';
 
-export const ModeAView = ({ location, anchorDate }: ModeAViewProps) => {
-  const { data, loading, error, reload } = useModeAWeather({
-    lat: location?.lat ?? null,
-    lon: location?.lon ?? null,
-    anchorDate,
-    enabled: location != null,
-  });
-
+export const ModeAView = ({
+  data,
+  error,
+  loading,
+  location,
+  onReload,
+}: ModeAViewProps) => {
   if (!location) {
     return (
       <Empty
@@ -27,7 +24,7 @@ export const ModeAView = ({ location, anchorDate }: ModeAViewProps) => {
     return (
       <Alert
         action={
-          <Button size="small" onClick={reload}>
+          <Button size="small" onClick={onReload}>
             Повторить
           </Button>
         }

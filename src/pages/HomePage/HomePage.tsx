@@ -1,21 +1,14 @@
 import { Space, Typography } from 'antd';
 import { useState } from 'react';
 
-import {
-  AnchorDatePicker,
-  CitySelector,
-  ModeAView,
-  ModeBView,
-  ModeSwitcher,
-  type ViewMode,
-} from '@components';
-import { useSelectedLocation, useWeatherAppState } from '@hooks';
+import { AnchorDatePicker, ModeSwitcher, type ViewMode } from '@components';
+import { CitySelector, ModeAView, ModeBView } from '@containers';
+import { useWeatherAppState } from '@hooks';
 import { formatAnchorDate } from '@utils';
 
 const { Paragraph, Text, Title } = Typography;
 
 export const HomePage = () => {
-  const { location } = useSelectedLocation();
   const { anchorDate, setAnchorDate, yearRangeLabel } = useWeatherAppState();
   const [viewMode, setViewMode] = useState<ViewMode>('A');
 
@@ -51,9 +44,9 @@ export const HomePage = () => {
 
       <div className="filter-section">
         {viewMode === 'A' ? (
-          <ModeAView anchorDate={anchorDate} location={location} />
+          <ModeAView anchorDate={anchorDate} />
         ) : (
-          <ModeBView anchorDate={anchorDate} location={location} />
+          <ModeBView anchorDate={anchorDate} />
         )}
       </div>
     </Space>
