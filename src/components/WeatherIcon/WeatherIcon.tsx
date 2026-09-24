@@ -1,11 +1,10 @@
 import { Typography } from 'antd';
 
-import { mapWeatherCode } from '@domain';
 import { getNoDataLabel } from '@utils';
 
 import styles from './WeatherIcon.module.css';
 import type { WeatherIconProps } from './WeatherIcon.types';
-import { resolveWeatherPicture } from './WeatherIcon.utils';
+import { formatWeatherTitle, resolveWeatherPicture } from './WeatherIcon.utils';
 import { WeatherPicture } from './WeatherPicture';
 
 const { Text } = Typography;
@@ -19,11 +18,15 @@ export const WeatherIcon = ({ record }: WeatherIconProps) => {
     );
   }
 
-  const info = mapWeatherCode(record.weatherCode);
   const picture = resolveWeatherPicture(record);
+  const title = formatWeatherTitle(
+    picture.sky,
+    picture.precipitation,
+    picture.intensity,
+  );
 
   return (
-    <div className={styles.weatherIcon} title={info.description}>
+    <div className={styles.weatherIcon} title={title}>
       <WeatherPicture {...picture} />
       {record.cloudCover != null ? (
         <Text className={styles.cloudCover} type="secondary">

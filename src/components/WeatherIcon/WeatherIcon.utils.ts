@@ -40,6 +40,8 @@ const SPECIFIC_TYPES = new Set<PrecipitationType>([
   'hail',
 ]);
 
+const DRIZZLE_MAX_MM = 1;
+
 const INTENSITY_RANK: Record<PrecipitationIntensity, number> = {
   light: 0,
   moderate: 1,
@@ -69,22 +71,57 @@ const strongerIntensity = (
   return right;
 };
 
+const SKY_BY_ICON: Partial<Record<string, SkyKind>> = {
+  clear: 'clear',
+  'mainly-clear': 'mainly',
+  'partly-cloudy': 'partly',
+  overcast: 'overcast',
+  fog: 'fog',
+};
+
+const SKY_LABEL: Record<SkyKind, string> = {
+  clear: 'Ясно',
+  mainly: 'Преимущественно ясно',
+  partly: 'Переменная облачность',
+  overcast: 'Пасмурно',
+  fog: 'Туман',
+  unknown: 'Неизвестно',
+};
+
+const PRECIPITATION_LABEL: Record<PrecipitationType, string> = {
+  none: 'без осадков',
+  rain: 'дождь',
+  snow: 'снег',
+  mixed: 'дождь со снегом',
+  drizzle: 'морось',
+  freezing_rain: 'ледяной дождь',
+  thunderstorm: 'гроза',
+  hail: 'град',
+};
+
+const INTENSITY_LABEL: Record<
+  PrecipitationIntensity,
+  { feminine: string; masculine: string }
+> = {
+  light: { feminine: 'слабая', masculine: 'слабый' },
+  moderate: { feminine: 'умеренная', masculine: 'умеренный' },
+  heavy: { feminine: 'сильная', masculine: 'сильный' },
+};
+
+const FEMININE_PRECIPITATION = new Set<PrecipitationType>([
+  'drizzle',
+  'thunderstorm',
+]);
+
 const resolveSky = (record: WeatherDayRecord): SkyKind => {
   const iconKey = record.iconKey ?? mapWeatherCode(record.weatherCode).iconKey;
+  const fromIcon = SKY_BY_ICON[iconKey];
 
-  if (iconKey === 'fog') {
-    return 'fog';
+  if (fromIcon) {
+    return fromIcon;
   }
 
   if (record.cloudCover == null) {
-    if (iconKey === 'clear' || iconKey === 'mainly-clear') {
-      return 'clear';
-    }
-
-    if (iconKey === 'partly-cloudy') {
-      return 'partly';
-    }
-
     if (iconKey === 'unknown') {
       return 'unknown';
     }
@@ -119,11 +156,19 @@ const resolvePrecipitation = (record: WeatherDayRecord): PrecipitationType => {
     return 'freezing_rain';
   }
 
-  if (SPECIFIC_TYPES.has(codeInfo.precipitationType)) {
-    return codeInfo.precipitationType;
+  const mm = record.precipitationMm ?? 0;
+  const codeType = codeInfo.precipitationType;
+  const drizzleTooHeavy = codeType === 'drizzle' && mm >= DRIZZLE_MAX_MM;
+
+  if (SPECIFIC_TYPES.has(codeType) && !drizzleTooHeavy) {
+    return codeType;
   }
 
-  return record.precipitationType ?? codeInfo.precipitationType;
+  if (drizzleTooHeavy && record.precipitationType !== 'snow') {
+    return 'rain';
+  }
+
+  return record.precipitationType ?? codeType;
 };
 
 const resolveIntensity = (
@@ -156,4 +201,24 @@ export const resolveWeatherPicture = (
     precipitation,
     intensity: resolveIntensity(record, precipitation),
   };
+};
+
+export const formatWeatherTitle = (
+  sky: SkyKind,
+  precipitation: PrecipitationType,
+  intensity: PrecipitationIntensity,
+): string => {
+  const cloud = SKY_LABEL[sky];
+  const precipitationLabel = PRECIPITATION_LABEL[precipitation];
+
+  if (precipitation === 'none') {
+    return `${cloud}, ${precipitationLabel}`;
+  }
+
+  const gender = FEMININE_PRECIPITATION.has(precipitation)
+    ? 'feminine'
+    : 'masculine';
+  const strength = INTENSITY_LABEL[intensity][gender];
+
+  return `${cloud}, ${strength} ${precipitationLabel}`;
 };

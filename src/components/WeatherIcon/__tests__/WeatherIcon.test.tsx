@@ -20,6 +20,10 @@ const renderIcon = (overrides: Partial<WeatherDayRecord> = {}) => {
   return renderWithLocale(<WeatherIcon record={weatherDay(overrides)} />);
 };
 
+const titleOf = (container: HTMLElement): string | null => {
+  return container.querySelector('[title]')?.getAttribute('title') ?? null;
+};
+
 describe('WeatherIcon', () => {
   it('рисует небо без осадков и подпись облачности', () => {
     const { container, rerender } = renderIcon({
@@ -33,6 +37,7 @@ describe('WeatherIcon', () => {
     expect(picture(container).dataset.sky).toBe('clear');
     expect(picture(container).dataset.precipitation).toBe('none');
     expect(picture(container).dataset.intensity).toBeUndefined();
+    expect(titleOf(container)).toBe('Ясно, без осадков');
     expect(container).toMatchSnapshot();
 
     rerender(
@@ -96,7 +101,7 @@ describe('WeatherIcon', () => {
         })}
       />,
     );
-    expect(picture(container).dataset.sky).toBe('clear');
+    expect(picture(container).dataset.sky).toBe('mainly');
 
     rerender(
       <WeatherIcon
@@ -238,6 +243,21 @@ describe('WeatherIcon', () => {
 
     expect(picture(container).dataset.precipitation).toBe('drizzle');
     expect(picture(container).dataset.intensity).toBe('light');
+
+    rerender(
+      <WeatherIcon
+        record={weatherDay({
+          cloudCover: 72,
+          iconKey: 'drizzle',
+          precipitationMm: 12.9,
+          precipitationType: 'rain',
+          weatherCode: 51,
+        })}
+      />,
+    );
+    expect(picture(container).dataset.precipitation).toBe('rain');
+    expect(picture(container).dataset.intensity).toBe('heavy');
+    expect(titleOf(container)).toBe('Пасмурно, сильный дождь');
 
     rerender(
       <WeatherIcon
@@ -442,5 +462,32 @@ describe('WeatherIcon', () => {
       />,
     );
     expect(picture(container).dataset.precipitation).toBe('snow');
+  });
+
+  it('различает преимущественно ясно и переменную облачность', () => {
+    const { container, rerender } = renderIcon({
+      cloudCover: 31,
+      iconKey: 'mainly-clear',
+      precipitationMm: 0.3,
+      precipitationType: 'rain',
+      weatherCode: 1,
+    });
+
+    expect(picture(container).dataset.sky).toBe('mainly');
+    expect(titleOf(container)).toBe('Преимущественно ясно, слабый дождь');
+
+    rerender(
+      <WeatherIcon
+        record={weatherDay({
+          cloudCover: 46,
+          iconKey: 'partly-cloudy',
+          precipitationMm: 0.8,
+          precipitationType: 'rain',
+          weatherCode: 2,
+        })}
+      />,
+    );
+    expect(picture(container).dataset.sky).toBe('partly');
+    expect(titleOf(container)).toBe('Переменная облачность, слабый дождь');
   });
 });

@@ -4,7 +4,8 @@ export type WeatherIconProps = {
   record: WeatherDayRecord;
 };
 
-export type SkyKind = 'clear' | 'partly' | 'overcast' | 'fog' | 'unknown';
+export type SkyKind =
+  'clear' | 'mainly' | 'partly' | 'overcast' | 'fog' | 'unknown';
 
 export type PrecipitationIntensity = 'light' | 'moderate' | 'heavy';
 

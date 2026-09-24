@@ -4,7 +4,7 @@ exports[`WeatherIcon > рисует небо без осадков и подпи
 <div>
   <div
     class="_weatherIcon_67de4e"
-    title="Ясно"
+    title="Ясно, без осадков"
   >
     <svg
       aria-hidden="true"
@@ -13,76 +13,74 @@ exports[`WeatherIcon > рисует небо без осадков и подпи
       data-sky="clear"
       viewBox="0 0 32 32"
     >
-      <g>
-        <g
-          stroke="#faad14"
-          stroke-linecap="round"
-          stroke-width="1.4"
-        >
-          <circle
-            cx="16"
-            cy="14"
-            fill="#faad14"
-            r="5"
-            stroke="none"
-          />
-          <line
-            transform="rotate(0 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(45 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(90 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(135 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(180 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(225 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(270 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-          <line
-            transform="rotate(315 16 14)"
-            x1="16"
-            x2="16"
-            y1="8"
-            y2="5.8"
-          />
-        </g>
+      <g
+        stroke="#faad14"
+        stroke-linecap="round"
+        stroke-width="1.4"
+      >
+        <circle
+          cx="16"
+          cy="16"
+          fill="#faad14"
+          r="7.5"
+          stroke="none"
+        />
+        <line
+          transform="rotate(0 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(45 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(90 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(135 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(180 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(225 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(270 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(315 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
       </g>
     </svg>
     <span

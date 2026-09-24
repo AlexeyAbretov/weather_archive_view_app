@@ -28,6 +28,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Clear: Story = {};
 
+export const MainlyClear: Story = {
+  args: {
+    record: {
+      ...base,
+      cloudCover: 31,
+      iconKey: 'mainly-clear',
+      weatherCode: 1,
+    },
+  },
+};
+
 export const PartlyCloudy: Story = {
   args: {
     record: {

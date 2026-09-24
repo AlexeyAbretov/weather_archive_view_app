@@ -9,13 +9,30 @@ import type {
 
 const RAYS = [0, 45, 90, 135, 180, 225, 270, 315];
 
-const markScale = (intensity: PrecipitationIntensity): number => {
+const MARK_Y = 22.5;
+
+const markScale = (
+  intensity: PrecipitationIntensity,
+  precipitation: PrecipitationType,
+): number => {
+  if (precipitation === 'drizzle') {
+    if (intensity === 'light') {
+      return 0.9;
+    }
+
+    if (intensity === 'moderate') {
+      return 1.15;
+    }
+
+    return 1.35;
+  }
+
   if (intensity === 'light') {
-    return 0.75;
+    return 0.8;
   }
 
   if (intensity === 'moderate') {
-    return 1;
+    return 1.05;
   }
 
   return 1.2;
@@ -27,26 +44,26 @@ const markPositions = (
 ): number[] => {
   if (precipitation === 'drizzle') {
     if (intensity === 'light') {
-      return [12, 20];
+      return [13, 19];
     }
 
     if (intensity === 'moderate') {
-      return [8, 13, 19, 24];
+      return [11, 14.5, 18, 21.5];
     }
 
-    return [6, 11, 16, 21, 26];
+    return [10.5, 13.7, 16.9, 20.1, 23.3];
   }
 
   if (precipitation === 'mixed') {
     if (intensity === 'light') {
-      return [12, 20];
+      return [13, 19];
     }
 
     if (intensity === 'moderate') {
-      return [8, 16, 24];
+      return [12, 16, 20];
     }
 
-    return [6, 12, 18, 24];
+    return [12, 16.5, 21];
   }
 
   if (intensity === 'light') {
@@ -54,10 +71,10 @@ const markPositions = (
   }
 
   if (intensity === 'moderate') {
-    return [11, 21];
+    return [13, 19];
   }
 
-  return [7, 16, 25];
+  return [9.5, 16, 22.5];
 };
 
 const Sun = ({ cx, cy, r }: { cx: number; cy: number; r: number }) => {
@@ -90,43 +107,102 @@ const Cloud = () => {
   );
 };
 
-const Sky = ({ compact, kind }: { compact: boolean; kind: SkyKind }) => {
-  const shift = compact ? 'translate(0 -4)' : undefined;
+const CLOUD_CX = 17.5;
+const CLOUD_CY = 15.5;
 
+const placeAt = (scale: number, x: number, y: number): string => {
+  const originX = -CLOUD_CX;
+  const originY = -CLOUD_CY;
+
+  return [
+    `translate(${x} ${y})`,
+    `scale(${scale})`,
+    `translate(${originX} ${originY})`,
+  ].join(' ');
+};
+
+const FogLines = () => {
   return (
-    <g transform={shift}>
-      {kind === 'clear' ? <Sun cx={16} cy={14} r={5} /> : null}
-      {kind === 'partly' ? (
-        <>
-          <Sun cx={12} cy={11} r={3.4} />
-          <Cloud />
-        </>
-      ) : null}
-      {kind === 'overcast' ? <Cloud /> : null}
-      {kind === 'fog' ? (
-        <g stroke="#bfbfbf" strokeLinecap="round" strokeWidth="1.7">
-          <line x1="6" x2="26" y1="11" y2="11" />
-          <line x1="9" x2="23" y1="16" y2="16" />
-          <line x1="6" x2="26" y1="21" y2="21" />
-        </g>
-      ) : null}
-      {kind === 'unknown' ? (
-        <g fill="none" stroke="#bfbfbf" strokeWidth="1.4">
-          <circle cx="16" cy="14" r="7" />
-          <text
-            fill="#bfbfbf"
-            fontSize="12"
-            stroke="none"
-            textAnchor="middle"
-            x="16"
-            y="18"
-          >
-            ?
-          </text>
-        </g>
-      ) : null}
+    <g stroke="#bfbfbf" strokeLinecap="round" strokeWidth="1.4">
+      <line x1="6" x2="26" y1="11" y2="11" />
+      <line x1="9" x2="23" y1="16" y2="16" />
+      <line x1="6" x2="26" y1="21" y2="21" />
     </g>
   );
+};
+
+const UnknownMark = ({ cy }: { cy: number }) => {
+  return (
+    <g fill="none" stroke="#bfbfbf" strokeWidth="1.4">
+      <circle cx="16" cy={cy} r="9" />
+      <text
+        fill="#bfbfbf"
+        fontSize="14"
+        stroke="none"
+        textAnchor="middle"
+        x="16"
+        y={cy + 5}
+      >
+        ?
+      </text>
+    </g>
+  );
+};
+
+const Sky = ({ compact, kind }: { compact: boolean; kind: SkyKind }) => {
+  if (kind === 'overcast') {
+    const transform = compact ? placeAt(1.4, 16, 12.5) : placeAt(1.5, 16, 16);
+
+    return (
+      <g transform={transform}>
+        <Cloud />
+      </g>
+    );
+  }
+
+  if (kind === 'clear') {
+    return compact ? (
+      <Sun cx={16} cy={11} r={6.2} />
+    ) : (
+      <Sun cx={16} cy={16} r={7.5} />
+    );
+  }
+
+  if (kind === 'mainly') {
+    return (
+      <>
+        <Sun cx={13} cy={compact ? 11.5 : 16} r={compact ? 5.8 : 6.5} />
+        <g transform={compact ? placeAt(0.62, 22, 12) : placeAt(0.68, 22, 16)}>
+          <Cloud />
+        </g>
+      </>
+    );
+  }
+
+  if (kind === 'partly') {
+    const transform = compact ? placeAt(1.3, 16, 13.5) : placeAt(1.3, 16, 16);
+
+    return (
+      <g transform={transform}>
+        <Sun cx={14} cy={13} r={3.8} />
+        <Cloud />
+      </g>
+    );
+  }
+
+  if (kind === 'fog') {
+    const transform = compact
+      ? 'translate(16 13) scale(1.25) translate(-16 -16)'
+      : 'translate(16 16) scale(1.35) translate(-16 -16)';
+
+    return (
+      <g transform={transform}>
+        <FogLines />
+      </g>
+    );
+  }
+
+  return <UnknownMark cy={compact ? 12 : 16} />;
 };
 
 const DROP_PATH = [
@@ -168,7 +244,7 @@ const Pellet = () => {
 };
 
 const Dot = () => {
-  return <circle cx="0" cy="3.2" fill="#1677ff" r="1.15" />;
+  return <circle cx="0" cy="1.15" fill="#1677ff" r="1.15" />;
 };
 
 const Mark = ({
@@ -213,7 +289,7 @@ const PrecipitationMarks = ({
     return null;
   }
 
-  const scale = markScale(intensity);
+  const scale = markScale(intensity, precipitation);
   const icy = precipitation === 'freezing_rain';
 
   return (
@@ -221,7 +297,7 @@ const PrecipitationMarks = ({
       {markPositions(precipitation, intensity).map((x, index) => (
         <g
           key={`${precipitation}-${x}`}
-          transform={`translate(${x} 22) scale(${scale})`}
+          transform={`translate(${x} ${MARK_Y}) scale(${scale})`}
         >
           <Mark icy={icy} index={index} precipitation={precipitation} />
         </g>
