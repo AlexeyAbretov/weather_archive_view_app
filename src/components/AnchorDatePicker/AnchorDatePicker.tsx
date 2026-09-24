@@ -1,14 +1,9 @@
-import 'dayjs/locale/ru';
-
 import { DatePicker, message } from 'antd';
-import ruRU from 'antd/es/locale/ru_RU';
 import dayjs, { type Dayjs } from 'dayjs';
 
 import type { AnchorDate } from '@types';
 
 import type { AnchorDatePickerProps } from './AnchorDatePicker.types';
-
-dayjs.locale('ru');
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 
@@ -40,7 +35,6 @@ export const AnchorDatePicker = ({
       allowClear={false}
       disabled={disabled}
       format={DATE_FORMAT}
-      locale={ruRU.DatePicker}
       onChange={handleChange}
       picker="date"
       placeholder="Выберите дату"
