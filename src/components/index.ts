@@ -9,5 +9,6 @@ export { PrecipitationCell } from './PrecipitationCell';
 export { TemperatureCell } from './TemperatureCell';
 export { WeatherIcon } from './WeatherIcon';
 export { WindCell } from './WindCell';
+export { YearColumnsTable } from './YearColumnsTable';
 export { YearWeatherTable } from './YearWeatherTable';
 export { YearWindowTable } from './YearWindowTable';

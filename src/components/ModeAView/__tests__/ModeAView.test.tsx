@@ -15,6 +15,7 @@ describe('ModeAView', () => {
     const onReload = vi.fn();
     const { container, rerender } = renderWithLocale(
       <ModeAView
+        anchorYear={2020}
         data={[]}
         error={null}
         loading={false}
@@ -30,6 +31,7 @@ describe('ModeAView', () => {
 
     rerender(
       <ModeAView
+        anchorYear={2020}
         data={[]}
         error={null}
         loading
@@ -42,6 +44,7 @@ describe('ModeAView', () => {
 
     rerender(
       <ModeAView
+        anchorYear={2020}
         data={[]}
         error={new Error('сеть')}
         loading={false}
@@ -55,6 +58,7 @@ describe('ModeAView', () => {
 
     rerender(
       <ModeAView
+        anchorYear={2020}
         data={[row]}
         error={null}
         loading={false}
@@ -63,6 +67,27 @@ describe('ModeAView', () => {
       />,
     );
 
-    expect(screen.getByText('2020')).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /2020/ }).className).toContain(
+      'anchorRow',
+    );
+    expect(
+      screen.getByRole('columnheader', { name: 't° мин / макс' }),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByText('Годы в заголовке'));
+
+    expect(
+      screen.getByRole('columnheader', { name: '2020' }).className,
+    ).toContain('anchorColumn');
+    expect(screen.queryByText('Показатель')).not.toBeInTheDocument();
+    expect(screen.queryByText('Осадки')).not.toBeInTheDocument();
+    expect(screen.getByText('дождь')).toBeInTheDocument();
+    expect(screen.getByText('16 км/ч')).toBeInTheDocument();
+
+    await user.click(screen.getByText('Годы в строках'));
+
+    expect(
+      screen.getByRole('columnheader', { name: 't° мин / макс' }),
+    ).toBeInTheDocument();
   });
 });

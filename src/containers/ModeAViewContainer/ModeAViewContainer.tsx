@@ -14,6 +14,7 @@ export const ModeAViewContainer = ({ anchorDate }: ModeAViewContainerProps) => {
 
   return (
     <ModeAView
+      anchorYear={anchorDate.year}
       data={data}
       error={error}
       loading={loading}

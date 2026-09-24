@@ -22,6 +22,18 @@
   background: #e6f4ff;
 }
 
+.table :global(.ant-table-tbody > tr).anchorRow > :global(td) {
+  background: #fff7e6;
+}
+
+.table :global(.ant-table-tbody > tr).anchorRow > :global(td:first-child) {
+  box-shadow: inset 3px 0 0 #fa8c16;
+}
+
+.table :global(.ant-table-tbody > tr).anchorRow:hover > :global(td) {
+  background: #ffe7ba;
+}
+
 .table :global(.ant-table-cell) {
   vertical-align: middle;
 }

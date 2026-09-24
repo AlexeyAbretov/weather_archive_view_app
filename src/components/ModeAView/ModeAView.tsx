@@ -1,16 +1,27 @@
-import { Alert, Button, Empty, Spin } from 'antd';
+import { Alert, Button, Empty, Segmented, Spin } from 'antd';
+import { useState } from 'react';
 
-import type { ModeAViewProps } from './ModeAView.types';
+import styles from './ModeAView.module.css';
+import type { ModeAViewProps, YearTableLayout } from './ModeAView.types';
 
+import { YearColumnsTable } from '../YearColumnsTable';
 import { YearWeatherTable } from '../YearWeatherTable';
 
+const LAYOUT_OPTIONS = [
+  { label: 'Годы в строках', value: 'rows' as const },
+  { label: 'Годы в заголовке', value: 'columns' as const },
+];
+
 export const ModeAView = ({
+  anchorYear,
   data,
   error,
   loading,
   location,
   onReload,
 }: ModeAViewProps) => {
+  const [layout, setLayout] = useState<YearTableLayout>('rows');
+
   if (!location) {
     return (
       <Empty
@@ -43,5 +54,32 @@ export const ModeAView = ({
     );
   }
 
-  return <YearWeatherTable data={data} loading={loading} />;
+  return (
+    <div>
+      <div className={`mode-switcher ${styles.layoutSwitcher}`}>
+        <Segmented
+          aria-label="Вид таблицы по годам"
+          block
+          options={LAYOUT_OPTIONS}
+          value={layout}
+          onChange={(nextValue) => {
+            setLayout(nextValue as YearTableLayout);
+          }}
+        />
+      </div>
+      {layout === 'rows' ? (
+        <YearWeatherTable
+          anchorYear={anchorYear}
+          data={data}
+          loading={loading}
+        />
+      ) : (
+        <YearColumnsTable
+          anchorYear={anchorYear}
+          data={data}
+          loading={loading}
+        />
+      )}
+    </div>
+  );
 };

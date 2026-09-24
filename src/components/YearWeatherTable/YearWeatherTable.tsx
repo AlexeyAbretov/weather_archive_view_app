@@ -10,6 +10,7 @@ import type { YearWeatherTableProps } from './YearWeatherTable.types';
 const { Text } = Typography;
 
 export const YearWeatherTable = ({
+  anchorYear,
   data,
   loading = false,
 }: YearWeatherTableProps) => {
@@ -27,6 +28,13 @@ export const YearWeatherTable = ({
           dataSource={data}
           loading={loading}
           pagination={false}
+          rowClassName={(record) => {
+            if (record.year !== anchorYear) {
+              return '';
+            }
+
+            return styles.anchorRow;
+          }}
           rowKey="year"
           scroll={{ x: 'max-content' }}
           size="small"

@@ -29,6 +29,7 @@ const meta = {
   title: 'Components/ModeAView',
   component: ModeAView,
   args: {
+    anchorYear: 2020,
     data: [],
     error: null,
     loading: false,

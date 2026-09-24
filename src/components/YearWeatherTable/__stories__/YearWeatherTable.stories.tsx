@@ -26,6 +26,7 @@ const meta = {
   title: 'Components/YearWeatherTable',
   component: YearWeatherTable,
   args: {
+    anchorYear: 2020,
     data: [row],
   },
 } satisfies Meta<typeof YearWeatherTable>;
