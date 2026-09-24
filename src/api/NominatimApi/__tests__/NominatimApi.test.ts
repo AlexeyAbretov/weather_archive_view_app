@@ -22,34 +22,50 @@ describe('reverseGeocode', () => {
       jsonResponse({ address: { city: 'Москва', town: 'Химки' } }) as Response,
     );
 
-    await expect(reverseGeocode(55, 37, signal)).resolves.toBe('Москва');
+    await expect(reverseGeocode(55, 37, signal)).resolves.toEqual([
+      'Москва',
+      'Химки',
+    ]);
 
     vi.mocked(fetch).mockResolvedValueOnce(
       jsonResponse({ address: { town: 'Химки' } }) as Response,
     );
-    await expect(reverseGeocode(1, 2)).resolves.toBe('Химки');
+    await expect(reverseGeocode(1, 2)).resolves.toEqual(['Химки']);
 
     vi.mocked(fetch).mockResolvedValueOnce(
       jsonResponse({ address: { village: 'Село' } }) as Response,
     );
-    await expect(reverseGeocode(1, 2)).resolves.toBe('Село');
+    await expect(reverseGeocode(1, 2)).resolves.toEqual(['Село']);
 
     vi.mocked(fetch).mockResolvedValueOnce(
       jsonResponse({ address: { municipality: 'Округ' } }) as Response,
     );
-    await expect(reverseGeocode(1, 2)).resolves.toBe('Округ');
+    await expect(reverseGeocode(1, 2)).resolves.toEqual(['Округ']);
+
+    vi.mocked(fetch).mockResolvedValueOnce(
+      jsonResponse({
+        address: {
+          hamlet: 'Толстяково',
+          county: 'городской округ Солнечногорск',
+        },
+      }) as Response,
+    );
+    await expect(reverseGeocode(1, 2)).resolves.toEqual([
+      'Толстяково',
+      'Солнечногорск',
+    ]);
 
     vi.mocked(fetch).mockResolvedValueOnce(
       jsonResponse({ address: {} }) as Response,
     );
-    await expect(reverseGeocode(1, 2)).resolves.toBeNull();
+    await expect(reverseGeocode(1, 2)).resolves.toEqual([]);
 
     vi.mocked(fetch).mockResolvedValueOnce(jsonResponse({}) as Response);
-    await expect(reverseGeocode(1, 2)).resolves.toBeNull();
+    await expect(reverseGeocode(1, 2)).resolves.toEqual([]);
 
+    expect(String(vi.mocked(fetch).mock.calls[0]?.[0])).toContain('zoom=14');
     expect(vi.mocked(fetch).mock.calls[0]?.[1]).toMatchObject({
       signal,
-      headers: { 'User-Agent': 'weather_archive_view_app/1.0' },
     });
   });
 
