@@ -29,8 +29,15 @@ export const HomePage = () => {
       </div>
 
       <div className="filter-section">
-        <Title level={4}>Якорная дата</Title>
-        <Space className="filter-controls" direction="vertical" size="middle">
+        <Space
+          align="baseline"
+          className="filter-controls anchor-date-row"
+          size="middle"
+          wrap
+        >
+          <Title className="anchor-date-label" level={4}>
+            Якорная дата
+          </Title>
           <AnchorDatePicker onChange={setAnchorDate} value={anchorDate} />
           <Text>
             Выбранная дата: <Text strong>{formatAnchorDate(anchorDate)}</Text>

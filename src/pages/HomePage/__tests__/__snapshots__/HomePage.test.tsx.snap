@@ -135,14 +135,19 @@ exports[`HomePage > показывает режимы A и B 1`] = `
       <div
         class="filter-section"
       >
-        <h4
-          class="ant-typography css-dev-only-do-not-override-mncuj7"
-        >
-          Якорная дата
-        </h4>
         <div
-          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-horizontal ant-space-align-baseline ant-space-gap-row-middle ant-space-gap-col-middle filter-controls anchor-date-row"
+          style="flex-wrap: wrap;"
         >
+          <div
+            class="ant-space-item"
+          >
+            <h4
+              class="ant-typography anchor-date-label css-dev-only-do-not-override-mncuj7"
+            >
+              Якорная дата
+            </h4>
+          </div>
           <div
             class="ant-space-item"
           >
@@ -600,14 +605,19 @@ exports[`HomePage > показывает режимы A и B 2`] = `
       <div
         class="filter-section"
       >
-        <h4
-          class="ant-typography css-dev-only-do-not-override-mncuj7"
-        >
-          Якорная дата
-        </h4>
         <div
-          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-vertical ant-space-gap-row-middle ant-space-gap-col-middle filter-controls"
+          class="ant-space css-dev-only-do-not-override-mncuj7 ant-space-horizontal ant-space-align-baseline ant-space-gap-row-middle ant-space-gap-col-middle filter-controls anchor-date-row"
+          style="flex-wrap: wrap;"
         >
+          <div
+            class="ant-space-item"
+          >
+            <h4
+              class="ant-typography anchor-date-label css-dev-only-do-not-override-mncuj7"
+            >
+              Якорная дата
+            </h4>
+          </div>
           <div
             class="ant-space-item"
           >

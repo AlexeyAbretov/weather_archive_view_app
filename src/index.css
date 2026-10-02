@@ -65,6 +65,14 @@ body {
   width: 100%;
 }
 
+.anchor-date-row {
+  margin-top: 16px;
+}
+
+.anchor-date-label.ant-typography {
+  margin: 0;
+}
+
 .city-selector-row {
   display: flex;
   flex-wrap: wrap;
@@ -105,6 +113,7 @@ body {
 
   .city-selector-input,
   .city-selector-button {
+    flex: none;
     width: 100%;
   }
 
