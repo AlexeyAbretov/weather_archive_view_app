@@ -1,7 +1,13 @@
 import { createContext, useCallback, useMemo, useState } from 'react';
 
 import type { AnchorDate } from '@types';
-import { formatYearRange, getYearRange, todayAnchorDate } from '@utils';
+import {
+  formatYearRange,
+  getYearRange,
+  readAnchorDate,
+  saveAnchorDate,
+  todayAnchorDate,
+} from '@utils';
 
 import type {
   WeatherAppProviderProps,
@@ -11,10 +17,12 @@ import type {
 export const WeatherAppContext = createContext<WeatherAppState | null>(null);
 
 export const WeatherAppProvider = ({ children }: WeatherAppProviderProps) => {
-  const [anchorDate, setAnchorDateState] =
-    useState<AnchorDate>(todayAnchorDate);
+  const [anchorDate, setAnchorDateState] = useState<AnchorDate>(
+    () => readAnchorDate() ?? todayAnchorDate(),
+  );
 
   const setAnchorDate = useCallback((date: AnchorDate) => {
+    saveAnchorDate(date);
     setAnchorDateState(date);
   }, []);
 

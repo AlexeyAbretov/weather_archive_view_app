@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { WeatherAppProvider } from '@providers';
 import { act, renderHook } from '@testing-library/react';
@@ -11,6 +11,10 @@ const wrapper = ({ children }: { children: ReactNode }) => {
 };
 
 describe('useWeatherAppState', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('требует провайдер', () => {
     expect(() => renderHook(() => useWeatherAppState())).toThrow(
       'useWeatherAppState должен вызываться внутри WeatherAppProvider',
@@ -46,5 +50,22 @@ describe('useWeatherAppState', () => {
     expect(result.current.yearRangeLabel).toBe('2002–2022');
 
     vi.useRealTimers();
+  });
+
+  it('сохраняет якорную дату между монтированиями', () => {
+    const first = renderHook(() => useWeatherAppState(), { wrapper });
+
+    act(() => {
+      first.result.current.setAnchorDate({ year: 2014, month: 5, day: 2 });
+    });
+    first.unmount();
+
+    const second = renderHook(() => useWeatherAppState(), { wrapper });
+
+    expect(second.result.current.anchorDate).toEqual({
+      year: 2014,
+      month: 5,
+      day: 2,
+    });
   });
 });

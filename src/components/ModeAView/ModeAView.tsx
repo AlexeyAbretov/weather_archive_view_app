@@ -1,6 +1,8 @@
 import { Alert, Button, Empty, Segmented, Spin } from 'antd';
 import { useState } from 'react';
 
+import { readYearTableLayout, saveYearTableLayout } from '@utils';
+
 import styles from './ModeAView.module.css';
 import type { ModeAViewProps, YearTableLayout } from './ModeAView.types';
 
@@ -21,7 +23,14 @@ export const ModeAView = ({
   onReload,
   defaultLayout = 'rows',
 }: ModeAViewProps) => {
-  const [layout, setLayout] = useState<YearTableLayout>(defaultLayout);
+  const [layout, setLayout] = useState<YearTableLayout>(
+    () => readYearTableLayout() ?? defaultLayout,
+  );
+
+  const handleLayoutChange = (nextLayout: YearTableLayout) => {
+    saveYearTableLayout(nextLayout);
+    setLayout(nextLayout);
+  };
 
   if (!location) {
     return (
@@ -64,7 +73,7 @@ export const ModeAView = ({
           options={LAYOUT_OPTIONS}
           value={layout}
           onChange={(nextValue) => {
-            setLayout(nextValue as YearTableLayout);
+            handleLayoutChange(nextValue as YearTableLayout);
           }}
         />
       </div>

@@ -8,13 +8,20 @@ import {
   ModeBViewContainer,
 } from '@containers';
 import { useWeatherAppState } from '@hooks';
-import { formatAnchorDate } from '@utils';
+import { formatAnchorDate, readViewMode, saveViewMode } from '@utils';
 
 const { Paragraph, Text, Title } = Typography;
 
 export const HomePage = () => {
   const { anchorDate, setAnchorDate, yearRangeLabel } = useWeatherAppState();
-  const [viewMode, setViewMode] = useState<ViewMode>('A');
+  const [viewMode, setViewMode] = useState<ViewMode>(
+    () => readViewMode() ?? 'A',
+  );
+
+  const handleViewModeChange = (mode: ViewMode) => {
+    saveViewMode(mode);
+    setViewMode(mode);
+  };
 
   return (
     <Space className="filter-bar" direction="vertical" size={0}>
@@ -50,7 +57,7 @@ export const HomePage = () => {
 
       <div className="filter-section">
         <Title level={4}>Режим просмотра</Title>
-        <ModeSwitcher onChange={setViewMode} value={viewMode} />
+        <ModeSwitcher onChange={handleViewModeChange} value={viewMode} />
       </div>
 
       <div className="filter-section">

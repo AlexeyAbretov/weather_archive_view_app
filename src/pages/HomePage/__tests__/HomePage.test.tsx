@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -52,6 +52,10 @@ vi.mock('@hooks', () => ({
 }));
 
 describe('HomePage', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('показывает режимы A и B', async () => {
     const user = userEvent.setup();
     const { container } = renderWithLocale(<HomePage />);
@@ -63,5 +67,17 @@ describe('HomePage', () => {
 
     expect(screen.getByText(/Раскройте строку года/)).toBeInTheDocument();
     expect(container).toMatchSnapshot();
+  });
+
+  it('запоминает выбранный режим просмотра', async () => {
+    const user = userEvent.setup();
+    const first = renderWithLocale(<HomePage />);
+
+    await user.click(screen.getByText('По неделям (B)'));
+    first.unmount();
+
+    renderWithLocale(<HomePage />);
+
+    expect(screen.getByText(/Раскройте строку года/)).toBeInTheDocument();
   });
 });

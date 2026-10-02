@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -10,6 +10,10 @@ import { ModeAView } from '../ModeAView';
 const row = { year: 2020, day: weatherDay() };
 
 describe('ModeAView', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('показывает пустое место, загрузку, ошибку и таблицу', async () => {
     const user = userEvent.setup();
     const onReload = vi.fn();
@@ -90,5 +94,27 @@ describe('ModeAView', () => {
     expect(
       screen.getByRole('columnheader', { name: 't° мин / макс' }),
     ).toBeInTheDocument();
+  });
+
+  it('запоминает вид таблицы по годам', async () => {
+    const user = userEvent.setup();
+    const viewProps = {
+      anchorYear: 2020,
+      data: [row],
+      error: null,
+      loading: false,
+      location,
+      onReload: vi.fn(),
+    };
+    const first = renderWithLocale(<ModeAView {...viewProps} />);
+
+    await user.click(screen.getByText('Годы в заголовке'));
+    first.unmount();
+
+    renderWithLocale(<ModeAView {...viewProps} />);
+
+    expect(
+      screen.getByRole('columnheader', { name: '2020' }).className,
+    ).toContain('anchorColumn');
   });
 });

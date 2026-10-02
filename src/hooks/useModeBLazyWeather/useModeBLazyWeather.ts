@@ -7,12 +7,54 @@ import {
 } from '@domain';
 import { fetchModeBYear } from '@services';
 import type { AnchorDate } from '@types';
+import { readExpandedYears, saveExpandedYears } from '@utils';
 
 export type UseModeBLazyWeatherParams = {
   lat: number | null;
   lon: number | null;
   anchorDate: AnchorDate | null;
   enabled?: boolean;
+};
+
+const normalizeExpandedYears = (
+  anchorDate: AnchorDate | null,
+  years: number[],
+): number[] => {
+  if (anchorDate == null) {
+    return [];
+  }
+
+  const allowed = new Set(buildYearRange(anchorDate));
+  const seen = new Set<number>();
+
+  return years.filter((year) => {
+    if (
+      !allowed.has(year) ||
+      seen.has(year) ||
+      resolveTargetDate(anchorDate, year) == null
+    ) {
+      return false;
+    }
+
+    seen.add(year);
+
+    return true;
+  });
+};
+
+const toWeatherContextKey = (
+  lat: number | null,
+  lon: number | null,
+  anchorDate: AnchorDate | null,
+  enabled: boolean,
+): string => {
+  if (lat == null || lon == null || anchorDate == null) {
+    return '';
+  }
+
+  const dateKey = `${anchorDate.year}|${anchorDate.month}|${anchorDate.day}`;
+
+  return `${lat}|${lon}|${dateKey}|${enabled ? '1' : '0'}`;
 };
 
 export type UseModeBLazyWeatherResult = {
@@ -38,10 +80,13 @@ export const useModeBLazyWeather = ({
   >(new Map());
   const [loadingYears, setLoadingYears] = useState<Set<number>>(new Set());
   const [errorYears, setErrorYears] = useState<Map<number, Error>>(new Map());
-  const [expandedYears, setExpandedYears] = useState<number[]>([]);
+  const [expandedYears, setExpandedYearsState] = useState<number[]>(() =>
+    normalizeExpandedYears(anchorDate, readExpandedYears(lat, lon, anchorDate)),
+  );
 
   const windowsByYearRef = useRef(windowsByYear);
   const loadingYearsRef = useRef(loadingYears);
+  const contextKeyRef = useRef<string | null>(null);
 
   windowsByYearRef.current = windowsByYear;
   loadingYearsRef.current = loadingYears;
@@ -140,14 +185,42 @@ export const useModeBLazyWeather = ({
     [fetchYear],
   );
 
+  const setExpandedYears = useCallback(
+    (years: number[]) => {
+      const nextYears = normalizeExpandedYears(anchorDate, years);
+
+      saveExpandedYears(lat, lon, anchorDate, nextYears);
+      setExpandedYearsState(nextYears);
+    },
+    [anchorDate, lat, lon],
+  );
+
   useEffect(() => {
-    setWindowsByYear(new Map());
-    setLoadingYears(new Set());
-    setErrorYears(new Map());
-    setExpandedYears([]);
-    windowsByYearRef.current = new Map();
-    loadingYearsRef.current = new Set();
-  }, [anchorDate, enabled, lat, lon]);
+    const nextKey = toWeatherContextKey(lat, lon, anchorDate, enabled);
+    const previousKey = contextKeyRef.current;
+
+    contextKeyRef.current = nextKey;
+
+    const nextYears = normalizeExpandedYears(
+      anchorDate,
+      readExpandedYears(lat, lon, anchorDate),
+    );
+
+    if (previousKey != null && previousKey !== nextKey) {
+      setWindowsByYear(new Map());
+      setLoadingYears(new Set());
+      setErrorYears(new Map());
+      windowsByYearRef.current = new Map();
+      loadingYearsRef.current = new Set();
+      setExpandedYearsState(nextYears);
+    }
+
+    if (previousKey == null || previousKey !== nextKey) {
+      nextYears.forEach((year) => {
+        loadYear(year);
+      });
+    }
+  }, [anchorDate, enabled, lat, lon, loadYear]);
 
   return {
     years,
