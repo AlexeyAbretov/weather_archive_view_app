@@ -35,12 +35,27 @@
   box-shadow: inset 3px 0 0 #fa8c16;
 }
 
+.table:global(.ant-table-wrapper)
+  :global(.ant-table.ant-table-small)
+  :global(.ant-table-tbody)
+  > :global(tr.ant-table-expanded-row)
+  > :global(td) {
+  padding-inline-start: 0;
+}
+
+.table:global(.ant-table-wrapper)
+  :global(.ant-table.ant-table-small)
+  :global(.ant-table-tbody)
+  .expandedTable:global(.ant-table-wrapper:only-child)
+  :global(.ant-table) {
+  margin-inline-start: 0;
+}
+
 .table
   :global(.ant-table-tbody > tr.ant-table-expanded-row).anchorExpandedRow
   > :global(td) {
   background: #fff7e6;
   box-shadow: inset 3px 0 0 #fa8c16;
-  padding-left: 8px;
 }
 
 .table :global(.ant-table-tbody > tr.ant-table-row).anchorRow:hover > :global(td),
