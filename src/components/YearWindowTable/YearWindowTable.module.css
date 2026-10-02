@@ -64,7 +64,9 @@
 }
 
 .expandedWrapper {
-  overflow-x: auto;
+  width: 0;
+  min-width: 100%;
+  overflow: hidden;
   padding: 4px 0 8px;
 }
 

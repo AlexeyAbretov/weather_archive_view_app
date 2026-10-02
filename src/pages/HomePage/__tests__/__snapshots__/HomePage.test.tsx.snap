@@ -780,17 +780,16 @@ exports[`HomePage > показывает режимы A и B 2`] = `
                   class="ant-spin-container"
                 >
                   <div
-                    class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+                    class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7"
                   >
                     <div
                       class="ant-table-container"
                     >
                       <div
                         class="ant-table-content"
-                        style="overflow-x: auto; overflow-y: hidden;"
                       >
                         <table
-                          style="width: max-content; min-width: 100%; table-layout: auto;"
+                          style="table-layout: auto;"
                         >
                           <colgroup>
                             <col
@@ -805,13 +804,12 @@ exports[`HomePage > показывает режимы A и B 2`] = `
                           >
                             <tr>
                               <th
-                                class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
-                                style="position: sticky; left: 0px;"
+                                class="ant-table-cell ant-table-row-expand-icon-cell"
                               />
                               <th
-                                class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                                class="ant-table-cell"
                                 scope="col"
-                                style="position: sticky; left: 0px; text-align: center;"
+                                style="text-align: center;"
                               >
                                 Год
                               </th>
@@ -821,37 +819,12 @@ exports[`HomePage > показывает режимы A и B 2`] = `
                             class="ant-table-tbody"
                           >
                             <tr
-                              aria-hidden="true"
-                              class="ant-table-measure-row"
-                              tabindex="-1"
-                            >
-                              <th
-                                class="ant-table-measure-cell"
-                              >
-                                <div
-                                  class="ant-table-measure-cell-content"
-                                >
-                                   
-                                </div>
-                              </th>
-                              <th
-                                class="ant-table-measure-cell"
-                              >
-                                <div
-                                  class="ant-table-measure-cell-content"
-                                >
-                                  Год
-                                </div>
-                              </th>
-                            </tr>
-                            <tr
                               class="ant-table-row ant-table-row-level-0 _anchorRow_1889ea"
                               data-row-key="2020"
                               title="Год выбранной даты"
                             >
                               <td
-                                class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
-                                style="position: sticky; left: 0px;"
+                                class="ant-table-cell ant-table-row-expand-icon-cell"
                               >
                                 <button
                                   aria-expanded="false"
@@ -861,8 +834,8 @@ exports[`HomePage > показывает режимы A и B 2`] = `
                                 />
                               </td>
                               <td
-                                class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
-                                style="position: sticky; left: 0px; text-align: center;"
+                                class="ant-table-cell"
+                                style="text-align: center;"
                               >
                                 <div>
                                   <div

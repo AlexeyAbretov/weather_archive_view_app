@@ -60,7 +60,6 @@ export const YearWindowTable = ({
               key: 'year',
               width: 120,
               align: 'center',
-              fixed: 'left',
               render: (year: number, row) => (
                 <div>
                   <div className={styles.yearCell}>{year}</div>
@@ -132,7 +131,6 @@ export const YearWindowTable = ({
             return styles.anchorRow;
           }}
           rowKey="year"
-          scroll={{ x: 'max-content' }}
           size="small"
         />
       </div>

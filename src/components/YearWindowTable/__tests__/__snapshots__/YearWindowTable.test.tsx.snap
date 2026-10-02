@@ -21,17 +21,16 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
             class="ant-spin-container"
           >
             <div
-              class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7 ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left"
+              class="ant-table ant-table-small ant-table-bordered css-dev-only-do-not-override-mncuj7"
             >
               <div
                 class="ant-table-container"
               >
                 <div
                   class="ant-table-content"
-                  style="overflow-x: auto; overflow-y: hidden;"
                 >
                   <table
-                    style="width: max-content; min-width: 100%; table-layout: auto;"
+                    style="table-layout: auto;"
                   >
                     <colgroup>
                       <col
@@ -46,13 +45,12 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                     >
                       <tr>
                         <th
-                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
-                          style="position: sticky; left: 0px;"
+                          class="ant-table-cell ant-table-row-expand-icon-cell"
                         />
                         <th
-                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
+                          class="ant-table-cell"
                           scope="col"
-                          style="position: sticky; left: 0px; text-align: center;"
+                          style="text-align: center;"
                         >
                           Год
                         </th>
@@ -62,36 +60,11 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                       class="ant-table-tbody"
                     >
                       <tr
-                        aria-hidden="true"
-                        class="ant-table-measure-row"
-                        tabindex="-1"
-                      >
-                        <th
-                          class="ant-table-measure-cell"
-                        >
-                          <div
-                            class="ant-table-measure-cell-content"
-                          >
-                             
-                          </div>
-                        </th>
-                        <th
-                          class="ant-table-measure-cell"
-                        >
-                          <div
-                            class="ant-table-measure-cell-content"
-                          >
-                            Год
-                          </div>
-                        </th>
-                      </tr>
-                      <tr
                         class="ant-table-row ant-table-row-level-0"
                         data-row-key="2019"
                       >
                         <td
-                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
-                          style="position: sticky; left: 0px;"
+                          class="ant-table-cell ant-table-row-expand-icon-cell"
                         >
                           <button
                             aria-expanded="false"
@@ -101,8 +74,8 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                           />
                         </td>
                         <td
-                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
-                          style="position: sticky; left: 0px; text-align: center;"
+                          class="ant-table-cell"
+                          style="text-align: center;"
                         >
                           <div>
                             <div
@@ -124,8 +97,7 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                         title="Год выбранной даты"
                       >
                         <td
-                          class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"
-                          style="position: sticky; left: 0px;"
+                          class="ant-table-cell ant-table-row-expand-icon-cell"
                         >
                           <button
                             aria-expanded="false"
@@ -135,8 +107,8 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                           />
                         </td>
                         <td
-                          class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-fix-left-all"
-                          style="position: sticky; left: 0px; text-align: center;"
+                          class="ant-table-cell"
+                          style="text-align: center;"
                         >
                           <div>
                             <div
