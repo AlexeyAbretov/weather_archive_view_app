@@ -12,6 +12,15 @@ describe('YearColumnsTable', () => {
       <YearColumnsTable
         anchorYear={2020}
         data={[
+          {
+            year: 2019,
+            day: weatherDay({
+              date: '2019-09-15',
+              year: 2019,
+              tempMin: 0,
+              tempMax: 5,
+            }),
+          },
           { year: 2020, day: weatherDay() },
           { year: 2021, day: noDataDay('future') },
         ]}
@@ -26,10 +35,20 @@ describe('YearColumnsTable', () => {
     ).not.toContain('anchorColumn');
     expect(screen.queryByText('Показатель')).not.toBeInTheDocument();
     expect(screen.queryByText('Осадки')).not.toBeInTheDocument();
-    expect(screen.getByText('1.2 мм')).toBeInTheDocument();
+    expect(screen.getByText('+5°')).toBeInTheDocument();
+    expect(screen.getByText('+17°')).toBeInTheDocument();
+    expect(screen.getByText('-1°')).toBeInTheDocument();
+    expect(container.querySelectorAll('[data-band]')).toHaveLength(4);
+    expect(container.querySelectorAll('[data-join]')).toHaveLength(2);
+    expect(
+      [...container.querySelectorAll('[data-band]')].filter(
+        (band) => band.getAttribute('fill') === 'rgb(105, 192, 255)',
+      ),
+    ).toHaveLength(2);
+    expect(screen.getAllByText('1.2 мм')).toHaveLength(2);
     expect(screen.queryByText('дождь')).not.toBeInTheDocument();
-    expect(screen.getByText('16 км/ч')).toBeInTheDocument();
-    expect(screen.getByText('40%')).toBeInTheDocument();
+    expect(screen.getAllByText('16 км/ч')).toHaveLength(2);
+    expect(screen.getAllByText('40%')).toHaveLength(2);
     expect(container).toMatchSnapshot();
 
     rerender(<YearColumnsTable data={[]} loading />);

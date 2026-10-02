@@ -123,27 +123,78 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                           data-row-key="temperature"
                         >
                           <td
-                            class="ant-table-cell _anchorColumn_3ebb25"
+                            class="ant-table-cell _anchorColumn_3ebb25 _chartCell_3ebb25"
                             style="text-align: center;"
                           >
                             <div
-                              class="_temperature_7e00af"
+                              class="_chart_3ebb25"
+                              style="height: 90px;"
                             >
-                              <span
-                                class="ant-typography _tempMin_7e00af css-dev-only-do-not-override-mncuj7"
+                              <svg
+                                aria-hidden="true"
+                                class="_plot_3ebb25"
+                                height="90"
+                                preserveAspectRatio="none"
+                                viewBox="0 0 1 90"
+                                width="100%"
                               >
-                                -1°
-                              </span>
-                              <span
-                                class="ant-typography _tempSeparator_7e00af css-dev-only-do-not-override-mncuj7"
+                                <rect
+                                  fill="#fff7e6"
+                                  height="90"
+                                  width="1"
+                                  x="0"
+                                  y="0"
+                                />
+                                <rect
+                                  data-band="true"
+                                  fill="rgb(198, 242, 168)"
+                                  height="56"
+                                  width="1"
+                                  x="0"
+                                  y="16"
+                                />
+                                <g>
+                                  <line
+                                    stroke="rgb(126, 217, 87)"
+                                    stroke-width="2"
+                                    vector-effect="non-scaling-stroke"
+                                    x1="0"
+                                    x2="1"
+                                    y1="16"
+                                    y2="16"
+                                  />
+                                  <line
+                                    stroke="rgb(126, 217, 87)"
+                                    stroke-width="2"
+                                    vector-effect="non-scaling-stroke"
+                                    x1="0"
+                                    x2="1"
+                                    y1="72"
+                                    y2="72"
+                                  />
+                                </g>
+                              </svg>
+                              <div
+                                class="_labels_3ebb25"
                               >
-                                /
-                              </span>
-                              <span
-                                class="ant-typography _tempMax_7e00af css-dev-only-do-not-override-mncuj7"
-                              >
-                                +17°
-                              </span>
+                                <div
+                                  class="_column_3ebb25"
+                                  title="2020: +17° / -1°, отклонение 0.0°"
+                                >
+                                  <span
+                                    class="_chartLabel_3ebb25"
+                                    style="top: 2px;"
+                                  >
+                                    +17°
+                                  </span>
+                                  <span
+                                    class="_chartLabel_3ebb25"
+                                    style="top: 74px;"
+                                  >
+                                    -1°
+                                  </span>
+                                </div>
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -152,14 +203,73 @@ exports[`ModeAViewContainer > передаёт архив в таблицу 1`] 
                           data-row-key="precipitation"
                         >
                           <td
-                            class="ant-table-cell _anchorColumn_3ebb25"
+                            class="ant-table-cell _anchorColumn_3ebb25 _chartCell_3ebb25"
                             style="text-align: center;"
                           >
-                            <span
-                              class="ant-typography css-dev-only-do-not-override-mncuj7"
+                            <div
+                              class="_chart_3ebb25"
+                              style="height: 64px;"
                             >
-                              1.2 мм
-                            </span>
+                              <svg
+                                aria-hidden="true"
+                                class="_plot_3ebb25"
+                                height="64"
+                                preserveAspectRatio="none"
+                                viewBox="0 0 1 64"
+                                width="100%"
+                              >
+                                <rect
+                                  fill="#fff7e6"
+                                  height="64"
+                                  width="1"
+                                  x="0"
+                                  y="0"
+                                />
+                                <rect
+                                  data-band="true"
+                                  fill="rgb(105, 192, 255)"
+                                  height="44"
+                                  width="1"
+                                  x="0"
+                                  y="16"
+                                />
+                                <g>
+                                  <line
+                                    stroke="rgb(9, 109, 217)"
+                                    stroke-width="2"
+                                    vector-effect="non-scaling-stroke"
+                                    x1="0"
+                                    x2="1"
+                                    y1="16"
+                                    y2="16"
+                                  />
+                                  <line
+                                    stroke="rgb(9, 109, 217)"
+                                    stroke-width="2"
+                                    vector-effect="non-scaling-stroke"
+                                    x1="0"
+                                    x2="1"
+                                    y1="60"
+                                    y2="60"
+                                  />
+                                </g>
+                              </svg>
+                              <div
+                                class="_labels_3ebb25"
+                              >
+                                <div
+                                  class="_column_3ebb25"
+                                  title="2020: 1.2 мм"
+                                >
+                                  <span
+                                    class="_chartLabel_3ebb25"
+                                    style="top: 2px;"
+                                  >
+                                    1.2 мм
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
                           </td>
                         </tr>
                         <tr

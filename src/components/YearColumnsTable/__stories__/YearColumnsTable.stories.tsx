@@ -4,16 +4,36 @@ import type { YearWeatherRow } from '@domain';
 
 import { YearColumnsTable } from '../YearColumnsTable';
 
-const withData = (year: number): YearWeatherRow => {
+const TEMPERATURES: Array<[number, number]> = [
+  [0, 13],
+  [5, 12],
+  [3, 15],
+  [9, 13],
+  [8, 13],
+  [10, 15],
+  [11, 16],
+  [9, 14],
+  [7, 11],
+  [7, 12],
+];
+
+const PRECIPITATION_MM = [0, 1.2, 4.8, 0.3, 8, 2.5, 0.6, 6.1, 3, 1.4];
+
+const withData = (
+  year: number,
+  tempMin: number,
+  tempMax: number,
+  precipitationMm: number,
+): YearWeatherRow => {
   return {
     year,
     day: {
       date: `${year}-09-15`,
       year,
       hasData: true,
-      tempMin: 4,
-      tempMax: 16,
-      precipitationMm: 0.4,
+      tempMin,
+      tempMax,
+      precipitationMm,
       precipitationType: 'drizzle',
       windSpeedMax: 12,
       windDirection: 45,
@@ -39,7 +59,12 @@ const meta = {
   component: YearColumnsTable,
   args: {
     anchorYear: 2020,
-    data: [withData(2019), withData(2020), withoutData],
+    data: [
+      ...TEMPERATURES.map(([tempMin, tempMax], index) =>
+        withData(2016 + index, tempMin, tempMax, PRECIPITATION_MM[index] ?? 0),
+      ),
+      withoutData,
+    ],
   },
 } satisfies Meta<typeof YearColumnsTable>;
 
