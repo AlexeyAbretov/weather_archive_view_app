@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 
 import { getNoDataLabel } from '@utils';
 
+import { createDayWindowScrollSync } from './DayWindowScrollSync';
 import { DayWindowTable } from './DayWindowTable';
 import styles from './YearWindowTable.module.css';
 import type { YearRow, YearWindowTableProps } from './YearWindowTable.types';
@@ -22,6 +23,7 @@ export const YearWindowTable = ({
   onRetryYear,
   isYearExpandable,
 }: YearWindowTableProps) => {
+  const scrollSync = useMemo(() => createDayWindowScrollSync(), []);
   const dataSource = useMemo<YearRow[]>(
     () =>
       years.map((year) => ({
@@ -47,7 +49,7 @@ export const YearWindowTable = ({
     <div>
       <Text className="table-scroll-hint" type="secondary">
         Раскройте строку года, чтобы увидеть 15 дней вокруг якорной даты.
-        Прокрутите вложенную таблицу для просмотра всех дней.
+        Прокрутка одной открытой таблицы сдвигает остальные открытые годы.
       </Text>
       <div className={`table-wrapper ${styles.tableWrapper}`}>
         <Table<YearRow>
@@ -112,7 +114,12 @@ export const YearWindowTable = ({
                 );
               }
 
-              return <DayWindowTable days={windowsByYear.get(year)!.days} />;
+              return (
+                <DayWindowTable
+                  days={windowsByYear.get(year)!.days}
+                  scrollSync={scrollSync}
+                />
+              );
             },
           }}
           onRow={(row) => {

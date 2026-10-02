@@ -6,7 +6,7 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
     <span
       class="ant-typography ant-typography-secondary table-scroll-hint css-dev-only-do-not-override-mncuj7"
     >
-      Раскройте строку года, чтобы увидеть 15 дней вокруг якорной даты. Прокрутите вложенную таблицу для просмотра всех дней.
+      Раскройте строку года, чтобы увидеть 15 дней вокруг якорной даты. Прокрутка одной открытой таблицы сдвигает остальные открытые годы.
     </span>
     <div
       class="table-wrapper _tableWrapper_1889ea"

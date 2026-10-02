@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { weatherDay } from '../../../../test/fixtures';
@@ -123,5 +123,55 @@ describe('YearWindowTable', () => {
     );
 
     expect(screen.queryByText('+17°')).not.toBeInTheDocument();
+  });
+
+  it('прокручивает открытые годы вместе', () => {
+    const daysFor = (year: number) =>
+      Array.from({ length: 15 }, (_, index) =>
+        weatherDay({
+          date: `${year}-09-${String(index + 1).padStart(2, '0')}`,
+          year,
+        }),
+      );
+    const windows = (years: number[]) =>
+      new Map(years.map((year) => [year, { year, days: daysFor(year) }]));
+    const props = {
+      ...base,
+      years: [2018, 2019, 2020],
+      isYearExpandable: () => true,
+      expandedYears: [2018, 2019],
+      windowsByYear: windows([2018, 2019]),
+    };
+    const { container, rerender } = renderWithLocale(
+      <YearWindowTable {...props} />,
+    );
+
+    const scrollers = () => [
+      ...container.querySelectorAll<HTMLElement>(
+        '.ant-table-expanded-row .ant-table-content',
+      ),
+    ];
+
+    const [first, second] = scrollers();
+
+    expect(second).toBeTruthy();
+
+    first!.scrollLeft = 140;
+    fireEvent.scroll(first!);
+
+    expect(second!.scrollLeft).toBe(140);
+
+    rerender(
+      <YearWindowTable
+        {...props}
+        expandedYears={[2018, 2019, 2020]}
+        windowsByYear={windows([2018, 2019, 2020])}
+      />,
+    );
+
+    const opened = scrollers();
+
+    expect(opened).toHaveLength(3);
+    expect(opened[2]!.scrollLeft).toBe(140);
   });
 });

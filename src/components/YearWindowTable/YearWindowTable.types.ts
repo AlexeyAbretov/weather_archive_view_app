@@ -1,5 +1,7 @@
 import type { WeatherDayRecord, YearWeatherWindow } from '@domain';
 
+import type { DayWindowScrollSync } from './DayWindowScrollSync';
+
 export type YearRow = {
   year: number;
   expandable: boolean;
@@ -26,4 +28,5 @@ export type DayWindowRow = {
 
 export type DayWindowTableProps = {
   days: WeatherDayRecord[];
+  scrollSync: DayWindowScrollSync;
 };
