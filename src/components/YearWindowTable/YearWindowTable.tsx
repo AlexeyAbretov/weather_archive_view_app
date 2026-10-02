@@ -11,6 +11,7 @@ import type { YearRow, YearWindowTableProps } from './YearWindowTable.types';
 const { Text } = Typography;
 
 export const YearWindowTable = ({
+  anchorYear,
   years,
   windowsByYear,
   loadingYears,
@@ -74,6 +75,13 @@ export const YearWindowTable = ({
           ]}
           dataSource={dataSource}
           expandable={{
+            expandedRowClassName: (row) => {
+              if (row.year !== anchorYear) {
+                return '';
+              }
+
+              return styles.anchorExpandedRow;
+            },
             expandedRowKeys: expandedYears,
             onExpandedRowsChange: handleExpandedRowsChange,
             rowExpandable: (row) => row.expandable,
@@ -108,7 +116,21 @@ export const YearWindowTable = ({
               return <DayWindowTable days={windowsByYear.get(year)!.days} />;
             },
           }}
+          onRow={(row) => {
+            if (row.year !== anchorYear) {
+              return {};
+            }
+
+            return { title: 'Год выбранной даты' };
+          }}
           pagination={false}
+          rowClassName={(row) => {
+            if (row.year !== anchorYear) {
+              return '';
+            }
+
+            return styles.anchorRow;
+          }}
           rowKey="year"
           scroll={{ x: 'max-content' }}
           size="small"

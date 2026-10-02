@@ -28,6 +28,7 @@ const meta = {
   title: 'Components/YearWindowTable',
   component: YearWindowTable,
   args: {
+    anchorYear: 2020,
     years: [2019, 2020],
     windowsByYear: new Map(),
     loadingYears: new Set<number>(),

@@ -119,8 +119,9 @@ exports[`YearWindowTable > раскрывает год, ошибку, загру
                         </td>
                       </tr>
                       <tr
-                        class="ant-table-row ant-table-row-level-0"
+                        class="ant-table-row ant-table-row-level-0 _anchorRow_1889ea"
                         data-row-key="2020"
+                        title="Год выбранной даты"
                       >
                         <td
                           class="ant-table-cell ant-table-row-expand-icon-cell ant-table-cell-fix-left"

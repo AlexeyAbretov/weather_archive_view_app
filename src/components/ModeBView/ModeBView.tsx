@@ -5,6 +5,7 @@ import type { ModeBViewProps } from './ModeBView.types';
 import { YearWindowTable } from '../YearWindowTable';
 
 export const ModeBView = ({
+  anchorYear,
   errorYears,
   expandedYears,
   isYearExpandable,
@@ -27,6 +28,7 @@ export const ModeBView = ({
 
   return (
     <YearWindowTable
+      anchorYear={anchorYear}
       errorYears={errorYears}
       expandedYears={expandedYears}
       isYearExpandable={isYearExpandable}

@@ -14,6 +14,7 @@ const meta = {
   title: 'Components/ModeBView',
   component: ModeBView,
   args: {
+    anchorYear: 2020,
     errorYears: new Map(),
     expandedYears: [],
     isYearExpandable: fn(() => true),

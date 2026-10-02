@@ -14,6 +14,7 @@ const days = Array.from({ length: 9 }, (_, index) =>
 );
 
 const base = {
+  anchorYear: 2020,
   years: [2019, 2020],
   windowsByYear: new Map(),
   loadingYears: new Set<number>(),
@@ -41,6 +42,12 @@ describe('YearWindowTable', () => {
     );
 
     expect(screen.getByText('нет данных')).toBeInTheDocument();
+    expect(screen.getByRole('row', { name: /2020/ }).className).toContain(
+      'anchorRow',
+    );
+    expect(screen.getByRole('row', { name: /2019/ }).className).not.toContain(
+      'anchorRow',
+    );
     expect(container).toMatchSnapshot();
 
     const expandIcons = document.querySelectorAll('.ant-table-row-expand-icon');
@@ -87,6 +94,9 @@ describe('YearWindowTable', () => {
       />,
     );
 
+    expect(
+      document.querySelector('.ant-table-expanded-row')?.className,
+    ).toContain('anchorExpandedRow');
     expect(document.body.textContent).toContain('10.09');
     expect(document.body.textContent).toContain('18.09');
     expect(document.body.textContent).not.toContain('дн. до');

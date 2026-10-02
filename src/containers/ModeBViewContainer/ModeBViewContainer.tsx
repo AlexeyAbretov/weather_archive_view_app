@@ -24,6 +24,7 @@ export const ModeBViewContainer = ({ anchorDate }: ModeBViewContainerProps) => {
 
   return (
     <ModeBView
+      anchorYear={anchorDate.year}
       errorYears={errorYears}
       expandedYears={expandedYears}
       isYearExpandable={isYearExpandable}

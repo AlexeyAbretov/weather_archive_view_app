@@ -2,6 +2,7 @@ import type { YearWeatherWindow } from '@domain';
 import type { SelectedLocation } from '@types';
 
 export type ModeBViewProps = {
+  anchorYear: number;
   errorYears: ReadonlyMap<number, Error>;
   expandedYears: number[];
   isYearExpandable: (year: number) => boolean;

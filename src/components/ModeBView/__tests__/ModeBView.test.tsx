@@ -7,6 +7,7 @@ import { renderWithLocale } from '../../../../test/render';
 import { ModeBView } from '../ModeBView';
 
 const props = {
+  anchorYear: 2020,
   errorYears: new Map<number, Error>(),
   expandedYears: [],
   isYearExpandable: () => true,

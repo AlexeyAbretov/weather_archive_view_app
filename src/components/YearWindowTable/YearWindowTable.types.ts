@@ -6,6 +6,7 @@ export type YearRow = {
 };
 
 export type YearWindowTableProps = {
+  anchorYear: number;
   years: number[];
   windowsByYear: ReadonlyMap<number, YearWeatherWindow>;
   loadingYears: ReadonlySet<number>;

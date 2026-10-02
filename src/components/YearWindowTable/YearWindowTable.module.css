@@ -22,6 +22,34 @@
   background: #e6f4ff;
 }
 
+.table :global(.ant-table-tbody > tr.ant-table-row).anchorRow > :global(td),
+.table
+  :global(.ant-table-tbody > tr.ant-table-row).anchorRow
+  > :global(td.ant-table-cell-row-hover) {
+  background: #fff7e6;
+}
+
+.table
+  :global(.ant-table-tbody > tr.ant-table-row).anchorRow
+  > :global(td:first-child) {
+  box-shadow: inset 3px 0 0 #fa8c16;
+}
+
+.table
+  :global(.ant-table-tbody > tr.ant-table-expanded-row).anchorExpandedRow
+  > :global(td) {
+  background: #fff7e6;
+  box-shadow: inset 3px 0 0 #fa8c16;
+  padding-left: 8px;
+}
+
+.table :global(.ant-table-tbody > tr.ant-table-row).anchorRow:hover > :global(td),
+.table
+  :global(.ant-table-tbody > tr.ant-table-row).anchorRow:hover
+  > :global(td.ant-table-cell-row-hover) {
+  background: #ffe7ba;
+}
+
 .table :global(.ant-table-cell) {
   vertical-align: middle;
 }
