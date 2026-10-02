@@ -1,0 +1,20 @@
+.weatherIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.picture {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.cloudCover {
+  font-size: 11px;
+}
+
+.noData {
+  font-size: 12px;
+}

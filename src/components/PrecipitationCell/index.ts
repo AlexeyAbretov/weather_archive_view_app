@@ -1,0 +1,1 @@
+export { PrecipitationCell } from './PrecipitationCell';

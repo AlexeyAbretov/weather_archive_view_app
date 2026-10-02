@@ -1,0 +1,1 @@
+export { useModeBLazyWeather } from './useModeBLazyWeather';

@@ -1,0 +1,94 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WeatherIcon > рисует небо без осадков и подпись облачности 1`] = `
+<div>
+  <div
+    class="_weatherIcon_67de4e"
+    title="Ясно, без осадков"
+  >
+    <svg
+      aria-hidden="true"
+      class="_picture_67de4e"
+      data-precipitation="none"
+      data-sky="clear"
+      viewBox="0 0 32 32"
+    >
+      <g
+        stroke="#faad14"
+        stroke-linecap="round"
+        stroke-width="1.4"
+      >
+        <circle
+          cx="16"
+          cy="16"
+          fill="#faad14"
+          r="7.5"
+          stroke="none"
+        />
+        <line
+          transform="rotate(0 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(45 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(90 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(135 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(180 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(225 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(270 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+        <line
+          transform="rotate(315 16 16)"
+          x1="16"
+          x2="16"
+          y1="7.5"
+          y2="5.3"
+        />
+      </g>
+    </svg>
+    <span
+      class="ant-typography ant-typography-secondary _cloudCover_67de4e css-dev-only-do-not-override-mncuj7"
+    >
+      10
+      %
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,8 @@
+.dayWeatherCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 88px;
+  padding: 4px 0;
+}

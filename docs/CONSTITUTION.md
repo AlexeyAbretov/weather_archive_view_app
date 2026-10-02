@@ -14,7 +14,7 @@ PWA-приложение для просмотра архива погоды п�
 4. **Лицензия API** — non-commercial use согласно условиям Open-Meteo.
 5. **MVP** — без деплоя в production; локальная разработка и сборка.
 6. **Стек** — Vite, React, TypeScript, Ant Design, PWA (`vite-plugin-pwa`).
-7. **Линтинг** — vendored `@llm/linting` (Node ≥ 22).
+7. **Линтинг** — vendored `@llm/linting` (Node ≥ 22): ESLint, Prettier и правила Cursor. Шаблон слоёв frontend — `packages/linting/docs/frontend.md`. Доменные имена, маршруты, формулы и env — в этом документе.
 
 ## Ограничения
 

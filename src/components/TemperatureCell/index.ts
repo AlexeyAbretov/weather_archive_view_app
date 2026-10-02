@@ -1,0 +1,1 @@
+export { TemperatureCell } from './TemperatureCell';

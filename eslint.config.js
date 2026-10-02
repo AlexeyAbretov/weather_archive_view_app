@@ -1,7 +1,5 @@
-import createConfig from "@llm/linting";
+import { createWebConfig } from '@llm/linting/web';
 
-export default createConfig({
-  files: ["src/**/*.ts", "src/**/*.tsx"],
-  ignores: ["dist/**"],
+export default createWebConfig({
   tsconfigRootDir: import.meta.dirname,
 });

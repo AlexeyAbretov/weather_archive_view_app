@@ -1,6 +1,16 @@
 # @llm/linting
 
-Общий ESLint 9 + Prettier для TypeScript: `function`, всегда `{}`, Elvis (`?.` / `??`), группы импортов, строка ≤ 80.
+Общий слой, который переносится в другой репозиторий целиком:
+
+| Что | Где | Куда попадает у потребителя |
+|-----|-----|------------------------------|
+| ESLint 9 + Prettier | `index.js`, `prettier.json` | `eslint.config.js`, поле `prettier` |
+| Стиль TypeScript для агента | `cursor/typescript-style.mdc` | `.cursor/rules/` через `sync-cursor` |
+| Шаблон React | `cursor/react/`, [docs/frontend.md](docs/frontend.md) | `.cursor/rules/react/` |
+
+В ESLint пакета: `function` declaration (по умолчанию), всегда `{}`, Elvis (`?.` / `??`), группы импортов, строка ≤ 80. Frontend подключает `createWebConfig` из `@llm/linting/web`: стрелки, алиасы корневых каталогов `src` и `eslint-plugin-storybook`. `createConfig` этот модуль не загружает — API остаётся на `function`.
+
+Доменные имена, маршруты, формулы и env остаются в конституции проекта.
 
 ## Подключение
 
@@ -34,6 +44,22 @@ export default createConfig({
 
 Нужен `tsconfig.json` в корне проекта: type-aware правила (`prefer-optional-chain`, `prefer-nullish-coalescing`) читают его через `projectService`.
 
+`packages/linting/**` не проверяется: этот путь добавляется к `ignores` всегда, даже если передан свой список.
+
+### Frontend
+
+`createWebConfig` из `@llm/linting/web` — базовый конфиг плюс правила только для frontend: `func-style: expression`, `no-restricted-imports` (без расширения в пути; у каждой папки в `src/` свой алиас, относительный путь к ней запрещён; снаружи папки только баррель `@features`, не `@features/location/File.tsx`) и `eslint-plugin-storybook` (`flat/recommended`). Список папок читается из `src/` проекта. По умолчанию проверяет `src/**/*.ts` и `src/**/*.tsx`. В `compilerOptions.paths` ключ и значение без `/*`: `createWebConfig` не стартует, если шаблон есть в `tsconfig*.json` проекта или в его относительном `extends`.
+
+```js
+import { createWebConfig } from "@llm/linting/web";
+
+export default createWebConfig({
+  tsconfigRootDir: import.meta.dirname,
+});
+```
+
+Шаблон слоёв — [docs/frontend.md](docs/frontend.md).
+
 ### Prettier
 
 В `package.json`:
@@ -61,6 +87,20 @@ export default createConfig({
 }
 ```
 
-### Правило для Cursor
+### Правила Cursor
 
-Скопировать [`cursor/typescript-functions.mdc`](cursor/typescript-functions.mdc) в `.cursor/rules/` целевого репозитория. При необходимости поменять `globs` (по умолчанию `**/*.ts`).
+Источник — каталог [`cursor/`](cursor/). В корне потребителя:
+
+```bash
+npm run sync-cursor
+```
+
+Если пакет подключён не как workspace этого monorepo:
+
+```bash
+node node_modules/@llm/linting/scripts/sync-cursor.js
+```
+
+Команда копирует `cursor/` в `.cursor/rules/` и перезаписывает только эти файлы. Правила, которых нет в пакете, остаются на месте.
+
+Править общие правила в `packages/linting/cursor/`, затем снова запустить синхронизацию. Стори, типы, имена и отдельные папки модулей ищут `components/`, `pages/`, `containers/`, `hooks/`, `api/`, `services/` и `providers/` на любой глубине. Там же — запрет API, запрет хуков с данными (`@hooks`) и запрет импорта контейнеров в `components/`. Стрелки (`frontend-functions.mdc`) и баррели (`module-barrels.mdc`) — любые `*.ts` и `*.tsx`. `dayjs` (`dayjs.mdc`) — только рядом с `DatePicker`, локаль через `ConfigProvider`. Шаблон слоёв — [docs/frontend.md](docs/frontend.md).

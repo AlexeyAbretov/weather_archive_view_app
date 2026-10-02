@@ -1,0 +1,10 @@
+.layoutSwitcher {
+  margin-bottom: 12px;
+  max-width: 420px;
+}
+
+@media (max-width: 576px) {
+  .layoutSwitcher {
+    max-width: none;
+  }
+}

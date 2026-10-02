@@ -1,0 +1,1 @@
+export { YearWeatherTable } from './YearWeatherTable';

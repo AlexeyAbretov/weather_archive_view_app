@@ -1,0 +1,1 @@
+export { DayWeatherCell } from './DayWeatherCell';

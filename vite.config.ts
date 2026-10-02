@@ -1,8 +1,27 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { VitePWA } from "vite-plugin-pwa";
 
+const srcDir = fileURLToPath(new URL("./src", import.meta.url));
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@api": path.join(srcDir, "api"),
+      "@components": path.join(srcDir, "components"),
+      "@containers": path.join(srcDir, "containers"),
+      "@domain": path.join(srcDir, "domain"),
+      "@hooks": path.join(srcDir, "hooks"),
+      "@pages": path.join(srcDir, "pages"),
+      "@providers": path.join(srcDir, "providers"),
+      "@services": path.join(srcDir, "services"),
+      "@types": path.join(srcDir, "types"),
+      "@utils": path.join(srcDir, "utils"),
+    },
+  },
   plugins: [
     react(),
     VitePWA({
@@ -54,4 +73,33 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+    css: true,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      include: [
+        "src/api/**/*.{ts,tsx}",
+        "src/components/**/*.{ts,tsx}",
+        "src/containers/**/*.{ts,tsx}",
+        "src/hooks/**/*.{ts,tsx}",
+        "src/pages/**/*.{ts,tsx}",
+        "src/utils/**/*.{ts,tsx}",
+      ],
+      exclude: [
+        "**/*.types.ts",
+        "**/index.ts",
+        "**/__stories__/**",
+        "**/__tests__/**",
+      ],
+      thresholds: {
+        branches: 80,
+        lines: 100,
+        functions: 100,
+        statements: 100,
+      },
+    },
+  },
 });

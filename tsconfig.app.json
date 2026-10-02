@@ -20,7 +20,20 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@api": ["./src/api"],
+      "@components": ["./src/components"],
+      "@containers": ["./src/containers"],
+      "@domain": ["./src/domain"],
+      "@hooks": ["./src/hooks"],
+      "@pages": ["./src/pages"],
+      "@providers": ["./src/providers"],
+      "@services": ["./src/services"],
+      "@types": ["./src/types"],
+      "@utils": ["./src/utils"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "vitest.setup.ts"]
 }

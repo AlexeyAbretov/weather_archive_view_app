@@ -1,0 +1,61 @@
+.tableWrapper {
+  border: none;
+}
+
+.table :global(.ant-table-thead > tr > th) {
+  text-align: center;
+  background: #f0f5ff;
+  font-weight: 600;
+  padding: 6px 4px;
+  width: 84px;
+  max-width: 84px;
+}
+
+.table :global(.ant-table-tbody > tr > td) {
+  text-align: center;
+  padding: 6px 4px;
+  width: 84px;
+  max-width: 84px;
+}
+
+.table :global(.ant-table-tbody > tr > td) div {
+  max-width: 76px;
+  margin-inline: auto;
+  white-space: normal;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 2px;
+  row-gap: 0;
+}
+
+.table :global(.ant-table-tbody > tr > td) :global(.ant-typography) {
+  font-size: 12px;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.table :global(.ant-table-tbody > tr:nth-child(even) > td) {
+  background: #fafafa;
+}
+
+.table :global(.ant-table-tbody > tr:hover > td) {
+  background: #e6f4ff;
+}
+
+.table :global(.ant-table-thead > tr > th).anchorColumn {
+  background: #ffe7ba;
+  box-shadow: inset 0 -3px 0 #fa8c16;
+}
+
+.table :global(.ant-table-tbody > tr > td).anchorColumn,
+.table :global(.ant-table-tbody > tr:nth-child(even) > td).anchorColumn {
+  background: #fff7e6;
+}
+
+.table :global(.ant-table-tbody > tr:hover > td).anchorColumn {
+  background: #ffe7ba;
+}
+
+.table :global(.ant-table-cell) {
+  vertical-align: middle;
+}

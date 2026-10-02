@@ -1,0 +1,35 @@
+---
+description: Хук, сервис, провайдер и API-клиент — своя папка и имя с большой буквы
+globs: "**/{hooks,providers,services}/**/*.{ts,tsx},**/src/api/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Папки хуков, сервисов, провайдеров и API
+
+Каждый хук, сервис, провайдер и API-клиент лежит в своей папке. Файл не кладут прямо в `hooks/`, `services/`, `providers/` или `api/`. Имя папки совпадает с основным файлом. Рядом — `index.ts` папки. Баррель слоя только реэкспортирует папки.
+
+Имя с большой буквы. Папка и основной файл заканчиваются на роль:
+
+- API — `Api`: `PlantsApi/PlantsApi.ts`
+- Сервис — `Service`: `SessionService/SessionService.ts`
+- Провайдер — `Provider`: `WeatherProvider/WeatherProvider.tsx`
+- Хук — префикс `use` со строчной и дальше большая буква, без суффикса роли: `useWeather/useWeather.ts`. Не `UseWeather` и не `useweather`.
+
+Соседние файлы повторяют это имя: `PlantsApi.types.ts`. Частный файл внутри папки суффикс роли не получает.
+
+`index.ts` и `__tests__` с большой буквы не называют. Каталог backend `apps/api` этим правилом не переименовывают.
+
+```text
+// ❌ BAD
+hooks/useWeather.ts
+api/Plants/Plants.ts
+services/Session/Session.ts
+providers/Weather/Weather.tsx
+
+// ✅ GOOD
+hooks/useWeather/useWeather.ts
+hooks/useWeather/index.ts
+api/PlantsApi/PlantsApi.ts
+services/SessionService/SessionService.ts
+providers/WeatherProvider/WeatherProvider.tsx
+```
