@@ -29,11 +29,17 @@ export type ChartColumnsProps = {
   columns: ChartColumn[];
 };
 
+export type TemperatureColorScale = 'anomaly' | 'level';
+
 export type StepChartBand = {
   top: number;
   height: number;
   fill: string;
   stroke: string;
+  fillTop?: string;
+  fillBottom?: string;
+  strokeTop?: string;
+  strokeBottom?: string;
 };
 
 export type StepChartLabel = {

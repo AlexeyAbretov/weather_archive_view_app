@@ -3,6 +3,7 @@ import type {
   ChartColumnsProps,
   StepChartLabel,
   StepChartModel,
+  TemperatureColorScale,
   YearColumnsChartProps,
 } from './YearColumnsTable.types';
 import {
@@ -43,10 +44,17 @@ const toStepChart = (chart: TemperatureChartModel): StepChartModel => {
   };
 };
 
-export const TemperatureStepChart = ({ columns }: ChartColumnsProps) => {
+type TemperatureStepChartProps = ChartColumnsProps & {
+  colorScale?: TemperatureColorScale;
+};
+
+export const TemperatureStepChart = ({
+  columns,
+  colorScale = 'anomaly',
+}: TemperatureStepChartProps) => {
   return (
     <YearColumnsStepChart
-      chart={toStepChart(buildTemperatureChartFromColumns(columns))}
+      chart={toStepChart(buildTemperatureChartFromColumns(columns, colorScale))}
     />
   );
 };

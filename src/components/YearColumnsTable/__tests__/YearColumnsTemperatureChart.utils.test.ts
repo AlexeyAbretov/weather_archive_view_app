@@ -1,8 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import type { YearWeatherRow } from '@domain';
+import type { WeatherDayRecord, YearWeatherRow } from '@domain';
 
-import { buildTemperatureChart } from '../YearColumnsTemperatureChart.utils';
+import type { ChartColumn } from '../YearColumnsTable.types';
+import {
+  buildTemperatureChart,
+  buildTemperatureChartFromColumns,
+} from '../YearColumnsTemperatureChart.utils';
 
 const row = (
   year: number,
@@ -85,6 +89,53 @@ describe('buildTemperatureChart', () => {
 
     expect(chart.segments).toEqual([]);
     expect(chart.height).toBe(90);
+  });
+
+  it('в окне дней красит края по температуре, а не по средней за сутки', () => {
+    const column = (
+      date: string,
+      tempMin: number,
+      tempMax: number,
+    ): ChartColumn => {
+      const day: WeatherDayRecord = {
+        date,
+        year: 2026,
+        hasData: true,
+        tempMin,
+        tempMax,
+      };
+
+      return {
+        key: date,
+        label: date,
+        isAnchor: false,
+        day,
+      };
+    };
+
+    const chart = buildTemperatureChartFromColumns(
+      [column('2026-10-08', 5, 17), column('2026-10-09', 12, 16)],
+      'level',
+    );
+    const warmDayColdNight = chart.segments[0]?.band;
+    const mildNight = chart.segments[1]?.band;
+    const warmth = (color: string | undefined): number => {
+      const match = color?.match(/rgb\((\d+), \d+, (\d+)\)/);
+
+      return Number(match?.[1] ?? 0) - Number(match?.[2] ?? 0);
+    };
+
+    expect(warmth(warmDayColdNight?.strokeTop)).toBeGreaterThan(
+      warmth(mildNight?.strokeTop),
+    );
+    expect(warmth(warmDayColdNight?.strokeBottom)).toBeLessThan(
+      warmth(mildNight?.strokeBottom),
+    );
+    expect(warmth(warmDayColdNight?.strokeTop)).toBeGreaterThan(
+      warmth(warmDayColdNight?.strokeBottom),
+    );
+    expect(chart.segments[0]?.tooltip).toBe('2026-10-08: +17° / +5°');
+    expect(chart.segments[1]?.tooltip).not.toContain('отклонение');
   });
 
   it('подписывает годы, если температуры нет ни у одного', () => {

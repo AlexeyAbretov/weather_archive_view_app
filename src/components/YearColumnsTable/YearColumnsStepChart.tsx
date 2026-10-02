@@ -1,8 +1,40 @@
+import { useId } from 'react';
+
 import styles from './YearColumnsTable.module.css';
-import type { StepChartProps } from './YearColumnsTable.types';
+import type { StepChartBand, StepChartProps } from './YearColumnsTable.types';
+
+const hasTemperatureGradient = (
+  band: StepChartBand,
+): band is StepChartBand & { fillTop: string; fillBottom: string } => {
+  return (
+    band.fillTop != null &&
+    band.fillBottom != null &&
+    band.fillTop !== band.fillBottom
+  );
+};
+
+const topStroke = (band: StepChartBand): string => {
+  return band.strokeTop ?? band.stroke;
+};
+
+const bottomStroke = (band: StepChartBand): string => {
+  return band.strokeBottom ?? band.stroke;
+};
 
 export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
+  const chartId = useId().replace(/[^a-zA-Z0-9]/g, '');
   const columnCount = chart.segments.length;
+  const gradientId = (key: string): string => {
+    return `${chartId}-${key}`;
+  };
+
+  const gradientBands = chart.segments.flatMap((segment) => {
+    if (!segment.band || !hasTemperatureGradient(segment.band)) {
+      return [];
+    }
+
+    return [{ key: segment.key, band: segment.band }];
+  });
 
   return (
     <div className={styles.chart} style={{ height: chart.height }}>
@@ -14,6 +46,24 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
         viewBox={`0 0 ${columnCount} ${chart.height}`}
         width="100%"
       >
+        {gradientBands.length > 0 ? (
+          <defs>
+            {gradientBands.map(({ key, band }) => (
+              <linearGradient
+                key={`gradient-${key}`}
+                gradientUnits="userSpaceOnUse"
+                id={gradientId(key)}
+                x1="0"
+                x2="0"
+                y1={band.top + band.height}
+                y2={band.top}
+              >
+                <stop offset="0" stopColor={band.fillBottom} />
+                <stop offset="1" stopColor={band.fillTop} />
+              </linearGradient>
+            ))}
+          </defs>
+        ) : null}
         {chart.segments.map((segment, index) => {
           if (!segment.isAnchor) {
             return null;
@@ -39,7 +89,11 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
             <rect
               key={`band-${segment.key}`}
               data-band="true"
-              fill={segment.band.fill}
+              fill={
+                hasTemperatureGradient(segment.band)
+                  ? `url(#${gradientId(segment.key)})`
+                  : segment.band.fill
+              }
               height={segment.band.height}
               width={1}
               x={index}
@@ -58,7 +112,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
           return (
             <g key={`stroke-${segment.key}`}>
               <line
-                stroke={segment.band.stroke}
+                stroke={topStroke(segment.band)}
                 strokeWidth={2}
                 vectorEffect="non-scaling-stroke"
                 x1={index}
@@ -67,7 +121,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
                 y2={segment.band.top}
               />
               <line
-                stroke={segment.band.stroke}
+                stroke={bottomStroke(segment.band)}
                 strokeWidth={2}
                 vectorEffect="non-scaling-stroke"
                 x1={index}
@@ -78,7 +132,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
               {next?.band ? (
                 <g data-join="true">
                   <line
-                    stroke={segment.band.stroke}
+                    stroke={topStroke(segment.band)}
                     strokeWidth={2}
                     vectorEffect="non-scaling-stroke"
                     x1={index + 1}
@@ -87,7 +141,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
                     y2={next.band.top}
                   />
                   <line
-                    stroke={segment.band.stroke}
+                    stroke={bottomStroke(segment.band)}
                     strokeWidth={2}
                     vectorEffect="non-scaling-stroke"
                     x1={index + 1}

@@ -1,7 +1,10 @@
 import type { WeatherDayRecord, YearWeatherRow } from '@domain';
 import { formatTemperature, getNoDataLabel } from '@utils';
 
-import type { ChartColumn } from './YearColumnsTable.types';
+import type {
+  ChartColumn,
+  TemperatureColorScale,
+} from './YearColumnsTable.types';
 
 type Rgb = {
   r: number;
@@ -19,6 +22,10 @@ export type TemperatureBand = {
   height: number;
   fill: string;
   stroke: string;
+  fillTop?: string;
+  fillBottom?: string;
+  strokeTop?: string;
+  strokeBottom?: string;
 };
 
 export type TemperatureChartSegment = {
@@ -47,6 +54,7 @@ const STROKE_COLD: Rgb = { r: 22, g: 119, b: 255 };
 const STROKE_WARM: Rgb = { r: 207, g: 19, b: 34 };
 
 const ANOMALY_FULL_SCALE_C = 4;
+const LEVEL_FULL_SPAN_C = 16;
 const CHART_HEIGHT = 90;
 const PLOT_TOP = 16;
 const PLOT_BOTTOM = 72;
@@ -74,13 +82,13 @@ const rgbCss = (color: Rgb): string => {
   return `rgb(${color.r}, ${color.g}, ${color.b})`;
 };
 
-const bandColors = (
-  deviation: number,
+const bandColorsFromAmount = (
+  amount: number,
 ): Pick<TemperatureBand, 'fill' | 'stroke'> => {
-  const amount = clamp(deviation / ANOMALY_FULL_SCALE_C, -1, 1);
+  const clamped = clamp(amount, -1, 1);
 
-  if (amount < 0) {
-    const coldAmount = -amount;
+  if (clamped < 0) {
+    const coldAmount = -clamped;
 
     return {
       fill: rgbCss(mix(FILL_NEUTRAL, FILL_COLD, coldAmount)),
@@ -89,8 +97,46 @@ const bandColors = (
   }
 
   return {
-    fill: rgbCss(mix(FILL_NEUTRAL, FILL_WARM, amount)),
-    stroke: rgbCss(mix(STROKE_NEUTRAL, STROKE_WARM, amount)),
+    fill: rgbCss(mix(FILL_NEUTRAL, FILL_WARM, clamped)),
+    stroke: rgbCss(mix(STROKE_NEUTRAL, STROKE_WARM, clamped)),
+  };
+};
+
+const bandColors = (
+  deviation: number,
+): Pick<TemperatureBand, 'fill' | 'stroke'> => {
+  return bandColorsFromAmount(deviation / ANOMALY_FULL_SCALE_C);
+};
+
+const colorAtTemperature = (
+  temp: number,
+  tMin: number,
+  tMax: number,
+): Pick<TemperatureBand, 'fill' | 'stroke'> => {
+  const halfSpan = Math.max(tMax - tMin, LEVEL_FULL_SPAN_C) / 2;
+  const mid = (tMin + tMax) / 2;
+
+  return bandColorsFromAmount((temp - mid) / halfSpan);
+};
+
+const levelBandColors = (
+  sample: TemperatureSample,
+  tMin: number,
+  tMax: number,
+): Pick<
+  TemperatureBand,
+  'fill' | 'stroke' | 'fillTop' | 'fillBottom' | 'strokeTop' | 'strokeBottom'
+> => {
+  const atMax = colorAtTemperature(sample.tempMax, tMin, tMax);
+  const atMin = colorAtTemperature(sample.tempMin, tMin, tMax);
+
+  return {
+    fill: atMax.fill,
+    stroke: atMax.stroke,
+    fillTop: atMax.fill,
+    fillBottom: atMin.fill,
+    strokeTop: atMax.stroke,
+    strokeBottom: atMin.stroke,
   };
 };
 
@@ -177,27 +223,34 @@ const dataSegment = (
   baseline: number,
   tMin: number,
   span: number,
+  colorScale: TemperatureColorScale,
 ): TemperatureChartSegment => {
   const deviation = midpoint(sample) - baseline;
   const geometry = bandGeometry(sample, tMin, span);
   const labelMax = formatTemperature(sample.tempMax);
   const labelMin = formatTemperature(sample.tempMin);
-
   const deviationLabel = formatDeviation(deviation);
+  const colors =
+    colorScale === 'level'
+      ? levelBandColors(sample, tMin, tMin + span)
+      : bandColors(deviation);
+  const rangeLabel = `${column.label}: ${labelMax} / ${labelMin}`;
+  const tooltip =
+    colorScale === 'level'
+      ? rangeLabel
+      : `${rangeLabel}, отклонение ${deviationLabel}`;
 
   return {
     key: column.key,
     isAnchor: column.isAnchor,
-    tooltip:
-      `${column.label}: ${labelMax} / ${labelMin}, ` +
-      `отклонение ${deviationLabel}`,
+    tooltip,
     labelMax,
     labelMin,
     labelMaxTop: geometry.top - LABEL_ABOVE,
     labelMinTop: geometry.top + geometry.height + LABEL_BELOW,
     band: {
       ...geometry,
-      ...bandColors(deviation),
+      ...colors,
     },
   };
 };
@@ -216,6 +269,7 @@ export const yearRowsToChartColumns = (
 
 export const buildTemperatureChartFromColumns = (
   columns: ChartColumn[],
+  colorScale: TemperatureColorScale = 'anomaly',
 ): TemperatureChartModel => {
   const samples = collectSamples(columns);
 
@@ -244,7 +298,7 @@ export const buildTemperatureChartFromColumns = (
         return emptySegment(column);
       }
 
-      return dataSegment(column, sample, baseline, tMin, span);
+      return dataSegment(column, sample, baseline, tMin, span, colorScale);
     }),
   };
 };

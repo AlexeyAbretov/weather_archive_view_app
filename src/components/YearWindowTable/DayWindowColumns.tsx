@@ -88,7 +88,9 @@ export const buildDayWindowColumns = (
         }
 
         if (metric.key === 'temperature') {
-          return <TemperatureStepChart columns={chartColumns} />;
+          return (
+            <TemperatureStepChart colorScale="level" columns={chartColumns} />
+          );
         }
 
         if (metric.key === 'precipitation') {
