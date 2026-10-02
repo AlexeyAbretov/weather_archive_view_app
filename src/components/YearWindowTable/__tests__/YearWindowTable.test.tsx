@@ -87,7 +87,9 @@ describe('YearWindowTable', () => {
       />,
     );
 
-    expect(document.body.textContent).toContain('дн. до');
-    expect(document.body.textContent).toContain('дн. после');
+    expect(document.body.textContent).toContain('10.09');
+    expect(document.body.textContent).toContain('18.09');
+    expect(document.body.textContent).not.toContain('дн. до');
+    expect(document.body.textContent).not.toContain('дн. после');
   });
 });
