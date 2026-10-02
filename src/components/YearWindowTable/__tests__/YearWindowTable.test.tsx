@@ -101,5 +101,27 @@ describe('YearWindowTable', () => {
     expect(document.body.textContent).toContain('18.09');
     expect(document.body.textContent).not.toContain('дн. до');
     expect(document.body.textContent).not.toContain('дн. после');
+    expect(
+      screen.getByRole('columnheader', { name: '17.09' }).className,
+    ).toContain('anchorColumn');
+    expect(screen.getAllByText('+17°').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('-1°').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('1.2 мм').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('16 км/ч')).toHaveLength(9);
+    expect(screen.getAllByText('40%')).toHaveLength(9);
+    expect(container.querySelectorAll('[data-band]').length).toBeGreaterThan(0);
+
+    rerender(
+      <YearWindowTable
+        {...base}
+        expandedYears={[2020]}
+        onExpandYear={onExpandYear}
+        onExpandedYearsChange={onExpandedYearsChange}
+        onRetryYear={onRetryYear}
+        windowsByYear={new Map([[2020, { year: 2020, days: [] }]])}
+      />,
+    );
+
+    expect(screen.queryByText('+17°')).not.toBeInTheDocument();
   });
 });

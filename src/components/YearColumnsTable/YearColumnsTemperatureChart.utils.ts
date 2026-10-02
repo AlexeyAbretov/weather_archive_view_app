@@ -1,5 +1,7 @@
-import type { YearWeatherRow } from '@domain';
+import type { WeatherDayRecord, YearWeatherRow } from '@domain';
 import { formatTemperature, getNoDataLabel } from '@utils';
+
+import type { ChartColumn } from './YearColumnsTable.types';
 
 type Rgb = {
   r: number;
@@ -20,7 +22,7 @@ export type TemperatureBand = {
 };
 
 export type TemperatureChartSegment = {
-  year: number;
+  key: string;
   isAnchor: boolean;
   tooltip: string;
   emptyLabel?: string;
@@ -99,8 +101,8 @@ const formatDeviation = (value: number): string => {
   return `${sign}${rounded.toFixed(1)}°`;
 };
 
-const readSample = (row: YearWeatherRow): TemperatureSample | undefined => {
-  const { hasData, tempMin, tempMax } = row.day;
+const readSample = (day: WeatherDayRecord): TemperatureSample | undefined => {
+  const { hasData, tempMin, tempMax } = day;
 
   if (!hasData || tempMin == null || tempMax == null) {
     return undefined;
@@ -109,11 +111,11 @@ const readSample = (row: YearWeatherRow): TemperatureSample | undefined => {
   return { tempMin, tempMax };
 };
 
-const collectSamples = (rows: YearWeatherRow[]): TemperatureSample[] => {
+const collectSamples = (columns: ChartColumn[]): TemperatureSample[] => {
   const samples: TemperatureSample[] = [];
 
-  for (const row of rows) {
-    const sample = readSample(row);
+  for (const column of columns) {
+    const sample = readSample(column.day);
 
     if (sample) {
       samples.push(sample);
@@ -127,16 +129,13 @@ const midpoint = (sample: TemperatureSample): number => {
   return (sample.tempMin + sample.tempMax) / 2;
 };
 
-const emptySegment = (
-  row: YearWeatherRow,
-  anchorYear: number | undefined,
-): TemperatureChartSegment => {
-  const emptyLabel = getNoDataLabel(row.day.noDataReason);
+const emptySegment = (column: ChartColumn): TemperatureChartSegment => {
+  const emptyLabel = getNoDataLabel(column.day.noDataReason);
 
   return {
-    year: row.year,
-    isAnchor: row.year === anchorYear,
-    tooltip: `${row.year}: ${emptyLabel}`,
+    key: column.key,
+    isAnchor: column.isAnchor,
+    tooltip: `${column.label}: ${emptyLabel}`,
     emptyLabel,
   };
 };
@@ -173,9 +172,8 @@ const bandGeometry = (
 };
 
 const dataSegment = (
-  row: YearWeatherRow,
+  column: ChartColumn,
   sample: TemperatureSample,
-  anchorYear: number | undefined,
   baseline: number,
   tMin: number,
   span: number,
@@ -188,10 +186,10 @@ const dataSegment = (
   const deviationLabel = formatDeviation(deviation);
 
   return {
-    year: row.year,
-    isAnchor: row.year === anchorYear,
+    key: column.key,
+    isAnchor: column.isAnchor,
     tooltip:
-      `${row.year}: ${labelMax} / ${labelMin}, ` +
+      `${column.label}: ${labelMax} / ${labelMin}, ` +
       `отклонение ${deviationLabel}`,
     labelMax,
     labelMin,
@@ -204,16 +202,27 @@ const dataSegment = (
   };
 };
 
-export const buildTemperatureChart = (
+export const yearRowsToChartColumns = (
   rows: YearWeatherRow[],
   anchorYear?: number,
+): ChartColumn[] => {
+  return rows.map((row) => ({
+    key: String(row.year),
+    label: String(row.year),
+    isAnchor: row.year === anchorYear,
+    day: row.day,
+  }));
+};
+
+export const buildTemperatureChartFromColumns = (
+  columns: ChartColumn[],
 ): TemperatureChartModel => {
-  const samples = collectSamples(rows);
+  const samples = collectSamples(columns);
 
   if (samples.length === 0) {
     return {
       height: CHART_HEIGHT,
-      segments: rows.map((row) => emptySegment(row, anchorYear)),
+      segments: columns.map((column) => emptySegment(column)),
     };
   }
 
@@ -228,14 +237,23 @@ export const buildTemperatureChart = (
 
   return {
     height: CHART_HEIGHT,
-    segments: rows.map((row) => {
-      const sample = readSample(row);
+    segments: columns.map((column) => {
+      const sample = readSample(column.day);
 
       if (!sample) {
-        return emptySegment(row, anchorYear);
+        return emptySegment(column);
       }
 
-      return dataSegment(row, sample, anchorYear, baseline, tMin, span);
+      return dataSegment(column, sample, baseline, tMin, span);
     }),
   };
+};
+
+export const buildTemperatureChart = (
+  rows: YearWeatherRow[],
+  anchorYear?: number,
+): TemperatureChartModel => {
+  return buildTemperatureChartFromColumns(
+    yearRowsToChartColumns(rows, anchorYear),
+  );
 };

@@ -1,12 +1,14 @@
 import { YearColumnsStepChart } from './YearColumnsStepChart';
 import type {
+  ChartColumnsProps,
   StepChartLabel,
   StepChartModel,
   YearColumnsChartProps,
 } from './YearColumnsTable.types';
 import {
-  buildTemperatureChart,
+  buildTemperatureChartFromColumns,
   type TemperatureChartModel,
+  yearRowsToChartColumns,
 } from './YearColumnsTemperatureChart.utils';
 
 const toStepChart = (chart: TemperatureChartModel): StepChartModel => {
@@ -30,7 +32,7 @@ const toStepChart = (chart: TemperatureChartModel): StepChartModel => {
       }
 
       return {
-        year: segment.year,
+        key: segment.key,
         isAnchor: segment.isAnchor,
         tooltip: segment.tooltip,
         emptyLabel: segment.emptyLabel,
@@ -41,13 +43,19 @@ const toStepChart = (chart: TemperatureChartModel): StepChartModel => {
   };
 };
 
+export const TemperatureStepChart = ({ columns }: ChartColumnsProps) => {
+  return (
+    <YearColumnsStepChart
+      chart={toStepChart(buildTemperatureChartFromColumns(columns))}
+    />
+  );
+};
+
 export const YearColumnsTemperatureChart = ({
   anchorYear,
   rows,
 }: YearColumnsChartProps) => {
   return (
-    <YearColumnsStepChart
-      chart={toStepChart(buildTemperatureChart(rows, anchorYear))}
-    />
+    <TemperatureStepChart columns={yearRowsToChartColumns(rows, anchorYear)} />
   );
 };

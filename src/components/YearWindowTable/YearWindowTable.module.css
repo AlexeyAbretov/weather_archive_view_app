@@ -76,11 +76,37 @@
   font-weight: 600;
   font-size: 12px;
   padding: 8px 4px;
+  width: 84px;
+  max-width: 84px;
 }
 
 .expandedTable :global(.ant-table-tbody > tr > td) {
   padding: 6px 4px;
-  vertical-align: top;
+  vertical-align: middle;
+  width: 84px;
+  max-width: 84px;
+}
+
+.expandedTable :global(.ant-table-thead > tr > th).anchorColumn {
+  background: #ffe7ba;
+  box-shadow: inset 0 -3px 0 #fa8c16;
+}
+
+.expandedTable :global(.ant-table-tbody > tr > td).anchorColumn {
+  background: #fff7e6;
+}
+
+.expandedTable :global(.ant-table-small) :global(.ant-table-tbody > tr > td).chartCell,
+.expandedTable
+  :global(.ant-table-small)
+  :global(.ant-table-tbody > tr:nth-child(even) > td).chartCell,
+.expandedTable
+  :global(.ant-table-small)
+  :global(.ant-table-tbody > tr:hover > td).chartCell {
+  width: auto;
+  max-width: none;
+  padding: 0;
+  background: #fff;
 }
 
 .expandedState {

@@ -5,23 +5,51 @@ import type { WeatherDayRecord, YearWeatherWindow } from '@domain';
 
 import { YearWindowTable } from '../YearWindowTable';
 
-const day: WeatherDayRecord = {
-  date: '2020-09-15',
-  year: 2020,
-  hasData: true,
-  tempMin: 4,
-  tempMax: 16,
-  precipitationMm: 0,
-  precipitationType: 'none',
-  windSpeedMax: 8,
-  windDirection: 10,
-  cloudCover: 5,
-  weatherCode: 1,
-  iconKey: 'mainly-clear',
-};
+const TEMPERATURES: Array<[number, number]> = [
+  [2, 11],
+  [3, 12],
+  [1, 10],
+  [4, 13],
+  [6, 15],
+  [5, 14],
+  [4, 16],
+  [7, 18],
+  [8, 17],
+  [6, 15],
+  [3, 12],
+  [2, 11],
+  [1, 9],
+  [0, 8],
+  [2, 10],
+];
+
+const PRECIPITATION_MM = [
+  0, 0.4, 1.2, 0, 3.5, 8, 2.1, 0.6, 0, 4.2, 1.1, 0, 0.2, 6.4, 0.8,
+];
+
+const days: WeatherDayRecord[] = TEMPERATURES.map(
+  ([tempMin, tempMax], index) => {
+    const day = index + 8;
+
+    return {
+      date: `2020-09-${String(day).padStart(2, '0')}`,
+      year: 2020,
+      hasData: true,
+      tempMin,
+      tempMax,
+      precipitationMm: PRECIPITATION_MM[index] ?? 0,
+      precipitationType: 'rain',
+      windSpeedMax: 8 + index,
+      windDirection: 20 * index,
+      cloudCover: 10 + index * 5,
+      weatherCode: 61,
+      iconKey: 'rain',
+    };
+  },
+);
 
 const windowByYear = new Map<number, YearWeatherWindow>([
-  [2020, { year: 2020, days: [day] }],
+  [2020, { year: 2020, days }],
 ]);
 
 const meta = {

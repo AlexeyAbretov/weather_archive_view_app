@@ -21,7 +21,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
 
           return (
             <rect
-              key={`anchor-${segment.year}`}
+              key={`anchor-${segment.key}`}
               fill="#fff7e6"
               height={chart.height}
               width={1}
@@ -37,7 +37,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
 
           return (
             <rect
-              key={`band-${segment.year}`}
+              key={`band-${segment.key}`}
               data-band="true"
               fill={segment.band.fill}
               height={segment.band.height}
@@ -56,7 +56,7 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
           const bottom = segment.band.top + segment.band.height;
 
           return (
-            <g key={`stroke-${segment.year}`}>
+            <g key={`stroke-${segment.key}`}>
               <line
                 stroke={segment.band.stroke}
                 strokeWidth={2}
@@ -104,14 +104,14 @@ export const YearColumnsStepChart = ({ chart }: StepChartProps) => {
       <div className={styles.labels}>
         {chart.segments.map((segment) => (
           <div
-            key={segment.year}
+            key={segment.key}
             className={styles.column}
             title={segment.tooltip}
           >
             {segment.band ? (
               segment.labels.map((label) => (
                 <span
-                  key={`${segment.year}-${label.top}`}
+                  key={`${segment.key}-${label.top}`}
                   className={styles.chartLabel}
                   style={{ top: label.top }}
                 >

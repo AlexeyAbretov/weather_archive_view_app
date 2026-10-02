@@ -1,4 +1,4 @@
-import type { YearWeatherRow } from '@domain';
+import type { WeatherDayRecord, YearWeatherRow } from '@domain';
 
 export type YearColumnsTableProps = {
   anchorYear?: number;
@@ -18,6 +18,17 @@ export type YearColumnsChartProps = {
   rows: YearWeatherRow[];
 };
 
+export type ChartColumn = {
+  key: string;
+  label: string;
+  isAnchor: boolean;
+  day: WeatherDayRecord;
+};
+
+export type ChartColumnsProps = {
+  columns: ChartColumn[];
+};
+
 export type StepChartBand = {
   top: number;
   height: number;
@@ -31,7 +42,7 @@ export type StepChartLabel = {
 };
 
 export type StepChartSegment = {
-  year: number;
+  key: string;
   isAnchor: boolean;
   tooltip: string;
   emptyLabel?: string;

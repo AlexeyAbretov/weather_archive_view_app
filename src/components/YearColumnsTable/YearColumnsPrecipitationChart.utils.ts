@@ -1,10 +1,12 @@
-import type { YearWeatherRow } from '@domain';
+import type { WeatherDayRecord, YearWeatherRow } from '@domain';
 import { formatPrecipitationMm, getNoDataLabel } from '@utils';
 
 import type {
+  ChartColumn,
   StepChartModel,
   StepChartSegment,
 } from './YearColumnsTable.types';
+import { yearRowsToChartColumns } from './YearColumnsTemperatureChart.utils';
 
 const FILL = 'rgb(105, 192, 255)';
 const STROKE = 'rgb(9, 109, 217)';
@@ -19,8 +21,8 @@ type PrecipitationSample = {
   precipitationMm: number;
 };
 
-const readSample = (row: YearWeatherRow): PrecipitationSample | undefined => {
-  const { hasData, precipitationMm } = row.day;
+const readSample = (day: WeatherDayRecord): PrecipitationSample | undefined => {
+  const { hasData, precipitationMm } = day;
 
   if (!hasData || precipitationMm == null) {
     return undefined;
@@ -29,11 +31,11 @@ const readSample = (row: YearWeatherRow): PrecipitationSample | undefined => {
   return { precipitationMm: Math.max(0, precipitationMm) };
 };
 
-const collectSamples = (rows: YearWeatherRow[]): PrecipitationSample[] => {
+const collectSamples = (columns: ChartColumn[]): PrecipitationSample[] => {
   const samples: PrecipitationSample[] = [];
 
-  for (const row of rows) {
-    const sample = readSample(row);
+  for (const column of columns) {
+    const sample = readSample(column.day);
 
     if (sample) {
       samples.push(sample);
@@ -43,16 +45,13 @@ const collectSamples = (rows: YearWeatherRow[]): PrecipitationSample[] => {
   return samples;
 };
 
-const emptySegment = (
-  row: YearWeatherRow,
-  anchorYear: number | undefined,
-): StepChartSegment => {
-  const emptyLabel = getNoDataLabel(row.day.noDataReason);
+const emptySegment = (column: ChartColumn): StepChartSegment => {
+  const emptyLabel = getNoDataLabel(column.day.noDataReason);
 
   return {
-    year: row.year,
-    isAnchor: row.year === anchorYear,
-    tooltip: `${row.year}: ${emptyLabel}`,
+    key: column.key,
+    isAnchor: column.isAnchor,
+    tooltip: `${column.label}: ${emptyLabel}`,
     emptyLabel,
     labels: [],
   };
@@ -82,9 +81,8 @@ const bandGeometry = (
 };
 
 const dataSegment = (
-  row: YearWeatherRow,
+  column: ChartColumn,
   sample: PrecipitationSample,
-  anchorYear: number | undefined,
   max: number,
 ): StepChartSegment => {
   const geometry = bandGeometry(sample.precipitationMm, max);
@@ -92,9 +90,9 @@ const dataSegment = (
   const isZero = sample.precipitationMm === 0;
 
   return {
-    year: row.year,
-    isAnchor: row.year === anchorYear,
-    tooltip: `${row.year}: ${label}`,
+    key: column.key,
+    isAnchor: column.isAnchor,
+    tooltip: `${column.label}: ${label}`,
     labels: [{ text: label, top: geometry.top - LABEL_ABOVE }],
     band: {
       ...geometry,
@@ -104,16 +102,15 @@ const dataSegment = (
   };
 };
 
-export const buildPrecipitationChart = (
-  rows: YearWeatherRow[],
-  anchorYear?: number,
+export const buildPrecipitationChartFromColumns = (
+  columns: ChartColumn[],
 ): StepChartModel => {
-  const samples = collectSamples(rows);
+  const samples = collectSamples(columns);
 
   if (samples.length === 0) {
     return {
       height: CHART_HEIGHT,
-      segments: rows.map((row) => emptySegment(row, anchorYear)),
+      segments: columns.map((column) => emptySegment(column)),
     };
   }
 
@@ -121,14 +118,23 @@ export const buildPrecipitationChart = (
 
   return {
     height: CHART_HEIGHT,
-    segments: rows.map((row) => {
-      const sample = readSample(row);
+    segments: columns.map((column) => {
+      const sample = readSample(column.day);
 
       if (!sample) {
-        return emptySegment(row, anchorYear);
+        return emptySegment(column);
       }
 
-      return dataSegment(row, sample, anchorYear, max);
+      return dataSegment(column, sample, max);
     }),
   };
+};
+
+export const buildPrecipitationChart = (
+  rows: YearWeatherRow[],
+  anchorYear?: number,
+): StepChartModel => {
+  return buildPrecipitationChartFromColumns(
+    yearRowsToChartColumns(rows, anchorYear),
+  );
 };

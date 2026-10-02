@@ -18,8 +18,10 @@ export type YearWindowTableProps = {
   isYearExpandable: (year: number) => boolean;
 };
 
+export type DayMetricKey = 'temperature' | 'precipitation' | 'wind' | 'weather';
+
 export type DayWindowRow = {
-  key: string;
+  key: DayMetricKey;
 };
 
 export type DayWindowTableProps = {
